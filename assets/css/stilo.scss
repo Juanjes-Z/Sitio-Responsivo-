@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,200&display=swap");
+
+body{
+    padding: 25px 0px;
+}
+select,
+input{
+    border: none!important;
+    border-bottom: 2px solid silver!important;
+    box-shadow: none!important;
+}
+hr{
+    background-color: rgb(0, 0, 0);
+    padding-bottom: 0.5px;
+}
+.wrapper {
+    width: 100%;
+    .input-data {
+        height: 25%;
+        width: 100%;
+        position: relative;
+        input {
+            height: 100%;
+            width: 100%;
+            border: none;
+            font-size: 17px;
+            border-bottom: 2px solid silver;
+            padding-top: 1rem;
+        }
+        label{
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            color: grey;
+            pointer-events: none;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        input:focus ~ label,
+        input:valid ~ label {
+            -webkit-transform: translateY(-1.5rem);
+            transform: translateY(-1.5rem);
+            font-size: 12px;
+        }
+        
+        .underline {
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            bottom: 0;
+        }
+        .underline:before {
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 100%;
+            -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transition: -webkit-transform 0.3s ease;
+            transition: -webkit-transform 0.3s ease;
+            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+        }
+        input:focus ~ .underline:before,
+        input:valid ~ .underline:before {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+    }
+}
+.sub-t{
+    font-size: 20px;
+}
+form .pading-0{
+    padding: 0px 2px;
+}
+
+form .btn{
+    border: 1px solid;
+    text-align: center;
+}
+input:focus {
+    outline-width: 0px;
+}
+textarea:focus,
+select:focus,
+button:focus{
+    box-shadow: none!important;
+}
+.form-floating>.form-control, 
+.form-floating>.form-select {
+    padding-left: 0rem;
+}
+.form-floating>label {
+    padding-left:0rem;
+    border: none;
+}
+input,
+select{
+	outline:0px;
+    box-shadow: none;
+    outline:none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+#maestros .input-data input{
+    padding-top: 1.5rem;
+}
+.titulo{
+    margin: 0px 0px!important;
+}
+
+.tabla-contenedor
+{
+    height: 342px;
+    overflow: auto;
+    padding: 0px;
+}
+
+/*.sticky-head{
+    background-color: white!important;
+     top: 0!important;
+     position: sticky!important;
+     z-index: 999!important;
+}*/
+
+.sticky-column{
+    background-color: white!important;
+     left: 0px!important;
+     position: sticky!important;
+     z-index: 9999!important;
+     background-color: rgb(187, 187, 187)!important;
+}
+
+  // Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    form .btn-100{
+        width:100%;
+    }
+ }
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    .ordenar1 {
+        order: 1;
+    }
+    .ordernar2 {
+        order: 0;
+    }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+
+}

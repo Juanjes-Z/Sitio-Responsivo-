@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- RESET elimina los estilos css que implementan los navegadores por defecto-->
+	<link rel="stylesheet" href="./assets/css/reset200802.css">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+	</script>
+
+	<!-- CSS DATA PCIKER-->
+	<link rel="stylesheet" href="./assets/bootstrap-datepicker.css" />
+	<link rel="stylesheet" media="screen" type="text/css" href="./assets/css/datepicker.css" />
+
+	<!-- Hoja de estilos del sitio-->
+	<link rel="stylesheet" href="./assets/css/stilo.css">
+	<title>Mi escuela | Grupos</title>
+</head>
+
+<body>
+	<header></header>
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 ">
+					<h1>ALTA DE GRUPOS</h1>
+				</div>
+
+				<form class="form-group">
+
+					<div class="col-12">
+						<div class="wrapper">
+							<div class="input-data">
+								<input type="text" id="txtGrupo" name="txtGrupo" maxlength="10" size="10" class=""
+									required>
+								<div class="underline">
+								</div>
+								<label for="txtGrupo">Grupos</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12 mt-2">
+						<div class="wrapper">
+							<div class="input-data">
+								<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="50" size="50"
+									class="" required>
+								<div class="underline">
+								</div>
+								<label for="txtDescripcion">Descripción</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="form-floating ">
+							<select name="cboNivel" class="form-select">
+								<option value="4">BACHILLERATO</option>
+								<option value="5">LICENCIATURA</option>
+								<option value="6">MAESTRÍA SEMESTRAL</option>
+								<option value="7">DOCTORADO</option>
+								<option value="8">DIPLOMADO</option>
+								<option value="9">EDUCACION CONTINUA</option>
+								<option value="10">ESPECIALIDAD CUATRIMESTRAL</option>
+								<option value="11">MAESTRÍA CUATRIMESTRAL</option>
+								<option value="12">TEOLOGIA</option>
+								<option value="13">ECEM</option>
+								<option value="14">MAESTRIA ANUAL</option>
+								<option value="15">ESPECIALIDAD ANUAL</option>
+								<option value="16">ESPECIALIDAD SEMESTRAL</option>
+								<option value="17">CONGRESO</option>
+								<option value="18">LICENCIATURA CUATRIMESTRAL</option>
+							</select>
+							<label for="cboNivel">Nacionalidad</label>
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="form-floating">
+							<select name="cboNivel" class="form-select">
+								<option value="2021-1">2021-1</option>
+								<option value="2020-2">2020-2</option>
+								<option value="2020-1">2020-1</option>
+								<option value="2019-2">2019-2</option>
+								<option value="2019-1">2019-1</option>
+								<option value="2018-2">2018-2</option>
+								<option value="2018-1">2018-1</option>
+								<option value="2017-2">2017-2</option>
+								<option value="2017-1">2017-1</option>
+								<option value="2016-2">2016-2</option>
+								<option value="2016-1">2016-1</option>
+								<option value="2015-2">2015-2</option>
+								<option value="2015-1">2015-1</option>
+								<option value="2014-2">2014-2</option>
+								<option value="2014-1">2014-1</option>
+								<option value="2013-2">2013-2</option>
+								<option value="2013-1">2013-1</option>
+								<option value="2012-2">2012-2</option>
+								<option value="2012-1">2012-1</option>
+								<option value="2011-2">2011-2</option>
+								<option value="2011-1">2011-1</option>
+								<option value="2010-2">2010-2</option>
+								<option value="2010-I">2010-I</option>
+								<option value="2009-2">2009-2</option>
+								<option value="2009-1">2009-1</option>
+								<option value="2008-2">2008-2</option>
+								<option value="2008-1">2008-1</option>
+								<option value="2007-2">2007-2</option>
+								<option value="2007-1">2007-1</option>
+								<option value="2006-2">2006-2</option>
+								<option value="2006-1">2006-1</option>
+							</select>
+							<label for="cboNivel">Ciclo</label>
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="form-floating">
+							<select name="cboNivel" class="form-select">
+								<option value="0">Seleccione</option>
+								<option value="1">Principal</option>
+								<option value="2">General</option>
+								<option value="3">INGLES</option>
+								<option value="4">DIPLOMADO</option>
+								<option value="5">CURSO</option>
+								<option value="6">TALLER</option>
+								<option value="7">VIDEOCONFERENCIA</option>
+								<option value="8">REGULARIZACION</option>
+								<option value="9">INGLES LIC</option>
+								<option value="10">INTERSEMESTRAL</option>
+							</select>
+							<label for="cboNivel">Turno</label>
+						</div>
+					</div>
+
+					<div class="row mt-2 align-items-end">
+						<div class="col-md-3 col-11">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="2" size="12"
+										class="" required>
+									<div class="underline">
+									</div>
+									<label for="txtDescripcion">Grado</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-1">
+							<div class="d-grid gap-1">
+								<button type="button" name="cmdAceptar" value="" Title="Guarda los datos"
+									class=" btn btn-100 pt-4 "> </button>
+							</div>
+						</div>
+						<div class="col-md-8 col-12">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="50"
+										size="50" class="" disabled>
+									<div class="underline">
+									</div>
+									<label for="txtDescripcion"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-2 align-items-end">
+						<div class="col-md-3 col-11">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="5" size="12"
+										class="" required>
+									<div class="underline">
+									</div>
+									<label for="txtDescripcion">Carrera</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-1">
+							<div class="d-grid gap-1">
+								<BUTTON type="button" name="cmdAceptar" value="" Title="Guarda los datos"
+									class=" btn  pt-4"> </BUTTON>
+							</div>
+						</div>
+						<div class="col-md-8 col-12">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="50"
+										size="50" class="" disabled>
+									<div class="underline">
+									</div>
+									<label for="txtDescripcion"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-2 align-items-end">
+						<div class="col-md-3 col-11">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="4" size="12"
+										class="" required>
+									<div class="underline">
+									</div>
+									<label for="txtDescripcion">Aula</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1 col-1">
+							<div class="d-grid gap-1">
+								<BUTTON type="button" name="cmdAceptar" value="" Title="Guarda los datos"
+									class=" btn pt-4"> </BUTTON>
+							</div>
+						</div>
+						<div class="col-md-8 col-12">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="50"
+										size="50" class="" disabled>
+									<div class="underline">
+									</div>
+									<label for="txtDescripcion"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12 mt-2">
+						<div class="wrapper">
+							<div class="input-data">
+								<input type="text" id="txtGrupo" name="txtGrupo" maxlength="" size="12" class=""
+									required>
+								<div class="underline">
+								</div>
+								<label for="txtGrupo">Capacidad </label>
+							</div>
+						</div>
+						<div id="emailHelp" class="form-text">Si deja el campo en blanco la capacidad del grupo se
+							tomara la capacidad del aula</div>
+					</div>
+
+					<div class="col-12">
+						<div class="form-floating">
+							<select name="cboNivel" class="form-select">
+								<option value="1">Matutino</option>
+								<option value="2">Vespertino</option>
+								<option value="3">Mixto</option>
+							</select>
+							<label for="cboNivel">Turno</label>
+						</div>
+					</div>
+
+					<p class="sub-t"><br>Titular(es) de Grupo(s)</p>
+					<hr>
+
+					<div class="row mt-2 align-items-end">
+						<div class="col-md-3 col-11">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="10"
+										size="12" class="" required>
+									<div class="underline"></div>
+									<label for="txtDescripcion">Español</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1 col-1">
+							<div class="d-grid gap-2">
+								<BUTTON type="button" name="cmdAceptar" value="" Title="Guarda los datos"
+									class=" btn pt-4"> </BUTTON>
+							</div>
+						</div>
+						<div class="col-12 col-md-8 ">
+							<div class="wrapper">
+								<div class="input-data">
+									<input type="text" id="txtDescripcion" name="txtDescripcion" maxlength="50"
+										size="50" class="" disabled>
+									<div class="underline">
+									</div>
+									<label for="txtDescripcion"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-2">
+						<div class="col-12">
+							<BUTTON type=button name="cmdAceptar" value="Aceptar" Title="Guarda los datos" class="btn"
+								style="border: 1px solid"> Guardar </BUTTON>
+							<BUTTON type=button name="cmdEliminar" value="Eliminar" Title="Elimina el Maestro"
+								class=" btn">Limpiar </BUTTON>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</main>
+	<footer></footer>
+
+
+	<!--jQuery -->
+	<script src="./assets/js/jquery-3.6.0.min.js"></script>
+	<!--  Popper.js, then Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+		integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+		integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous">
+	</script>
+	<!-- scripts datapicker-->
+	<script src="./assets/js/bootstrap-datepicker.min.js"></script>
+	<script src="./assets/js/bootstrap-datepicker.es.min.js"></script>
+
+	<!--modernizr ayuda a compatibilizar nuestro codigo con otros navegadores-->
+	<script src="./assets/js/modernizr-custom.js"></script>
+
+	<!--<script src="./assets/js/floating-select.js"></script>-->
+</body>
+
+</html>
