@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- RESET elimina los estilos css que implementan los navegadores por defecto-->
+    <link rel="stylesheet" href="./assets/css/reset200802.css">
+
+    <!--jQuery -->
+    <!-- MORRIS JS libreria para realizar graficas-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <link rel="stylesheet" href="./assets/libs/morris.js-0.5.1/morris.css">
+    <script src="./assets/libs/morris.js-0.5.1/morris.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script>
+
+
+    <!-- Hoja de estilos del sitio-->
+    <link rel="stylesheet" href="./assets/css/stilo.css">
+
+
+    <title>Mi escuela | Alumnos</title>
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <table id="dt-table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Population (2017)</th>
+                    <th>Density (P/Km²)</th>
+                    <th>Med. Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>China</td>
+                    <td>1,409,517,397</td>
+                    <td>150 </td>
+                    <td>37</td>
+                </tr>
+                <tr>
+                    <td>India</td>
+                    <td>1,339,180,127</td>
+                    <td>450</td>
+                    <td>27</td>
+                </tr>
+                <tr>
+                    <td>U.S.</td>
+                    <td>324,459,463</td>
+                    <td>35</td>
+                    <td>38</td>
+                </tr>
+                <tr>
+                    <td>Indonesia</td>
+                    <td>263,991,379</td>
+                    <td>146</td>
+                    <td>28</td>
+                </tr>
+                <tr>
+                    <td>Brazil</td>
+                    <td>209,288,278</td>
+                    <td>25</td>
+                    <td>31</td>
+                </tr>
+                <tr>
+                    <td>Pakistan</td>
+                    <td>197,015,955</td>
+                    <td>256</td>
+                    <td>22</td>
+                </tr>
+                <tr>
+                    <td>Nigeria</td>
+                    <td>190,886,311</td>
+                    <td>210</td>
+                    <td>18</td>
+                </tr>
+                <tr>
+                    <td>Bangladesh</td>
+                    <td>164,669,751</td>
+                    <td>1,265</td>
+                    <td>26</td>
+                </tr>
+                <tr>
+                    <td>Russia</td>
+                    <td>143,989,754</td>
+                    <td>9</td>
+                    <td>39</td>
+                </tr>
+                <tr>
+                    <td>Mexico</td>
+                    <td>129,163,276</td>
+                    <td>66</td>
+                    <td>28</td>
+                </tr>
+                <tr>
+                    <td>Japan</td>
+                    <td>127,484,450</td>
+                    <td>350</td>
+                    <td>46</td>
+                </tr>
+                <tr>
+                    <td>Ethiopia</td>
+                    <td>104,957,438</td>
+                    <td>105</td>
+                    <td>19</td>
+                </tr>
+                <tr>
+                    <td>Philippines</td>
+                    <td>104,918,090</td>
+                    <td>352</td>
+                    <td>24</td>
+                </tr>
+                <tr>
+                    <td>Egypt</td>
+                    <td>97,553,151</td>
+                    <td>98</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>Viet Nam</td>
+                    <td>95,540,800</td>
+                    <td>308</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>Germany</td>
+                    <td>82,114,224</td>
+                    <td>236</td>
+                    <td>46</td>
+                </tr>
+                <tr>
+                    <td>DR Congo</td>
+                    <td>81,339,988</td>
+                    <td>36</td>
+                    <td>17</td>
+                </tr>
+                <tr>
+                    <td>Iran</td>
+                    <td>81,162,788</td>
+                    <td>50</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>Turkey</td>
+                    <td>80,745,020</td>
+                    <td>105</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>Thailand</td>
+                    <td>69,037,513</td>
+                    <td>135</td>
+                    <td>38</td>
+                </tr>
+
+                <tr>
+                    <td>U.K.</td>
+                    <td>66,181,585</td>
+                    <td>274</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>France</td>
+                    <td>64,979,548</td>
+                    <td>119</td>
+                    <td>41</td>
+                </tr>
+                <tr>
+                    <td>Italy</td>
+                    <td>59,359,900</td>
+                    <td>202</td>
+                    <td>46</td>
+                </tr>
+                <tr>
+                    <td>Tanzania</td>
+                    <td>57,310,019</td>
+                    <td>65</td>
+                    <td>17</td>
+                </tr>
+                <tr>
+                    <td>South Africa</td>
+                    <td>56,717,156</td>
+                    <td>47</td>
+                    <td>26</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="chart"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--  Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous">
+    </script>
+
+    <!--<script src="./assets/js/floating-select.js"></script>-->
+    <script src="./assets/js/graficas.js"></script>
+    <script src="./assets/js/crear-json.js"></script>
+
+    <!-- para  la tabla-->
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
+
+    <!--modernizr ayuda a compatibilizar nuestro codigo con otros navegadores-->
+    <script src="./assets/js/modernizr-custom.js"></script>
+
+
+
+</body>
+
+</html>
