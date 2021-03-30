@@ -9,7 +9,7 @@
     <!-- RESET elimina los estilos css que implementan los navegadores por defecto-->
     <link rel="stylesheet" href="./assets/css/reset200802.css">
 
-    
+
     <!--jQuery -->
     <!-- MORRIS JS libreria para realizar graficas-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -37,62 +37,70 @@
 
     <style>
         body {
-  font-family: Helvetica, Arial, sans-serif;
-  padding: 20px;
-  background: #ececec;
-}
+            font-family: Helvetica, Arial, sans-serif;
+            padding: 20px;
+            background: #ececec;
+        }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 0 10px;
-}
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 0 10px;
+        }
 
-#dt-table_wrapper {
-  width: 35%;
-  margin-right: 2%;
-}
+        #dt-table_wrapper {
+            width: 35%;
+            margin-right: 2%;
+        }
 
-#chart {
-  width: 63%;
-}
+        #chart {
+            width: 63%;
+        }
 
-table {
-  text-align: left;
-}
+        table {
+            text-align: left;
+        }
 
-@media screen and (max-width: 1200px) {
-  #dt-table_wrapper,
-  #chart {
-    width: 100%;
-    margin: 20px 0;
-  }
+        @media screen and (max-width: 1200px) {
 
-  #dt-table_wrapper {
-    margin-right: 0;
-  }
-}
+            #dt-table_wrapper,
+            #chart {
+                width: 100%;
+                margin: 20px 0;
+            }
+
+            #dt-table_wrapper {
+                margin-right: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
-    
+
     <div class="container">
-        <table id="dt-table">
-          <thead>
-            <tr>
-              <th>Años</th>
-              <th>Ganacias</th>
-              <th>Compradores</th>
-              <th>Edad compradors</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          
-        </table>
-        <div id="chart"></div>
-      </div>
+        <div class="row">
+            <div class="col-6 tabla-contenedor">
+                <table id="dt-table">
+                    <thead>
+                        <tr>
+                            <th>Años</th>
+                            <th>Ganacias</th>
+                            <th>Compradores</th>
+                            <th>Edad compradors</th>
+                            <th>Defectos</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+            <div class="col-6">
+            <div id="chart"></div>
+        </div>
+    </div>
+    </div>
     <!--  Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
         integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous">
@@ -114,37 +122,17 @@ table {
 
         /**
          * FUNCTIONS
-        */
-
-        $(document).ready(function() {
-           
-           $('#dt-table tbody').on( 'click', 'tr', function () {
-               if ( $(this).hasClass('selected') ) {
-                   $(this).removeClass('selected');
-               }
-               else {
-                   table.$('tr.selected').removeClass('selected');
-                   $(this).addClass('selected');
-               }
-           } );
-       
-           $('#button').click( function () {
-               table.row('.selected').remove().draw( false );
-           } );
-       } );
-       
+         */
         function init() {
             // initialize DataTables
-            const table = $("#dt-table").DataTable(
-                {
-                    "ajax": "./assets/json/file-json-tabla.json",
-                    "columnDefs": [ {
-                        "targets": 4,
-                        "data": null,
-                        "defaultContent": "<input type='button' class='borrar btn' value='Eliminar' />"
-                    } ]
-                } 
-            );
+            const table = $("#dt-table").DataTable({
+                "ajax": "./assets/json/file-json-tabla.json",
+                "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": "<input type='button' class='borrar btn' value='Eliminar' />"
+                }]
+            });
             // get table data
             const tableData = getTableData(table);
             // create Highcharts
@@ -153,132 +141,151 @@ table {
             setTableEvents(table);
         }
 
-    function getTableData(table) {
-        const dataArray = [],
-            countryArray = [],
-            populationArray = [],
-            densityArray = [];
+        function getTableData(table) {
+            const dataArray = [],
+                countryArray = [],
+                populationArray = [],
+                densityArray = [],
+                defectosArray = [];
 
-        // loop table rows
-        table.rows({ search: "applied" }).every(function() {
-            const data = this.data();
-            countryArray.push(data[0]);
-            populationArray.push(parseInt(data[1].replace(/\,/g, "")));
-            densityArray.push(parseInt(data[2].replace(/\,/g, "")));
-        });
+            // loop table rows
+            table.rows({
+                search: "applied"
+            }).every(function () {
+                const data = this.data();
+                countryArray.push(data[0]);
+                populationArray.push(parseInt(data[1].replace(/\,/g, "")));
+                densityArray.push(parseInt(data[2].replace(/\,/g, "")));
+                defectosArray.push(parseInt(data[3].replace(/\,/g, "")));
+            });
 
-        // store all data in dataArray
-        dataArray.push(countryArray, populationArray, densityArray);
+            // store all data in dataArray
+            dataArray.push(countryArray, populationArray, densityArray, defectosArray);
 
-        return dataArray;
-    }
+            return dataArray;
+        }
 
-    function createHighcharts(data) {
-        Highcharts.setOptions({
-            lang: {
-            thousandsSep: ","
-            }
-        });
-
-        Highcharts.chart("chart", {
-            title: {
-            text: "DataTables to Highcharts"
-            },
-            subtitle: {
-            text: "Data from worldometers.info"
-            },
-            xAxis: [
-            {
-                categories: data[0],
-                labels: {
-                rotation: -45
+        function createHighcharts(data) {
+            Highcharts.setOptions({
+                lang: {
+                    thousandsSep: ","
                 }
-            }
-            ],
-            yAxis: [
-            {
-                // first yaxis
+            });
+
+            Highcharts.chart("chart", {
                 title: {
-                text: "Ganancias"
-                }
-            },
-            {
-                // secondary yaxis
-                title: {
-                text: "Usuarios"
+                    text: "Tabla Titulo"
                 },
-                min: 0,
-                opposite: true
-            }
-            ],
-            series: [
-            {
-                name: "Ganancias",
-                color: "#0071A7",
-                type: "spline",
-                data: data[1],
+                subtitle: {
+                    text: ""
+                },
+                xAxis: [{
+                    categories: data[0],
+                    labels: {
+                        rotation: -45
+                    }
+                }],
+                yAxis: [{
+                        // first yaxis
+                        title: {
+                            text: "Ganancias"
+                        }
+                    },
+                    {
+                        // secondary yaxis
+                        title: {
+                            text: "Usuarios"
+                        },
+                        min: 0,
+                        opposite: true
+                    }
+                ],
+                series: [{
+                        name: "Ganancias",
+                        color: "#0071A7",
+                        type: "spline",
+                        data: data[1],
+                        tooltip: {
+                            valueSuffix: " M"
+                        }
+                    },
+                    {
+                        name: "Usuarios",
+                        color: "#FF404E",
+                        type: "spline",
+                        data: data[2],
+                        yAxis: 1
+                    },
+                    {
+                        name: "Defectos",
+                        color: "#000",
+                        type: "spline",
+                        data: data[3],
+                        yAxis: 1
+                    }
+                ],
+                responsive: {  
+                rules: [{  
+                    condition: {  
+                    maxWidth: 100  
+                    },  
+                    chartOptions: {  
+                        legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                        }
+                    }  
+                }]  
+                },
                 tooltip: {
-                valueSuffix: " M"
+                    shared: true
+                },
+                legend: {
+                    backgroundColor: "#ececec",
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                noData: {
+                    style: {
+                        fontSize: "16px"
+                    }
                 }
-            },
-            {
-                name: "Usuarios",
-                color: "#FF404E",
-                type: "spline",
-                data: data[2],
-                yAxis: 1
-            }
-            ],
-            tooltip: {
-            shared: true
-            },
-            legend: {
-            backgroundColor: "#ececec",
-            shadow: true
-            },
-            credits: {
-            enabled: false
-            },
-            noData: {
-            style: {
-                fontSize: "16px"
-            }
-            }
-        });
+            });
         }
 
         function setTableEvents(table) {
-        // listen for page clicks
-        table.on("page", () => {
-            draw = true;
-        });
+            // listen for page clicks
+            table.on("page", () => {
+                draw = true;
+            });
 
-        // listen for updates and adjust the chart accordingly
-        table.on("draw", () => {
-            if (draw) {
-            draw = false;
-            } else {
-            const tableData = getTableData(table);
-            createHighcharts(tableData);
-            }
-        });
+            // listen for updates and adjust the chart accordingly
+            table.on("draw", () => {
+                if (draw) {
+                    draw = false;
+                } else {
+                    const tableData = getTableData(table);
+                    createHighcharts(tableData);
+                }
+            });
 
-        $(document).on('click', '.borrar', function (event) {
-                
-            $(this).closest('tr').remove();
-            table.row('').remove().draw( false );
-            const tableData = getTableData(table);
+            $(document).on('click', '.borrar', function (event) {
+
+                $(this).closest('tr').remove();
+                table.row('').remove().draw(false);
+                const tableData = getTableData(table);
                 createHighcharts(tableData);
             });
         }
 
         //boton borrar
-    
-
     </script>
- <!--<script src="./assets/js/floating-select.js"></script>
+    <!--<script src="./assets/js/floating-select.js"></script>
  <script src="./assets/js/graficas.js"></script>
  <script src="./assets/js/crear-json.js"></script>-->
 </body>
 
-</html>     
+</html>
