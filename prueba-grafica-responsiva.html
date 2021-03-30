@@ -27,7 +27,7 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
     </script>
 
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/fc-3.3.2/fh-3.1.8/r-2.2.7/sc-2.0.3/datatables.min.css"/>
 
     <!-- Hoja de estilos del sitio-->
     <link rel="stylesheet" href="./assets/css/stilo.css">
@@ -36,44 +36,7 @@
     <title>Mi escuela | Alumnos</title>
 
     <style>
-        body {
-            font-family: Helvetica, Arial, sans-serif;
-            padding: 20px;
-            background: #ececec;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        #dt-table_wrapper {
-            width: 35%;
-            margin-right: 2%;
-        }
-
-        #chart {
-            width: 63%;
-        }
-
-        table {
-            text-align: left;
-        }
-
-        @media screen and (max-width: 1200px) {
-
-            #dt-table_wrapper,
-            #chart {
-                width: 100%;
-                margin: 20px 0;
-            }
-
-            #dt-table_wrapper {
-                margin-right: 0;
-            }
-        }
+       
     </style>
 </head>
 
@@ -108,10 +71,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
         integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous">
     </script>
-    <!-- para  la tabla-->
-    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <!-- para  la tabla--> 
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/fc-3.3.2/fh-3.1.8/r-2.2.7/sc-2.0.3/datatables.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
 
+    
     <!--modernizr ayuda a compatibilizar nuestro codigo con otros navegadores-->
     <script src="./assets/js/modernizr-custom.js"></script>
 
@@ -126,8 +91,10 @@
         function init() {
             // initialize DataTables
             const table = $("#dt-table").DataTable({
+                paging: false,
+                reponsive: true,
                 "ajax": "./assets/json/file-json-tabla.json",
-                responsive: true,
+                
                 "columnDefs": [{
                     "targets": -1,
                     "data": null,
@@ -262,14 +229,37 @@
 
             $(document).on('click', '.borrar', function (event) {
 
-                $(this).closest('tr').remove();
-                table.row('').remove().draw(false);
+                table.row($(this).parents('tr')).remove().draw(false);
                 const tableData = getTableData(table);
                 createHighcharts(tableData);
             });
         }
+    //sticky
+        $("#Table").delegate( "thead tr th", "click", function(event) {
+       if($(this).hasClass("sticky-column")== false){
+            $("table thead tr th").each(function () {
+                $(this).removeClass('sticky-column');
+            });
 
-        //boton borrar
+            $(this).addClass('sticky-column');
+            let pos = $(this).index()
+            $("table tbody tr").each(function () {
+                $("td").removeClass('sticky-column');
+            });
+
+            $("table tbody tr").each(function () {
+                $(this).find("td:eq(" + (pos) + ")").addClass('sticky-column');
+            });
+        }
+        else{
+            $("table thead tr th").each(function () {
+                $(this).removeClass('sticky-column');
+            });
+            $("table tbody tr").each(function () {
+                $("td").removeClass('sticky-column');
+            });
+        }
+    });
     </script>
     <!--<script src="./assets/js/floating-select.js"></script>
  <script src="./assets/js/graficas.js"></script>

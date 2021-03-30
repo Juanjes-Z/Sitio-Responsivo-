@@ -141,9 +141,9 @@ input[type=number] {
 }
 
 .tabla-contenedor {
-  height: 342px;
-  overflow: auto;
+  max-height: 400px;
   padding: 0px;
+  overflow: auto;
   text-align: center;
 }
 
