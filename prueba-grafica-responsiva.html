@@ -92,6 +92,7 @@
             // initialize DataTables
             const table = $("#dt-table").DataTable({
                 paging: false,
+                "ordering": false,
                 reponsive: true,
                 "ajax": "./assets/json/file-json-tabla.json",
                 
@@ -235,7 +236,7 @@
             });
         }
     //sticky
-        $("#Table").delegate( "thead tr th", "click", function(event) {
+        $("#dt-table").delegate( "thead tr th", "click", function(event) {
        if($(this).hasClass("sticky-column")== false){
             $("table thead tr th").each(function () {
                 $(this).removeClass('sticky-column');
