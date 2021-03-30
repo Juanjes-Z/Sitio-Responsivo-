@@ -124,6 +124,7 @@ input[type=number] { -moz-appearance:textfield; }
     height: 342px;
     overflow: auto;
     padding: 0px;
+    text-align: center;
 }
 
 /*.sticky-head{
@@ -135,12 +136,24 @@ input[type=number] { -moz-appearance:textfield; }
 
 .sticky-column{
     background-color: white!important;
-     left: 0px!important;
-     position: sticky!important;
-     z-index: 9999!important;
-     background-color: rgb(187, 187, 187)!important;
+    left: 0px!important;
+    right: 0px;
+    position: sticky!important;
+    z-index: 9999!important;
+    background-color: rgb(187, 187, 187)!important;
+    color: white!important;
 }
-
+.sticky-column input{
+    background-color: rgb(187, 187, 187)!important;
+    color: white!important;
+}
+td{
+    white-space: nowrap
+}
+thead{
+    cursor: pointer!important;
+    cursor: hand!important;
+}
   // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
     form .btn-100{

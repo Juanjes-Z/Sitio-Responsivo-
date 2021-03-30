@@ -1,0 +1,38 @@
+{
+    "data":[{
+            "Fecha":"2021-03-01",
+            "Ganancias":"1000",
+            "Perdidas": "10"
+        },
+        {
+            "Fecha":"2021-03-02",
+            "Ganancias":"1000",
+            "Perdidas": "1880"
+        },
+        {
+            "Fecha":"2021-03-03",
+            "Ganancias":"10000",
+            "Perdidas": "1088"
+        },
+        {
+            "Fecha":"2021-03-04",
+            "Ganancias":"10000",
+            "Perdidas": "1088"
+        },
+        {
+            "Fecha":"2021-03-05",
+            "Ganancias":"10000",
+            "Perdidas": "102"
+        },
+        {
+            "Fecha":"2021-03-06",
+            "Ganancias":"10000",
+            "Perdidas": "102"
+        },
+        {
+            "Fecha":"2021-03-07",
+            "Ganancias":"10000",
+            "Perdidas": "102"
+        }
+    ]
+}
