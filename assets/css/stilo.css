@@ -144,6 +144,7 @@ input[type=number] {
   height: 342px;
   overflow: auto;
   padding: 0px;
+  text-align: center;
 }
 
 /*.sticky-head{
@@ -155,10 +156,26 @@ input[type=number] {
 .sticky-column {
   background-color: white !important;
   left: 0px !important;
+  right: 0px;
   position: -webkit-sticky !important;
   position: sticky !important;
   z-index: 9999 !important;
   background-color: #bbbbbb !important;
+  color: white !important;
+}
+
+.sticky-column input {
+  background-color: #bbbbbb !important;
+  color: white !important;
+}
+
+td {
+  white-space: nowrap;
+}
+
+thead {
+  cursor: pointer !important;
+  cursor: hand !important;
 }
 
 @media (min-width: 576px) {
