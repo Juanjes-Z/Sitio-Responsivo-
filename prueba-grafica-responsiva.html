@@ -81,7 +81,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-6 tabla-contenedor">
+            <div class="col-12 col-md-6 tabla-contenedor">
                 <table id="dt-table">
                     <thead>
                         <tr>
@@ -96,10 +96,10 @@
 
                 </table>
             </div>
-            <div class="col-6">
-            <div id="chart"></div>
+            <div class="col-12 col-md-6">
+                <div id="chart"></div>
+            </div>
         </div>
-    </div>
     </div>
     <!--  Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
@@ -127,6 +127,7 @@
             // initialize DataTables
             const table = $("#dt-table").DataTable({
                 "ajax": "./assets/json/file-json-tabla.json",
+                responsive: true,
                 "columnDefs": [{
                     "targets": -1,
                     "data": null,
@@ -224,20 +225,7 @@
                         yAxis: 1
                     }
                 ],
-                responsive: {  
-                rules: [{  
-                    condition: {  
-                    maxWidth: 100  
-                    },  
-                    chartOptions: {  
-                        legend: {
-                        align: 'center',
-                        verticalAlign: 'bottom',
-                        layout: 'horizontal'
-                        }
-                    }  
-                }]  
-                },
+                
                 tooltip: {
                     shared: true
                 },
