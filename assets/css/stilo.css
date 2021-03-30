@@ -147,6 +147,10 @@ input[type=number] {
   text-align: center;
 }
 
+.dataTables_info {
+  display: none;
+}
+
 /*.sticky-head{
     background-color: white!important;
      top: 0!important;
