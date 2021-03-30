@@ -1,49 +1,31 @@
 <!DOCTYPE HTML>
 <html>
-<head>  
-<script>
+<head>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
 window.onload = function () {
-
-var options = {
-	animationEnabled: true,  
+var dataPoints = [];
+var chart = new CanvasJS.Chart("chartContainer",{
 	title:{
-		text: "Monthly Sales - 2017"
-	},
-	axisX: {
-		valueFormatString: "MMM"
-	},
-	axisY: {
-		title: "Sales (in USD)",
-		prefix: "$"
+		text:"Rendering Chart with dataPoints from External JSON"
 	},
 	data: [{
-		yValueFormatString: "$#,###",
-		xValueFormatString: "MMMM",
-		type: "spline",
-		dataPoints: [
-			{ x: new Date(2017, 0), y: 25060 },
-			{ x: new Date(2017, 1), y: 27980 },
-			{ x: new Date(2017, 2), y: 33800 },
-			{ x: new Date(2017, 3), y: 49400 },
-			{ x: new Date(2017, 4), y: 40260 },
-			{ x: new Date(2017, 5), y: 33900 },
-			{ x: new Date(2017, 6), y: 48000 },
-			{ x: new Date(2017, 7), y: 31500 },
-			{ x: new Date(2017, 8), y: 32300 },
-			{ x: new Date(2017, 9), y: 42000 },
-			{ x: new Date(2017, 10), y: 52160 },
-			{ x: new Date(2017, 11), y: 49400 }
-		]
+		type: "line",
+		dataPoints : dataPoints,
 	}]
-};
-$("#chartContainer").CanvasJSChart(options);
-
+});
+$.getJSON("https://canvasjs.com/services/data/datapoints.php?xstart=1&ystart=10&length=100&type=json", function(data) {  
+	$.each(data, function(key, value){
+		dataPoints.push({x: value[0], y: parseInt(value[1])});
+	});	
+	chart.render();
+});
 }
 </script>
+
 </head>
 <body>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>
 </html>
