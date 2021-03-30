@@ -173,6 +173,11 @@ input[type=number] {
   color: white !important;
 }
 
+.sticky-column input[type=button] {
+  background-color: white !important;
+  color: black !important;
+}
+
 td {
   white-space: nowrap;
 }
