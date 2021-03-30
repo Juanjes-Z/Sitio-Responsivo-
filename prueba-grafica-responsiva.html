@@ -82,22 +82,14 @@ table {
         <table id="dt-table">
           <thead>
             <tr>
-              <th>Country</th>
-              <th>Population (2017)</th>
-              <th>Density (P/Km²)</th>
-              <th>Med. Age</th>
+              <th>Años</th>
+              <th>Ganacias</th>
+              <th>Compradores</th>
+              <th>Edad compradors</th>
               <th>Eliminar</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>Country</th>
-              <th>Population (2017)</th>
-              <th>Density (P/Km²)</th>
-              <th>Med. Age</th>
-              <th>Eliminar</th>
-            </tr>
-          </tfoot>
+          
         </table>
         <div id="chart"></div>
       </div>
@@ -207,13 +199,13 @@ table {
             {
                 // first yaxis
                 title: {
-                text: "Population (2017)"
+                text: "Ganancias"
                 }
             },
             {
                 // secondary yaxis
                 title: {
-                text: "Density (P/Km²)"
+                text: "Usuarios"
                 },
                 min: 0,
                 opposite: true
@@ -221,7 +213,7 @@ table {
             ],
             series: [
             {
-                name: "Population (2017)",
+                name: "Ganancias",
                 color: "#0071A7",
                 type: "spline",
                 data: data[1],
@@ -230,7 +222,7 @@ table {
                 }
             },
             {
-                name: "Density (P/Km²)",
+                name: "Usuarios",
                 color: "#FF404E",
                 type: "spline",
                 data: data[2],
