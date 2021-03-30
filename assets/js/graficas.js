@@ -1,36 +1,69 @@
+$(document).ready(function () {
+    function obtener_data_de_json(json) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: json,
+            success: function (data) {
+                cargarDatos_graf(data)
+            }
+        });
+    }
+
+    function cargarDatos_graf(json) {
+        var DatosJson = JSON.parse(JSON.stringify(json));
+
+        let labels_array=[]
+
+        for (var key in DatosJson.data[1]) {
+           console.log(key);
+           labels_array.push(key)
+        }
+
+        for (i = 0; i < DatosJson.data.length; i++) {
+            for (var key in DatosJson.data[1]) {
+                console.log(DatosJson.data[i][key])
+            }
+        }
+    }
+    
+    
+    obtener_data_de_json('../assets/json/file-json-otro-example.json')
+});
+
 let tabla_gastos = new Morris.Line({
     // ID of the element in which to draw the chart.
     element: 'myfirstchart',
     // Chart data records -- each entry in this array corresponds to a point on
     // the chart.
     data: [{
-            period: '0',
+        fecha: '0',
             Gasto: 0
         },
         {
-            period: '0',
+            fecha: '0',
             Gasto: 0
         },
         {
-            period: '0',
+            fecha: '0',
             Gasto: 0
         },
         {
-            period: '0',
+            fecha: '0',
             Gasto: 0
         },
         {
-            period: '0',
+            fecha: '0',
             Gasto: 0
         }
     ],
     // The name of the data record attribute that contains x-values.
-    xkey: 'period',
+    xkey: 'fecha',
     // A list of names of data record attributes that contain y-values.
-    ykeys: ['Gasto','perdidas'],
+    ykeys: ['Gasto'],
     // Labels for the ykeys -- will be displayed when you hover over the
     // chart.
-    labels: ['Gasto', 'perdidas'],
+    labels: ['Gasto', 'Perdidas'],
 
     resize: true,
 
@@ -80,7 +113,7 @@ $(document).ready(function () {
                 if(total=="" || total==undefined){
                     total=0
                 }
-                data.push({ period: fecha, Gasto: total });
+                data.push({ fecha: fecha, Gasto: total });
             });
                 
                 return data
