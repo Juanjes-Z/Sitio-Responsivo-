@@ -5,12 +5,12 @@ $(document).ready(function () {
             dataType: 'json',
             url: json,
             success: function (data) {
-                cargarDatos(data)
+                cargarDatos_graf(data)
             }
         });
     }
 
-    function cargarDatos(json) {
+    function cargarDatos_graf(json) {
         var DatosJson = JSON.parse(JSON.stringify(json));
 
         let labels_array=[]
@@ -26,11 +26,14 @@ $(document).ready(function () {
                 console.log(DatosJson.data[i][key])
             }
         }
-    }  
+    }
+    
+    
+
+    
     obtener_data_de_json('../assets/json/file-json-otro-example.json')
 });
 
-let variable="Gasto"
 let tabla_gastos = new Morris.Line({
     // ID of the element in which to draw the chart.
     element: 'myfirstchart',
@@ -60,10 +63,10 @@ let tabla_gastos = new Morris.Line({
     // The name of the data record attribute that contains x-values.
     xkey: 'period',
     // A list of names of data record attributes that contain y-values.
-    ykeys: ['Gasto','perdidas'],
+    ykeys: ['Gasto'],
     // Labels for the ykeys -- will be displayed when you hover over the
     // chart.
-    labels: ['Gasto', variable],
+    labels: ['Gasto', 'Perdidas'],
 
     resize: true,
 
