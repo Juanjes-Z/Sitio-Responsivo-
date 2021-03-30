@@ -99,7 +99,6 @@ table {
             </tr>
           </tfoot>
         </table>
-        <button id='button'>Delete selected row</button>
         <div id="chart"></div>
       </div>
     <!--  Popper.js, then Bootstrap JS -->
@@ -146,7 +145,7 @@ table {
             // initialize DataTables
             const table = $("#dt-table").DataTable(
                 {
-                    "ajax": "./assets/json/tabla-ejemplo.json",
+                    "ajax": "./assets/json/file-json-tabla.json",
                     "columnDefs": [ {
                         "targets": 4,
                         "data": null,
@@ -224,7 +223,7 @@ table {
             {
                 name: "Population (2017)",
                 color: "#0071A7",
-                type: "column",
+                type: "spline",
                 data: data[1],
                 tooltip: {
                 valueSuffix: " M"
