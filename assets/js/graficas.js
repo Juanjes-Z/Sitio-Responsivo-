@@ -1,3 +1,36 @@
+$(document).ready(function () {
+    function obtener_data_de_json(json) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: json,
+            success: function (data) {
+                cargarDatos(data)
+            }
+        });
+    }
+
+    function cargarDatos(json) {
+        var DatosJson = JSON.parse(JSON.stringify(json));
+
+        let labels_array=[]
+
+        for (var key in DatosJson.data[1]) {
+           console.log(key);
+           labels_array.push(key)
+        }
+
+        for (i = 0; i < DatosJson.data.length; i++) {
+            $("#tbody_id").append('<tr id="id_' + i + '">');
+            for (var key in DatosJson.data[1]) {
+                console.log(DatosJson.data[i][key])
+            }
+        }
+    }  
+    obtener_data_de_json('../assets/json/file-json-otro-example.json')
+});
+
+let variable="Gasto"
 let tabla_gastos = new Morris.Line({
     // ID of the element in which to draw the chart.
     element: 'myfirstchart',
@@ -30,7 +63,7 @@ let tabla_gastos = new Morris.Line({
     ykeys: ['Gasto','perdidas'],
     // Labels for the ykeys -- will be displayed when you hover over the
     // chart.
-    labels: ['Gasto', 'perdidas'],
+    labels: ['Gasto', variable],
 
     resize: true,
 
