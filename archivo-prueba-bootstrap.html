@@ -1,40 +1,49 @@
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
-<script>
-      function drawColumnChart(){
-            //suponiendo que recibes un json la variable json es la respuesta de tu backend
-      let json = [
-      {mes:'Noviembre', total: 1200, anio: 2019},
-      {mes:'Diciembre', total: 1350, anio: 2019},
-      {mes:'Enero', total: 500, anio: 2019}
-      ];
-      //array es el inicializador que contiene las columnas y argumentos de tu grafico en el indice 0
-      let array = [
-        [ 'Name','Visitas' ,{role:'annotation'}, {role:'tooltip'}]
-        ],
-        // json_a_array es el mapeo de los elementos de tu json a array
-      	json_a_array = json.map((e)=>{
-        return [
-        ...[e.mes,e.total,e.anio,`${e.mes} ${e.anio} : ${e.total} visita(s)`]];
-        });
-       //seguidamente pasamos los valores de json_a_array a tu array de argumentos donde los indices que siguen despues de 0 son la data de la grafica
-			json_a_array.map((e)=>{ array.push(e) });
-              var data = google.visualization.arrayToDataTable(
-              array
-                );
-// establecemos las opciones d ela grafica
-        var options = {
-          title: 'Visitas por mes',
-          hAxis: {title: 'Meses', titleTextStyle: {color: 'red'}},
-                tooltip: {legend:'none',isHtml:true, textStyle: {color: '#FF0000'}, showColorCode: true}
-        };
+<!doctype html>
+<head>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+  <script src="../morris.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
+  <script src="lib/example.js"></script>
+  <link rel="stylesheet" href="lib/example.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
+  <link rel="stylesheet" href="../morris.css">
+</head>
+<body>
+<h1>Updating data</h1>
+<div id="graph"></div>
+<div id="reloadStatus">
+<pre id="code" class="prettyprint linenums">
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-       
-      }
-//cargamos la grafica
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawColumnChart);
-  
-</script>
+var nReloads = 0;
+function data(offset) {
+  var ret = [];
+  for (var x = 0; x <= 360; x += 10) {
+    var v = (offset + x) % 360;
+    ret.push({
+      x: x,
+      y: Math.sin(Math.PI * v / 180).toFixed(4),
+      z: Math.cos(Math.PI * v / 180).toFixed(4)
+    });
+  }
+  return ret;
+}
+var graph = Morris.Line({
+    element: 'graph',
+    data: data(0),
+    xkey: 'x',
+    ykeys: ['y', 'z'],
+    labels: ['sin()', 'cos()'],
+    parseTime: false,
+    ymin: -1.0,
+    ymax: 1.0,
+    hideHover: true
+});
+function update() {
+  nReloads++;
+  graph.setData(data(5 * nReloads));
+  $('#reloadStatus').text(nReloads + ' reloads');
+}
+setInterval(update, 100);
+</pre>
+</body>
