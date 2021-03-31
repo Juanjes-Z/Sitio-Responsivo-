@@ -147,7 +147,7 @@ input[type=number] {
   text-align: center;
 }
 
-::-webkit-scrollbar {
+.tabla-contenedor::-webkit-scrollbar {
   display: none;
 }
 
@@ -184,6 +184,7 @@ input[type=number] {
 #dt-table td {
   white-space: nowrap;
   border-bottom: 1px solid #c0b9b9;
+  padding: 0px 24px;
 }
 
 #dt-table tr:hover {

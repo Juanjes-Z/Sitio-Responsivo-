@@ -126,9 +126,10 @@ input[type=number] { -moz-appearance:textfield; }
     overflow: auto;
     text-align: center;   
 }
-::-webkit-scrollbar {
+.tabla-contenedor::-webkit-scrollbar {
     display: none;
 }
+
 .dataTables_info{
     display: none;
 }
@@ -158,6 +159,7 @@ input[type=number] { -moz-appearance:textfield; }
     td{
         white-space: nowrap;
         border-bottom: 1px solid rgb(192, 185, 185);
+        padding: 0px 24px;
     }
     tr:hover{
         background-color: rgb(224, 222, 222);
