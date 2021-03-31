@@ -168,11 +168,6 @@ input[type=number] {
   color: white !important;
 }
 
-.sticky-column input {
-  background-color: #bbbbbb !important;
-  color: white !important;
-}
-
 .sticky-column input[type=button] {
   background-color: white !important;
   color: black !important;
