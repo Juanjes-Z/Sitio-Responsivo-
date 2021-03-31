@@ -147,6 +147,10 @@ input[type=number] {
   text-align: center;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .dataTables_info {
   display: none;
 }

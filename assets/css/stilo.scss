@@ -124,7 +124,10 @@ input[type=number] { -moz-appearance:textfield; }
     max-height: 400px;
     padding: 0px;
     overflow: auto;
-    text-align: center;
+    text-align: center;   
+}
+::-webkit-scrollbar {
+    display: none;
 }
 .dataTables_info{
     display: none;
@@ -151,7 +154,7 @@ input[type=number] { -moz-appearance:textfield; }
 }
 #dt-table{
     padding-top: 30px;
-
+    
     td{
         white-space: nowrap;
         border-bottom: 1px solid rgb(192, 185, 185);
