@@ -173,8 +173,17 @@ input[type=number] {
   color: black !important;
 }
 
-td {
+#dt-table {
+  padding-top: 30px;
+}
+
+#dt-table td {
   white-space: nowrap;
+  border-bottom: 1px solid #c0b9b9;
+}
+
+#dt-table tr:hover {
+  background-color: #e0dede;
 }
 
 thead {

@@ -11,6 +11,7 @@ let draw = false;
                 paging: false,
                 "ordering": false,
                 reponsive: true,
+                searching: false,
                 "ajax": './assets/json/file-json-tabla.json',
                 "columnDefs": [{
                     "targets": -1,

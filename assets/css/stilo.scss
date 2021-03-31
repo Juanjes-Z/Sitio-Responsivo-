@@ -149,9 +149,18 @@ input[type=number] { -moz-appearance:textfield; }
     background-color: white!important;
     color: black!important;
 }
-td{
-    white-space: nowrap
+#dt-table{
+    padding-top: 30px;
+
+    td{
+        white-space: nowrap;
+        border-bottom: 1px solid rgb(192, 185, 185);
+    }
+    tr:hover{
+        background-color: rgb(224, 222, 222);
+    }
 }
+
 thead{
     cursor: pointer!important;
     cursor: hand!important;
