@@ -1,22 +1,17 @@
 let draw = false;
-function myFunction() {
-    init("./assets/json/file-json-tabla.json");
-}
 
-function myFunction2() {
-    init("./assets/json/file-json-tabla-otro.json");
-}
 
         /**
          * FUNCTIONS
          */
-        function init(json_file) {
+         init()
+        function init() {
             // initialize DataTables
             const table = $("#dt-table").DataTable({
                 paging: false,
                 "ordering": false,
                 reponsive: true,
-                "ajax": json_file,
+                "ajax": './assets/json/file-json-tabla.json',
                 "columnDefs": [{
                     "targets": -1,
                     "data": null,
@@ -29,8 +24,23 @@ function myFunction2() {
             createHighcharts(tableData);
             // table events
             setTableEvents(table);
-        }
 
+            $( "select" ).change(function() {
+                var str = "";
+                $( "select option:selected" ).each(function() {
+                    str += $( this ).val();
+                    switch(str){
+                        case "1":
+                            table.ajax.url( './assets/json/file-json-tabla.json' ).load();
+                            break;
+                        case "2":
+                            table.ajax.url( './assets/json/file-json-tabla-otro.json' ).load();
+                            break;
+                    }
+                });
+                
+            })
+        }
         function getTableData(table) {
             const dataArray = [],
                 countryArray = [],
