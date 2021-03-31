@@ -94,7 +94,7 @@ let draw = false;
                     {
                         // secondary yaxis
                         title: {
-                            text: "usuarios y defectos"
+                            text: "Usuarios y Defectos"
                         },
                         min: 0,
                         opposite: true
