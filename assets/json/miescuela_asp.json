@@ -1,0 +1,16 @@
+
+{
+    "data": [{
+        "mes": "ENE",
+        "ingreso": 3094817.92
+    }, {
+        "mes": "FEB",
+        "ingreso": 2212615.75
+    }, {
+        "mes": "MAR",
+        "ingreso": 2502926.90
+    }, {
+        "mes": "ABR",
+        "ingreso": 11400.00
+    }]
+}

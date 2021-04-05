@@ -1,32 +1,62 @@
 let draw = false;
 
-
+var options = {
+    chart: {
+    },
+    dataLabels: {
+        enabled: false
+    },
+    series: [],
+    title: {
+        text: 'Ajax Example',
+    },
+    noData: {
+      text: 'Loading...'
+    },
+    xaxis: {
+        categories: ['ENE', 'FEB', 'MAR','ABR'],
+      }
+  }
+  
+  var chart = new ApexCharts(
+    document.querySelector("#chart"),
+    options
+  );
+  
+  chart.render();
         /**
          * FUNCTIONS
          */
-         init()
-        function init() {
+         
+        function init() 
+        {
             // initialize DataTables
             const table = $("#dt-table").DataTable({
                 paging: false,
                 "ordering": false,
                 reponsive: true,
                 searching: false,
-                "ajax": './assets/json/file-json-tabla.json',
-                "columnDefs": [{
-                    "targets": -1,
-                    "data": null,
-                    "defaultContent": "<input type='button' class='borrar btn' value='Eliminar' />"
-                }]
+                "ajax": './assets/json/miescuela_asp.json',
+                "columns": [
+                    { "data": "mes" },
+                    { "data": "ingreso" },
+                    {
+                        "targets": -1,
+                        "data": null,
+                        "defaultContent": "<input type='button' class='borrar btn' value='Eliminar' />"
+                    }
+                ]
             });
+            
             // get table data
             const tableData = getTableData(table);
             // create Highcharts
             createHighcharts(tableData);
+            
             // table events
             setTableEvents(table);
 
-            $( "select" ).change(function() {
+            /*$( "select" ).change(function() {
                 var str = "";
                 $( "select option:selected" ).each(function() {
                     str += $( this ).val();
@@ -39,109 +69,38 @@ let draw = false;
                             break;
                     }
                 });
-                
-            })
+            })*/
         }
+
         function getTableData(table) {
             const dataArray = [],
                 countryArray = [],
-                populationArray = [],
-                densityArray = [],
-                defectosArray = [];
+                populationArray = []
 
             // loop table rows
             table.rows({
                 search: "applied"
             }).every(function () {
                 const data = this.data();
-                countryArray.push(data[0]);
-                populationArray.push(parseInt(data[1].replace(/\,/g, "")));
-                densityArray.push(parseInt(data[2].replace(/\,/g, "")));
-                defectosArray.push(parseInt(data[3].replace(/\,/g, "")));
+                countryArray.push(data["mes"]);
+                populationArray.push(parseInt(data["ingreso"]));
             });
 
             // store all data in dataArray
-            dataArray.push(countryArray, populationArray, densityArray, defectosArray);
+            dataArray.push(countryArray, populationArray);
 
+            console.log(dataArray)
             return dataArray;
         }
 
         function createHighcharts(data) {
-            Highcharts.setOptions({
-                lang: {
-                    thousandsSep: ","
+            chart.updateSeries(
+                [
+                {
+                    name: 'Ganancias',
+                    data: data[1]
                 }
-            });
-
-            Highcharts.chart("chart", {
-                title: {
-                    text: "Tabla Titulo"
-                },
-                subtitle: {
-                    text: ""
-                },
-                xAxis: [{
-                    categories: data[0],
-                    labels: {
-                        rotation: -45
-                    }
-                }],
-                yAxis: [{
-                        // first yaxis
-                        title: {
-                            text: "Ganancias"
-                        }
-                    },
-                    {
-                        // secondary yaxis
-                        title: {
-                            text: "Usuarios y Defectos"
-                        },
-                        min: 0,
-                        opposite: true
-                    }
-                ],
-                series: [{
-                        name: "Ganancias",
-                        color: "#0071A7",
-                        type: "spline",
-                        data: data[1],
-                        tooltip: {
-                            valueSuffix: " M"
-                        }
-                    },
-                    {
-                        name: "Usuarios",
-                        color: "#FF404E",
-                        type: "spline",
-                        data: data[2],
-                        yAxis: 1
-                    },
-                    {
-                        name: "Defectos",
-                        color: "#0f0",
-                        type: "spline",
-                        data: data[3],
-                        yAxis: 1
-                    }
-                ],
-                
-                tooltip: {
-                    shared: true
-                },
-                legend: {
-                    backgroundColor: "#ececec",
-                    shadow: true
-                },
-                credits: {
-                    enabled: false
-                },
-                noData: {
-                    style: {
-                        fontSize: "16px"
-                    }
-                }
-            });
+                ])
         }
 
         function setTableEvents(table) {
@@ -167,6 +126,8 @@ let draw = false;
                 createHighcharts(tableData);
             });
         }
+        
+
     //sticky
         $("#dt-table").delegate( "thead tr th", "click", function(event) {
        if($(this).hasClass("sticky-column")== false){
@@ -193,3 +154,5 @@ let draw = false;
             });
         }
     });
+
+    window.onload = init();
