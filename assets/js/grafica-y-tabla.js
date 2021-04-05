@@ -14,7 +14,7 @@ var options = {
       text: 'Loading...'
     },
     xaxis: {
-        categories: ['ENE', 'FEB', 'MAR','ABR'],
+        categories: ['MAR', 'ENE', 'ABR','FEB'],
       }
   }
   
@@ -36,7 +36,7 @@ var options = {
                 "ordering": false,
                 reponsive: true,
                 searching: false,
-                "ajax": './assets/json/miescuela_asp.json',
+                "ajax": 'http://localhost/isad/dashboards/ingresosmensuales.asp',
                 "columns": [
                     { "data": "mes" },
                     { "data": "ingreso" },
