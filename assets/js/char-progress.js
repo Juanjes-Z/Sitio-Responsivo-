@@ -2,6 +2,19 @@ var options1 = {
     chart: {
         height: 250,
         type: 'radialBar',
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 900,
+          animateGradually: {
+              enabled: true,
+              delay: 888558
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 3777
+          }
+      }
     },
     series: [70],
     labels: ['Progreso 1'],
@@ -25,6 +38,19 @@ var options1 = {
     chart: {
         height: 250,
         type: 'radialBar',
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 909,
+          animateGradually: {
+              enabled: true,
+              delay: 9999
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 1999
+          }
+      }
     },
     series: [40],
     labels: ['Progreso 2'],
