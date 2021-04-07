@@ -125,14 +125,13 @@ input[type=number] { -moz-appearance:textfield; }
     padding: 0px;
     overflow: auto;
     text-align: center;   
+    background-color: rgb(212, 212, 212);
+    border-radius: 10px;
 }
 .tabla-contenedor::-webkit-scrollbar {
     display: none;
 }
 
-.dataTables_info{
-    display: none;
-}
 /*.sticky-head{
     background-color: white!important;
      top: 0!important;
@@ -146,16 +145,22 @@ input[type=number] { -moz-appearance:textfield; }
     right: 0px;
     position: sticky!important;
     z-index: 9999!important;
-    background-color: rgb(187, 187, 187)!important;
+    background-color: rgb(175, 175, 175)!important;
     color: white!important;
 }
-.sticky-column input[type=button]{
-    background-color: white!important;
-    color: black!important;
-}
-#dt-table{
+
+#Table{
     padding-top: 30px;
-    
+    width: 100%;
+    thead{
+        border-bottom: 1px solid #000;
+        cursor: pointer!important;
+        cursor: hand!important;
+        color: black;
+    }
+    th{
+        text-transform: capitalize;
+    }
     td{
         white-space: nowrap;
         border-bottom: 1px solid rgb(192, 185, 185);
@@ -166,9 +171,15 @@ input[type=number] { -moz-appearance:textfield; }
     }
 }
 
-thead{
-    cursor: pointer!important;
-    cursor: hand!important;
+
+.dashboard{
+    background-color: rgb(46, 46, 46);
+    color: rgb(80, 80, 80)!important;
+    .porgress-cricle{
+        background-color: rgb(212, 212, 212);
+        border-radius: 20px;
+    }
+
 }
   // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
@@ -187,7 +198,13 @@ thead{
 }
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-    
+    .pl{
+        padding-left: 0px;
+    }
+    .pr{
+        padding-right: 0px;
+    }
+
 }
 
 // Extra large devices (large desktops, 1200px and up)

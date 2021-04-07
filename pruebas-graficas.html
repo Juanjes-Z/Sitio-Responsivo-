@@ -10,7 +10,7 @@
 
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    
+
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,8 +19,9 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- API DATATABLE GENERACION DE TABLAS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/dt-1.10.24/fc-3.3.2/fh-3.1.8/r-2.2.7/sc-2.0.3/datatables.min.css" />
 
 
 
@@ -30,32 +31,11 @@
     <title>GRAFICAS Y TABLAS</title>
 </head>
 
-<body class="dashboard">
+<body>
     <div class="container">
-        <div class="row progress-row">
-            <div class="col-12 col-md-4 align-self-start mb-5 pl">
-                <div class="porgress-cricle" id="progress-1">
-                </div>
-            </div>
-            <div class="col-12 col-md-4  align-self-center mb-5">
-                <div class="porgress-cricle" id="progress-2">
-                </div>
-            </div>
-            <div class="col-12 col-md-4  align-self-end mb-5 pr">
-                <div class="porgress-cricle" id="progress-3">
-                </div>
-            </div>
-        </div>
-        
-        <div class="row justify-content-evenly">
-            <div class="col-12 col-md-6 offset-md-1 ordenar1 p-md-0 p-4">
-                <div>
-                    <canvas id="myChart" style="background-color: rgb(212, 212, 212); border-radius: 10px;"></canvas>
-                  </div>
-            </div>
-            <div class="col-12 col-md-5  tabla-contenedor ordenar2">
-                <table id="Table">
-                </table>
+        <div class="row">
+            <div class="col-12">
+                <div id="tableDiv"></div>
             </div>
 
         </div>
@@ -71,17 +51,42 @@
     <!-- para  la tabla-->
     <script type="text/javascript"
         src="https://cdn.datatables.net/v/dt/dt-1.10.24/fc-3.3.2/fh-3.1.8/r-2.2.7/sc-2.0.3/datatables.min.js"></script>
-
-    <script src="./assets/js/crear-json.js"></script>
-    <script src="./assets/js/grafica-y-tabla.js"></script>
-    <script src="./assets/js/char-progress.js"></script>
     <!--<script src="./assets/js/floating-select.js"></script>
 <script src="./assets/js/graficas.js"></script>
 <script src="./assets/js/crear-json.js"></script>-->
 
     <!--modernizr ayuda a compatibilizar nuestro codigo con otros navegadores-->
 
+
     <script src="./assets/js/modernizr-custom.js"></script>
+
+    <script>
+        $( document ).ready( function( $ ) {
+            
+            $.ajax({
+                    "url": 'http://192.168.1.115/isad/dashboards/ingresosmensuales.asp',
+                    
+                    "success": function(json) {
+                        
+                        var tableHeaders;
+                        
+                        $.each(json.columns, function(i, val){
+                            tableHeaders += "<th>" + val + "</th>";
+                           
+                        });
+                         
+                        $("#tableDiv").empty();
+                        $("#tableDiv").append('<table id="displayTable" class="display" cellspacing="0" width="100%"><thead><tr>' + tableHeaders + '</tr></thead></table>');
+                        //$("#tableDiv").find("table thead tr").append(tableHeaders);  
+                         
+                        $('#displayTable').dataTable(json);
+                        
+                    },
+                    "dataType": "json"
+                    
+                });
+        });
+    </script>
 </body>
 
 </html>

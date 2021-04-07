@@ -145,13 +145,11 @@ input[type=number] {
   padding: 0px;
   overflow: auto;
   text-align: center;
+  background-color: #d4d4d4;
+  border-radius: 10px;
 }
 
 .tabla-contenedor::-webkit-scrollbar {
-  display: none;
-}
-
-.dataTables_info {
   display: none;
 }
 
@@ -168,32 +166,44 @@ input[type=number] {
   position: -webkit-sticky !important;
   position: sticky !important;
   z-index: 9999 !important;
-  background-color: #bbbbbb !important;
+  background-color: #afafaf !important;
   color: white !important;
 }
 
-.sticky-column input[type=button] {
-  background-color: white !important;
-  color: black !important;
-}
-
-#dt-table {
+#Table {
   padding-top: 30px;
+  width: 100%;
 }
 
-#dt-table td {
+#Table thead {
+  border-bottom: 1px solid #000;
+  cursor: pointer !important;
+  cursor: hand !important;
+  color: black;
+}
+
+#Table th {
+  text-transform: capitalize;
+}
+
+#Table td {
   white-space: nowrap;
   border-bottom: 1px solid #c0b9b9;
   padding: 0px 24px;
 }
 
-#dt-table tr:hover {
+#Table tr:hover {
   background-color: #e0dede;
 }
 
-thead {
-  cursor: pointer !important;
-  cursor: hand !important;
+.dashboard {
+  background-color: #2e2e2e;
+  color: #505050 !important;
+}
+
+.dashboard .porgress-cricle {
+  background-color: #d4d4d4;
+  border-radius: 20px;
 }
 
 @media (min-width: 576px) {
@@ -212,6 +222,15 @@ thead {
     -webkit-box-ordinal-group: 1;
         -ms-flex-order: 0;
             order: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .pl {
+    padding-left: 0px;
+  }
+  .pr {
+    padding-right: 0px;
   }
 }
 /*# sourceMappingURL=stilo.css.map */

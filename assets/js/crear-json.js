@@ -11,30 +11,32 @@ $(document).ready(function () {
     }
 
     function cargarDatos(json) {
-        console.log("Primero json")
         var DatosJson = JSON.parse(JSON.stringify(json));
 
         $("#Table ").append('<thead><tr>');
-        for (var key in DatosJson.data[1]) {
+        for (var key in DatosJson.data[0]) {
             $("#Table thead tr").append('<th scope="col">' + key + '</th>');
         }
-        $("#Table thead tr").append('<th>Eliminar</th>');
         $("#Table").append('</tr></thead>');
 
-        var entero;
+        function numberWithCommas(x) {
+            x = x.toString();
+            var pattern = /(-?\d+)(\d{3})/;
+            while (pattern.test(x))
+                x = x.replace(pattern, "$1,$2");
+            return x;
+        }
         $("#Table").append(' <tbody id="tbody_id">');
         for (i = 0; i < DatosJson.data.length; i++) {
             $("#tbody_id").append('<tr id="id_' + i + '">');
-            for (var key in DatosJson.data[1]) {
-
-                entero = parseFloat(DatosJson.data[i][key], 10);
-                if (isNaN(entero) || DatosJson.data[i][key].indexOf("/") != -1 || DatosJson.data[i][key].indexOf("-") != -1) {
-                    $("#id_" + i).append('<td scope="col">' + DatosJson.data[i][key] + '</td>');
-                } else {
-                    $("#id_" + i).append('<td scope="col"> <input type="number"value="' + DatosJson.data[i][key] + '"></input></td>');
+            for (var key in DatosJson.data[0]) {
+                if(isNaN(parseFloat(DatosJson.data[i][key]))){
+                    $("#id_" + i).append('<td scope="col">' +DatosJson.data[i][key] + '</td>');
+                }else{
+                    $("#id_" + i).append('<td scope="col">' +numberWithCommas(parseFloat(DatosJson.data[i][key])) + '</td>');
                 }
+                
             }
-            $("#id_" + i).append('<td scope="col"><input type="button" class="borrar btn" value="Eliminar" /></td>');
             $("#tbody_id").append('</tr>');
         }
         $("#Table").append(' </tbody>');
@@ -52,6 +54,7 @@ $(document).ready(function () {
             
         })
 
-        window.onload =cargarDatos_tabla('../assets/json/file-json-otro-example.json');
+        window.onload =cargarDatos_tabla('http://192.168.1.115/isad/dashboards/ingresosmensuales.asp');
+        //window.onload =cargarDatos_tabla('./assets/json/miescuela_asp.json');
         
 });

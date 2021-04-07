@@ -1,16 +1,20 @@
 
 {
-    "data": [{
-        "mes": "ENE",
-        "ingreso": 3094817.92
-    }, {
-        "mes": "FEB",
-        "ingreso": 2212615.75
-    }, {
-        "mes": "MAR",
-        "ingreso": 2502926.90
-    }, {
-        "mes": "ABR",
-        "ingreso": 11400.00
-    }]
+    "data":[
+        {"mes":"MAR",
+            "ingreso":2043815.27,
+            "perdida":204815.27
+        },
+        {"mes":"ENE",
+            "ingreso":3529635.44,
+            "perdida":352635.44
+        },
+        {"mes":"ABR",
+            "ingreso":1707363.93,
+            "perdida":170763.93
+        },
+        {"mes":"FEB",
+            "ingreso":2640054.69,
+            "perdida":264054.69
+            }]
 }
