@@ -197,7 +197,9 @@ input[type=number] {
 }
 
 .dashboard {
-  background-color: #adadad;
+  background: #020024;
+  background-image: -webkit-gradient(linear, left top, right top, from(#616161), to(#a5aaab));
+  background-image: linear-gradient(90deg, #616161, #a5aaab 100%);
   color: #505050 !important;
 }
 

@@ -1,10 +1,11 @@
-$(document).ready(function () {
+
     function cargarDatos_tabla(json) {
         $.ajax({
             type: 'GET',
             dataType: 'json',
             url: json,
             success: function (data) {
+                console.log(data);
                 cargarDatos(data)
             }
         });
@@ -55,10 +56,11 @@ $(document).ready(function () {
             
         })
 
-        window.onload =cargarDatos_tabla('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp');
-        //window.onload =cargarDatos_tabla('./assets/json/miescuela_asp.json');
+        window.onload = cargarDatos_tabla('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp');
+        //window.onload = cargarDatos_tabla('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
+        //window.onload = cargarDatos_tabla('./assets/json/miescuela_asp.json');
         
-});
+
 
 // Metodo para crear Sticky Column
 $("table").delegate("thead tr th", "click", function (event) {

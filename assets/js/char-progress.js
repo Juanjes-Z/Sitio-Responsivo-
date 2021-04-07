@@ -32,7 +32,7 @@ var options1 = {
       plotOptions: {
         radialBar: {
             track: {
-              background: '#777'
+              background: '#D4D4D4'
             }
         }
     }
@@ -65,7 +65,7 @@ var options1 = {
     plotOptions: {
       radialBar: {
           track: {
-            background: '#777'
+            background: '#D4D4D4'
           }
       }
   }
@@ -88,7 +88,7 @@ var options1 = {
     plotOptions: {
       radialBar: {
           track: {
-            background: '#777'
+            background: '#D4D4D4'
           }
       }
   }
