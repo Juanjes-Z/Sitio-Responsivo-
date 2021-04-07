@@ -141,11 +141,11 @@ input[type=number] {
 }
 
 .tabla-contenedor {
-  max-height: 400px;
+  height: 240px;
   padding: 0px;
   overflow: auto;
   text-align: center;
-  background-color: #d4d4d4;
+  background-color: white;
   border-radius: 10px;
 }
 
@@ -188,21 +188,21 @@ input[type=number] {
 
 #Table td {
   white-space: nowrap;
-  border-bottom: 1px solid #c0b9b9;
+  border-bottom: 1px solid rgba(196, 192, 192, 0.699);
   padding: 0px 24px;
 }
 
 #Table tr:hover {
-  background-color: #e0dede;
+  background-color: rgba(224, 222, 222, 0.719);
 }
 
 .dashboard {
-  background-color: #2e2e2e;
+  background-color: #adadad;
   color: #505050 !important;
 }
 
 .dashboard .porgress-cricle {
-  background-color: #d4d4d4;
+  background-color: white;
   border-radius: 20px;
 }
 
