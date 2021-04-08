@@ -1,5 +1,30 @@
 $(document).ready(function () {
-    function cargarDatos_tabla(json) {
+    $( "#butn" ).click(function() {
+        let fecha = new Date();
+        let idNewChart = fecha.getHours();
+        idNewChart = idNewChart+""+fecha.getMinutes();
+        idNewChart = idNewChart+""+ fecha.getSeconds();
+        idNewChart = idNewChart+""+ fecha.getMilliseconds();
+        //$(".dashboard .container").append('<div class="row" id= row'+idNewChart+'>');
+        $('#rowGraficas').addClass("d-flex flex-row flex-wrap justify-content-center");
+        $('#rowGraficas').append('<div id=col'+idNewChart+'>');
+        $('#col'+idNewChart).addClass("p-2 mt-2 item");
+        $('#col'+idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+'"> X </button>');
+        $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;" id=chart'+idNewChart+' > ');
+        cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp','chart'+idNewChart);
+
+        $('#rowGraficas').append('<div id=col'+idNewChart+1+'>');
+        $('#col'+idNewChart+1).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+1+'"> X </button>');
+        $('#col'+idNewChart+1).append('<div class="tabla-contenedor" id="contTable'+idNewChart+'">');
+        $('#contTable'+idNewChart).append('<table class="tablaDash" id=table'+idNewChart+' > ');
+        cargarDatosTabla('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp','table'+idNewChart);
+      });
+
+    $(document).on('click', '.btn-borrar', function (event) {
+        $(this).parents("#col"+$(this).val()).remove();
+    });
+
+    function cargarDatosGrafica(json, id) {
         $.ajax({
             dataType: 'json',
             scriptCharset: "UTF-8",
@@ -7,7 +32,7 @@ $(document).ready(function () {
             contentType: "text/json; charset=UTF-8",
             url: json,
             success: function (data) {
-                cargarDatos(data)
+                cargarDatosChart(data, id)
             }
         });
     }
@@ -82,10 +107,14 @@ $(document).ready(function () {
     }
 
     //Enviamos los datos a la grafica
-    function cargarDatos(json) {
-        var dataYlabels = generaDatasLabels(json);
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var config = {
+    var chart = []
+    let  dataYlabels;
+    let ctx;
+    let config;
+    function cargarDatosChart(json, id) {
+        dataYlabels = generaDatasLabels(json);
+        ctx = document.getElementById(id).getContext('2d');
+        config = {
             type: 'bar',
             data: {
                 labels: dataYlabels[0],
@@ -102,12 +131,17 @@ $(document).ready(function () {
                 }
             }
         };
-        var chart = new Chart(ctx, config);
+        nuevaGrafica(ctx, config)
+    }
+
+    function nuevaGrafica(ctx, config){
+        chart.push(new Chart(ctx, config));
+        console.log(chart)
     }
 
     //Inicializamos metodo para cargar la grafica al cargar la pagina
-    window.onload = cargarDatos_tabla('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp');
-    //window.onload = cargarDatos_tabla('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
-    //window.onload = cargarDatos_tabla('./assets/json/miescuela_asp.json');
+    window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp', "chartBarras");
+    //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
+    //window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json');
 
 });

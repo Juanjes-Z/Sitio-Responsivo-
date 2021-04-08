@@ -141,12 +141,16 @@ input[type=number] {
 }
 
 .tabla-contenedor {
-  height: 240px;
+  max-height: 280px;
   padding: 0px;
   overflow: auto;
   text-align: center;
   background-color: white;
   border-radius: 10px;
+}
+
+.item {
+  min-width: 100%;
 }
 
 .tabla-contenedor::-webkit-scrollbar {
@@ -170,32 +174,6 @@ input[type=number] {
   color: white !important;
 }
 
-#Table {
-  padding-top: 30px;
-  width: 100%;
-}
-
-#Table thead {
-  border-bottom: 1px solid #000;
-  cursor: pointer !important;
-  cursor: hand !important;
-  color: black;
-}
-
-#Table th {
-  text-transform: capitalize;
-}
-
-#Table td {
-  white-space: nowrap;
-  border-bottom: 1px solid rgba(196, 192, 192, 0.699);
-  padding: 0px 24px;
-}
-
-#Table tr:hover {
-  background-color: rgba(224, 222, 222, 0.719);
-}
-
 .dashboard {
   background: #020024;
   background-image: -webkit-gradient(linear, left top, right top, from(#616161), to(#a5aaab));
@@ -208,10 +186,30 @@ input[type=number] {
   border-radius: 20px;
 }
 
-@media (min-width: 576px) {
-  form .btn-100 {
-    width: 100%;
-  }
+.dashboard table {
+  padding-top: 30px;
+  width: 100%;
+}
+
+.dashboard table thead {
+  border-bottom: 1px solid #000;
+  cursor: pointer !important;
+  cursor: hand !important;
+  color: black;
+}
+
+.dashboard table th {
+  text-transform: capitalize;
+}
+
+.dashboard table td {
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(196, 192, 192, 0.699);
+  padding: 0px 24px;
+}
+
+.dashboard table tr:hover {
+  background-color: rgba(224, 222, 222, 0.719);
 }
 
 @media (min-width: 768px) {
@@ -224,6 +222,9 @@ input[type=number] {
     -webkit-box-ordinal-group: 1;
         -ms-flex-order: 0;
             order: 0;
+  }
+  .item {
+    min-width: 50%;
   }
 }
 
