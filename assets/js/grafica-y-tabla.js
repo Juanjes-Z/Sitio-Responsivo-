@@ -11,13 +11,13 @@ $(document).ready(function () {
         $('#col'+idNewChart).addClass("p-2 mt-2 item");
         $('#col'+idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+'"> X </button>');
         $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;" id=chart'+idNewChart+' > ');
-        cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp','chart'+idNewChart);
+        cargarDatosGrafica('./assets/json/miescuela_asp.json','chart'+idNewChart);
 
         $('#rowGraficas').append('<div id=col'+idNewChart+1+'>');
         $('#col'+idNewChart+1).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+1+'"> X </button>');
         $('#col'+idNewChart+1).append('<div class="tabla-contenedor" id="contTable'+idNewChart+'">');
         $('#contTable'+idNewChart).append('<table class="tablaDash" id=table'+idNewChart+' > ');
-        cargarDatosTabla('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp','table'+idNewChart);
+        cargarDatosTabla('./assets/json/miescuela_asp.json','table'+idNewChart);
       });
 
     $(document).on('click', '.btn-borrar', function (event) {
@@ -140,8 +140,8 @@ $(document).ready(function () {
     }
 
     //Inicializamos metodo para cargar la grafica al cargar la pagina
-    window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp', "chartBarras");
+    //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp', "chartBarras");
     //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
-    //window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json');
+    window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json', "chartBarras");
 
 });
