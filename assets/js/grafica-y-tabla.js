@@ -12,13 +12,13 @@ $(document).ready(function () {
         $('#col'+idNewChart).addClass("p-4 p-md-1 mt-2 item");
         $('#col'+idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+'"> X </button>');
         $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 0px 10px 10px 10px;" id=chart'+idNewChart+' > ');
-        cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp','chart'+idNewChart);
+        cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp','chart'+idNewChart);
 
         $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+1+' class="p-4 p-md-1 mt-2 item">');
         $('#col'+idNewChart+1).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+1+'"> X </button>');
         $('#col'+idNewChart+1).append('<div class="tabla-contenedor-generated" id="contTable'+idNewChart+'">');
         $('#contTable'+idNewChart).append('<table class="tablaDash" id=table'+idNewChart+' > ');
-        cargarDatosTabla('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp','table'+idNewChart);
+        cargarDatosTabla('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp','table'+idNewChart);
       });
 
     $(document).on('click', '.btn-borrar', function (event) {
@@ -137,7 +137,8 @@ $(document).ready(function () {
     }
 
     //Inicializamos metodo para cargar la grafica al cargar la pagina
-    window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp', "chartBarras");
+    //window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp', "chartBarras");
+    window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp', "chartBarras");
     //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
     //window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json', "chartBarras");
 
