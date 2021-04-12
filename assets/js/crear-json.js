@@ -1,13 +1,10 @@
 function cargarDatosTabla(json,idTable) {
-    $.ajax({
-        dataType: 'json',
-        scriptCharset: "UTF-8",
-        encoding: "UTF-8",
-        contentType: "text/json; charset=UTF-8",
-        url: json,
-        success: function (data) {
+   
+    fetch (json).then(resp => {
+        resp.json().then(data => {
             cargarDatos(data, idTable)
-        }
+        });
+    
     });
 }
 
@@ -21,7 +18,7 @@ function cargarDatos(json, idTable) {
         idNewTable = idNewTable+""+ fecha.getMilliseconds();
     var DatosJson = JSON.parse(JSON.stringify(json));
 
-    $("#"+idTable).append('<thead><tr>');
+    $("#"+idTable).append('<thead class="tehead"><tr>');
     for (var key in DatosJson.data[0]) {
         $("#"+idTable+" thead tr").append('<th scope="col">' + key + '</th>');
     }
@@ -58,27 +55,28 @@ window.onload = cargarDatosTabla('./assets/json/miescuela_asp.json',"Table");
 
 // Metodo para crear Sticky Column
 
-$(".tablaDash").delegate("thead tr th", "click", function (event) {
+$(document).on('click', '.tablaDash > .tehead > tr > th', function (event) {
     if ($(this).hasClass("sticky-column") == false) {
-        $(".tablaDash thead tr th").each(function () {
+        $(this).closest(".tablaDash").children("thead").children("tr").children("th").each(function () {
             $(this).removeClass('sticky-column');
         });
 
         $(this).addClass('sticky-column');
-        let pos = $(this).index()
-        $(".tablaDash tbody tr").each(function () {
-            $("td").removeClass('sticky-column');
-        });
 
-        $(".tablaDash tbody tr").each(function () {
+        $(this).closest(".tablaDash").children("tbody").children("tr").children("td").each(function () {
+            $(this).removeClass('sticky-column');
+        });
+        
+        let pos = $(this).index();
+        $(this).closest(".tablaDash").children("tbody").children("tr").each(function () {
             $(this).find("td:eq(" + (pos) + ")").addClass('sticky-column');
         });
     } else {
-        $(".tablaDash thead tr th").each(function () {
+        $(this).closest(".tablaDash").children(".tehead").children("tr").children("th").each(function () {
             $(this).removeClass('sticky-column');
         });
-        $(".tablaDash tbody tr").each(function () {
-            $("td").removeClass('sticky-column');
+        $(this).closest(".tablaDash").children("tbody").children("tr").children("td").each(function () {
+            $(this).removeClass('sticky-column');
         });
     }
 });

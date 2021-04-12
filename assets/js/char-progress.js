@@ -7,7 +7,7 @@ $("#butnP").click(function () {
 
   //$(".dashboard .container").append('<div class="row" id= row'+idNewChart+'>');
   $('#progressRow').append('<div id=col' + idNewChart + '>');
-  $('#col' + idNewChart).addClass("col-12 col-md-4 mt-2 mb-2");
+  $('#col' + idNewChart).addClass("col-12 col-md-4 mt-2 mb-2 p-md-1 p-4");
   $('#col' + idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + '"> X </button>');
   $('#col' + idNewChart).append('<div class="porgress-cricle" style="border-radius: 10px;" id=chart' + idNewChart + ' > ');
   cargarDatosChartP('chart' + idNewChart);
@@ -22,9 +22,6 @@ function cargarDatosChartP(id) {
   let porcentajeRandom = Math.round(Math.random() * (100 - 5) + 5 );
   let colorRandom1='#'+(Math.random() * 0xEEEEEE << 0).toString(16).padStart(6, '0');
   let colorRandom2='#'+(Math.random() * 0xEEEEEE << 0).toString(16).padStart(6, '0');
-  console.log("valor"+porcentajeRandom)
-  console.log("color 1"+colorRandom1)
-  console.log("color 2"+colorRandom2)
 
   var options1 = {
     chart: {

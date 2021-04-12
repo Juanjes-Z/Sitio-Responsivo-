@@ -1,92 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- RESET elimina los estilos css que implementan los navegadores por defecto-->
-    <link rel="stylesheet" href="./assets/css/reset200802.css">
-
-    <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
-    </script>
-
-    <!-- API DATATABLE GENERACION DE TABLAS -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/v/dt/dt-1.10.24/fc-3.3.2/fh-3.1.8/r-2.2.7/sc-2.0.3/datatables.min.css" />
-
-
-
-    <!-- Hoja de estilos del sitio-->
-    <link rel="stylesheet" href="./assets/css/stilo.css">
-
-    <title>GRAFICAS Y TABLAS</title>
+  <meta charset="utf-8">
+  <title>children demo</title>
+  <style>
+  body {
+    font-size: 16px;
+    font-weight: bolder;
+  }
+  p {
+    margin: 5px 0;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
-
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div id="tableDiv"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!--  Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
-        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
-        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous">
-    </script>
-    <!-- para  la tabla-->
-    <script type="text/javascript"
-        src="https://cdn.datatables.net/v/dt/dt-1.10.24/fc-3.3.2/fh-3.1.8/r-2.2.7/sc-2.0.3/datatables.min.js"></script>
-    <!--<script src="./assets/js/floating-select.js"></script>
-<script src="./assets/js/graficas.js"></script>
-<script src="./assets/js/crear-json.js"></script>-->
-
-    <!--modernizr ayuda a compatibilizar nuestro codigo con otros navegadores-->
-
-
-    <script src="./assets/js/modernizr-custom.js"></script>
-
-    <script>
-        $( document ).ready( function( $ ) {
-            
-            $.ajax({
-                    "url": 'http://192.168.1.115/isad/dashboards/ingresosmensuales.asp',
-                    
-                    "success": function(json) {
-                        
-                        var tableHeaders;
-                        
-                        $.each(json.columns, function(i, val){
-                            tableHeaders += "<th>" + val + "</th>";
-                           
-                        });
-                         
-                        $("#tableDiv").empty();
-                        $("#tableDiv").append('<table id="displayTable" class="display" cellspacing="0" width="100%"><thead><tr>' + tableHeaders + '</tr></thead></table>');
-                        //$("#tableDiv").find("table thead tr").append(tableHeaders);  
-                         
-                        $('#displayTable').dataTable(json);
-                        
-                    },
-                    "dataType": "json"
-                    
-                });
-        });
-    </script>
+ 
+<div>
+  <span>Hello</span>
+  <div class="selected">And Again<p class="selected">Hello Again</p></div>
+  
+  
+  <p>And One Last Time</p>
+</div>
+ 
+<script>
+$( "div" ).children( "p" ).css( "color", "blue" );
+</script>
+ 
 </body>
-
 </html>

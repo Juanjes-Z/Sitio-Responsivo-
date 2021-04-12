@@ -6,18 +6,19 @@ $(document).ready(function () {
         idNewChart = idNewChart+""+ fecha.getSeconds();
         idNewChart = idNewChart+""+ fecha.getMilliseconds();
         //$(".dashboard .container").append('<div class="row" id= row'+idNewChart+'>');
-        $('#rowGraficas').addClass("d-flex flex-row flex-wrap justify-content-center");
-        $('#rowGraficas').append('<div id=col'+idNewChart+'>');
-        $('#col'+idNewChart).addClass("p-2 mt-2 item");
+        $('#ContainerGraficas').append(' <div class="" id="rowGraficas'+idNewChart+'"  style="border-bottom: 1px solid #AAA;"></div>');
+        $('#rowGraficas'+idNewChart).addClass("d-flex flex-row row flex-wrap justify-content-center");
+        $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+'>');
+        $('#col'+idNewChart).addClass("p-4 p-md-1 mt-2 item");
         $('#col'+idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+'"> X </button>');
-        $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;" id=chart'+idNewChart+' > ');
-        cargarDatosGrafica('./assets/json/miescuela_asp.json','chart'+idNewChart);
+        $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 0px 10px 10px 10px;" id=chart'+idNewChart+' > ');
+        cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp','chart'+idNewChart);
 
-        $('#rowGraficas').append('<div id=col'+idNewChart+1+'>');
+        $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+1+' class="p-4 p-md-1 mt-2 item">');
         $('#col'+idNewChart+1).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+1+'"> X </button>');
-        $('#col'+idNewChart+1).append('<div class="tabla-contenedor" id="contTable'+idNewChart+'">');
+        $('#col'+idNewChart+1).append('<div class="tabla-contenedor-generated" id="contTable'+idNewChart+'">');
         $('#contTable'+idNewChart).append('<table class="tablaDash" id=table'+idNewChart+' > ');
-        cargarDatosTabla('./assets/json/miescuela_asp.json','table'+idNewChart);
+        cargarDatosTabla('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp','table'+idNewChart);
       });
 
     $(document).on('click', '.btn-borrar', function (event) {
@@ -25,17 +26,13 @@ $(document).ready(function () {
     });
 
     function cargarDatosGrafica(json, id) {
-        $.ajax({
-            type: 'GET',
-            dataType: 'json',
-            scriptCharset: "UTF-8",
-            encoding:"UTF-8",
-            contentType: "text/json; charset=UTF-8",
-            url: json,
-            success: function (data) {
+        fetch (json).then(resp => {
+            resp.json().then(data => {
                 cargarDatosChart(data, id)
-            }
+            });
+        
         });
+        
     }
 
     // Obtenemos los valores de los datasets y labels para la grafica para cualquier JSON
@@ -137,12 +134,11 @@ $(document).ready(function () {
 
     function nuevaGrafica(ctx, config){
         chart.push(new Chart(ctx, config));
-        console.log(chart)
     }
 
     //Inicializamos metodo para cargar la grafica al cargar la pagina
-    //window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp', "chartBarras");
+    window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp', "chartBarras");
     //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
-    window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json', "chartBarras");
+    //window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json', "chartBarras");
 
 });
