@@ -145,6 +145,7 @@ input[type=number] {
     text-align: center;
     background-color: rgb(255, 255, 255);
     border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
 }
 
 .tabla-contenedor-generated {
@@ -154,6 +155,7 @@ input[type=number] {
     text-align: center;
     background-color: rgb(255, 255, 255);
     border-radius: 0px 0px 10px 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
 }
 
 .item {
@@ -184,9 +186,8 @@ input[type=number] {
 
 
 .dashboard {
-    background: rgb(97, 97, 97);
+    background: rgb(71, 71, 71);
     /*background-image: linear-gradient(90deg, rgb(97, 97, 97), rgba(165,170,171,1) 100%);*/
-    color: rgb(80, 80, 80) !important;
 
     .porgress-cricle {
         background-color: rgb(255, 255, 255);

@@ -9,14 +9,14 @@ $(document).ready(function () {
         //$(".dashboard .container").append('<div class="row" id= row'+idNewChart+'>');
 
         //se crea fila donde estara la tabla y grafica
-        $('#ContainerGraficas').append(' <div class="" id="rowGraficas'+idNewChart+'"  style="border-bottom: 1px solid #AAA;"></div>');
+        $('#ContainerGraficas').append(' <div class="" id="rowGraficas'+idNewChart+'"></div>');
         $('#rowGraficas'+idNewChart).addClass("d-flex flex-row row flex-wrap justify-content-center");
        
         //se crea columna y Grafica
         $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+' class="ordenar1">');
         $('#col'+idNewChart).addClass("p-4 p-md-1 mt-2 item");
         $('#col'+idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+'" style="width: 100%; border-radius: 10px 10px 0px 0px;"> X </button>');
-        $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 0px 0px 10px 10px;" id=chart'+idNewChart+' > ');
+        $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 0px 0px 10px 10px;  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);" id=chart'+idNewChart+' > ');
 
         //se crea columnay tabla
         $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+1+' class="p-4 p-md-1 mt-2 item ordenar2">');
