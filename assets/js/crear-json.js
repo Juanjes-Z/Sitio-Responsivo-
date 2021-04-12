@@ -50,7 +50,7 @@ function cargarDatos(json, idTable) {
     $("#"+idTable).append('</tbody>');
 }
 
-//window.onload = cargarDatosTabla('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp',"Table");
+//window.onload = cargarDatosTabla('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp',"Table");
 //window.onload = cargarDatosTabla('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
 window.onload = cargarDatosTabla('./assets/json/miescuela_asp.json',"Table");
 

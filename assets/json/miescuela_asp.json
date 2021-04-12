@@ -2,47 +2,38 @@
     "data": [{
         "mes": "ENE",
         "nivel": "DIPLOMADO",
-        "ingreso": 58006785.00,
-        "perdida": 38006785.00
+        "ingreso": 5800.00
     }, {
         "mes": "ENE",
         "nivel": "LICENCIATURA",
-        "ingreso": 58006785.94,
-        "perdida": 28006785.00
+        "ingreso": 3315275.94
     }, {
         "mes": "ENE",
         "nivel": "MAESTRÍA",
-        "ingreso": 58006785.50,
-        "perdida": 48006785.00
+        "ingreso": 208559.50
     }, {
         "mes": "FEB",
         "nivel": "LICENCIATURA",
-        "ingreso": 58006785.69,
-        "perdida": 54006785.00
+        "ingreso": 2391129.69
     }, {
         "mes": "FEB",
         "nivel": "MAESTRÍA",
-        "ingreso": 58006785.00,
-        "perdida": 18006785.00
+        "ingreso": 248925.00
     }, {
         "mes": "MAR",
         "nivel": "LICENCIATURA",
-        "ingreso": 58006785.47,
-        "perdida": 46006785.00
+        "ingreso": 1888882.47
     }, {
         "mes": "MAR",
         "nivel": "MAESTRÍA",
-        "ingreso": 58006785.80,
-        "perdida": 29706785.00
+        "ingreso": 154932.80
     }, {
         "mes": "ABR",
         "nivel": "LICENCIATURA",
-        "ingreso": 58006785.43,
-        "perdida": 42006785.00
+        "ingreso": 1575522.43
     }, {
         "mes": "ABR",
         "nivel": "MAESTRÍA",
-        "ingreso": 58006785.50,
-        "perdida": 31006785.00
+        "ingreso": 131841.50
     }]
 }

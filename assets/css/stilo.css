@@ -141,7 +141,7 @@ input[type=number] {
 }
 
 .tabla-contenedor {
-  max-height: 280px;
+  height: 280px;
   padding: 0px;
   overflow: auto;
   text-align: center;
@@ -212,7 +212,16 @@ input[type=number] {
   background-color: rgba(224, 222, 222, 0.719);
 }
 
+@media (min-width: 576px) {
+  .tabla-contenedor {
+    height: 246px !important;
+  }
+}
+
 @media (min-width: 768px) {
+  .tabla-contenedor {
+    height: 180px !important;
+  }
   .ordenar1 {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
@@ -229,11 +238,26 @@ input[type=number] {
 }
 
 @media (min-width: 992px) {
+  .tabla-contenedor {
+    height: 240px !important;
+  }
   .pl {
     padding-left: 0px;
   }
   .pr {
     padding-right: 0px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tabla-contenedor {
+    height: 285px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .tabla-contenedor {
+    height: 330px !important;
   }
 }
 /*# sourceMappingURL=stilo.css.map */

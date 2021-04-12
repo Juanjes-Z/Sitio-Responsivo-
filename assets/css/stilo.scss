@@ -121,7 +121,7 @@ input[type=number] { -moz-appearance:textfield; }
 
 .tabla-contenedor
 {
-    max-height: 280px;
+    height: 280px;
     padding: 0px;
     overflow: auto;
     text-align: center;   
@@ -187,10 +187,21 @@ input[type=number] { -moz-appearance:textfield; }
 }
   // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
+    .tabla-contenedor
+    {
+        height: 246px!important;
+        
+    }
     
  }
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { 
+    .tabla-contenedor
+    {
+        height: 180px!important;
+    
+    }
+
     .ordenar1 {
         order: 1;
     }
@@ -203,6 +214,12 @@ input[type=number] { -moz-appearance:textfield; }
 }
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+    .tabla-contenedor
+    {
+        height: 240px!important;
+    
+    }
+
     .pl{
         padding-left: 0px;
     }
@@ -215,5 +232,18 @@ input[type=number] { -moz-appearance:textfield; }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { 
-
+    .tabla-contenedor
+    {
+        height: 285px!important;
+    
+    }
 }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { 
+    .tabla-contenedor
+    {
+        height: 330px!important;
+    
+    }
+ }

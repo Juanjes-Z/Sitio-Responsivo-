@@ -26,6 +26,7 @@ $(document).ready(function () {
 
     function cargarDatosGrafica(json, id) {
         $.ajax({
+            type: 'GET',
             dataType: 'json',
             scriptCharset: "UTF-8",
             encoding:"UTF-8",
@@ -140,7 +141,7 @@ $(document).ready(function () {
     }
 
     //Inicializamos metodo para cargar la grafica al cargar la pagina
-    //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensualesNivel.asp', "chartBarras");
+    //window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp', "chartBarras");
     //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
     window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json', "chartBarras");
 
