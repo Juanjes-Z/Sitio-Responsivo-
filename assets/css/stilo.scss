@@ -138,26 +138,6 @@ input[type=number] {
     margin: 0px 0px !important;
 }
 
-.tabla-contenedor {
-    height: 200px;
-    padding: 0px;
-    overflow: auto;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
-}
-
-.tabla-contenedor-generated {
-    height: 207px;
-    padding: 0px;
-    overflow: auto;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    border-radius: 0px 0px 10px 10px;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
-}
-
 .item {
     flex: 1 1 auto;
 }
@@ -218,6 +198,31 @@ input[type=number] {
         tr:hover {
             background-color: rgba(224, 222, 222, 0.719);
         }
+    }
+    
+    .tabla-contenedor {
+        height: 200px;
+        padding: 0px;
+        overflow: auto;
+        text-align: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
+    }
+
+    .tabla-contenedor-generated {
+        height: 207px;
+        padding: 0px;
+        overflow: auto;
+        text-align: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
+    }
+
+    .btn-borrar{
+        border-radius: 50%;
+        margin-bottom: 2px; 
     }
 
 }

@@ -6,10 +6,10 @@ $("#butnP").click(function () {
   idNewChart = idNewChart + "" + fecha.getMilliseconds();
 
   //$(".dashboard .container").append('<div class="row" id= row'+idNewChart+'>');
-  $('#progressRow').append('<div id=col' + idNewChart + '>');
+  $('#progressRow').append('<div id="col' + idNewChart + '" style="text-align: right;">');
   $('#col' + idNewChart).addClass("col-12 col-md-4 mt-2 mb-2 p-md-1 p-4");
-  $('#col' + idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + '" style="width: 100%; border-radius: 10px 10px 0px 0px;"> X </button>');
-  $('#col' + idNewChart).append('<div class="porgress-cricle" style="border-radius: 0px 0px 10px 10px;" id=chart' + idNewChart + ' > ');
+  $('#col' + idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + '" > X </button>');
+  $('#col' + idNewChart).append('<div class="porgress-cricle" style="border-radius: 10px;" id=chart' + idNewChart + ' > ');
   cargarDatosChartP('chart' + idNewChart);
 });
 
