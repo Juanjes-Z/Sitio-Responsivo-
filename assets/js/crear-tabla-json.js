@@ -31,7 +31,7 @@ function cargarDatos(json, idTable) {
                     key_mas_diez.push(key);
                 }
             }
-            console.log(key_mas_diez)
+            
             $("#"+idTable+" thead tr").append('<th scope="col" class="'+alinea+'" style= "padding-left:'+padding+'px;">' + key + '</th>');
             alinea="text-center";
             padding=8;
