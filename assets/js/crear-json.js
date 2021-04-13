@@ -11,16 +11,33 @@ function cargarDatosTabla(json,idTable) {
 
 function cargarDatos(json, idTable) {
     
-        let fecha = new Date();
-        let idNewTable = fecha.getHours();
-        idNewTable = idNewTable+""+fecha.getMinutes();
-        idNewTable = idNewTable+""+ fecha.getSeconds();
-        idNewTable = idNewTable+""+ fecha.getMilliseconds();
+    let fecha = new Date();
+    let idNewTable = fecha.getHours();
+    idNewTable = idNewTable+""+fecha.getMinutes();
+    idNewTable = idNewTable+""+ fecha.getSeconds();
+    idNewTable = idNewTable+""+ fecha.getMilliseconds();
     var DatosJson = JSON.parse(JSON.stringify(json));
 
+    let alinea="text-center";
+    let padding=8;
+    let key_mas_diez = [];
     $("#"+idTable).append('<thead class="tehead"><tr>');
     for (var key in DatosJson.data[0]) {
-        $("#"+idTable+" thead tr").append('<th scope="col">' + key + '</th>');
+        if (typeof DatosJson.data[0][key] == 'string') {
+            for (i = 0; i < DatosJson.data.length; i++) {
+                if (DatosJson.data[i][key].length > 10) {
+                    alinea="text-start";
+                    padding=24;
+                    key_mas_diez.push(key);
+                }
+            }
+            console.log(key_mas_diez)
+            $("#"+idTable+" thead tr").append('<th scope="col" class="'+alinea+'" style= "padding-left:'+padding+'px;">' + key + '</th>');
+            alinea="text-center";
+            padding=8;
+        }else{
+            $("#"+idTable+" thead tr").append('<th scope="col" class="text-end" style="padding-right: 24px;">' + key + '</th>');
+        }
     }
     $("#"+idTable).append('</tr></thead>');
 
@@ -37,9 +54,15 @@ function cargarDatos(json, idTable) {
         $("#tid_"+idNewTable).append('<tr id="id_' + i+idNewTable + '">');
         for (var key in DatosJson.data[0]) {
             if (typeof DatosJson.data[i][key] == 'string') {
-                $("#id_" + i+idNewTable).append('<td scope="col">' + DatosJson.data[i][key] + '</td>');
+                if(key_mas_diez.indexOf(key) != -1){
+                    $("#id_" + i+idNewTable).append('<td class="text-start">' + DatosJson.data[i][key] + '</td>');    
+                }
+                else{
+                    $("#id_" + i+idNewTable).append('<td class="text-center">' + DatosJson.data[i][key] + '</td>');
+                }
+                
             } else {
-                $("#id_" + i+idNewTable).append('<td scope="col">' + numberWithCommas(parseFloat(DatosJson.data[i][key])) + '</td>');
+                $("#id_" + i+idNewTable).append('<td class="text-end">' + numberWithCommas(parseFloat(DatosJson.data[i][key]).toFixed(2)) + '</td>');
             }
         }
         $("#"+idNewTable).append('</tr>');

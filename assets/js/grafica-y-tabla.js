@@ -22,7 +22,7 @@ $(document).ready(function () {
         $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+1+' class="p-4 p-md-1 mt-2 item ordenar2" style="text-align: right;">');
         $('#col'+idNewChart+1).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+1+'"> X </button>');
         $('#col'+idNewChart+1).append('<div class="tabla-contenedor-generated" id="contTable'+idNewChart+'">');
-        $('#contTable'+idNewChart).append('<table class="tablaDash" id=table'+idNewChart+' > ');
+        $('#contTable'+idNewChart).append('<table class="tablaDash table " id=table'+idNewChart+' > ');
 
 
         cargarDatosGrafica(rutaJson,'chart'+idNewChart);
@@ -85,6 +85,7 @@ $(document).ready(function () {
             labels.push(concat);
         }
 
+        //valores numericos graficar
         for (i = 0; i < label.length; i++) {
             data = [];
             for (j = 0; j < DatosJson.data.length; j++) {

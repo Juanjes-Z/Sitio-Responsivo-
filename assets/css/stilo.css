@@ -175,7 +175,7 @@ input[type=number] {
 
 .dashboard .porgress-cricle {
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .dashboard table {
@@ -227,6 +227,10 @@ input[type=number] {
 }
 
 .dashboard .btn-borrar {
+  text-align: center;
+  font-size: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   margin-bottom: 2px;
 }
