@@ -165,8 +165,21 @@ input[type=number] {
 
 
 
+#tablaConfig {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    select{
+        width: 150px;
+    }
+    td{
+        text-align: center;
+        width: min-content;
+    }
+}
+
+
 .dashboard {
-    background: rgb(71, 71, 71);
+    background: rgb(221, 221, 221);
     /*background-image: linear-gradient(90deg, rgb(97, 97, 97), rgba(165,170,171,1) 100%);*/
 
     .porgress-cricle {
@@ -216,7 +229,7 @@ input[type=number] {
         overflow: auto;
         text-align: center;
         background-color: rgb(255, 255, 255);
-        border-radius: 10px 0px 10px 10px;
+        border-radius: 10px 10px 10px 10px;
         box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
     }
 
@@ -225,35 +238,74 @@ input[type=number] {
         top:  19px;
         font-size: 0.5rem;
         padding: 0.1rem 0.2rem;
-        border-radius: 0% 0% 0% 25%;
+        border-radius:  25%;
         z-index: 9999 !important;
     }
+}
 
+/****** MENU SIDE NAV *******/
+#main{
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(34, 76, 153);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #e7e4e4;
+        display: block;
+        transition: 0.3s;
+        &:hover {
+            color: #ffffff;
+          }
+    }
+    .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
 }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-    .tabla-contenedor {
-        height: 246px !important;
+    .dashboard {
+        .tabla-contenedor {
+            height: 246px !important;
 
-    }
+        }
 
-    .tabla-contenedor-generated {
-        height: 250px !important;
+        .tabla-contenedor-generated {
+            height: 250px !important;
 
+        }
     }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-    .tabla-contenedor {
-        height: 178px !important;
+    .dashboard {
+        .tabla-contenedor {
+            height: 178px !important;
 
-    }
+        }
 
-    .tabla-contenedor-generated {
-        height: 176px !important;
+        .tabla-contenedor-generated {
+            height: 176px !important;
 
+        }
     }
 
     .ordenar1 {
@@ -272,9 +324,11 @@ input[type=number] {
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
 
-    .tabla-contenedor-generated,
-    .tabla-contenedor {
-        height: 236px !important;
+    .dashboard {
+        .tabla-contenedor-generated,
+        .tabla-contenedor {
+            height: 236px !important;
+        }
     }
 
     .pl {
@@ -291,18 +345,21 @@ input[type=number] {
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
 
-    .tabla-contenedor-generated,
-    .tabla-contenedor {
-        height: 281px !important;
+    .dashboard {
+        .tabla-contenedor-generated,
+        .tabla-contenedor {
+            height: 281px !important;
+        }
     }
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 1400px) {
-
-    .tabla-contenedor-generated,
-    .tabla-contenedor {
-        height: 326px !important;
+    .dashboard {
+        .tabla-contenedor-generated,
+        .tabla-contenedor {
+            height: 326px !important;
+        }
     }
 }
 

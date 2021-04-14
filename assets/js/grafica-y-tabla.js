@@ -1,47 +1,89 @@
 $(document).ready(function () {
-    $( "#butn" ).click(function() {
-        let rutaJson ='https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp';
-        let fecha = new Date();
-        let idNewChart = fecha.getHours();
-        idNewChart = idNewChart+""+fecha.getMinutes();
-        idNewChart = idNewChart+""+ fecha.getSeconds();
-        idNewChart = idNewChart+""+ fecha.getMilliseconds();
-        //$(".dashboard .container").append('<div class="row" id= row'+idNewChart+'>');
+    let tabla, grafica, estadistica, rutaJson;
+    $("#butn").click(function () {
+        if (document.getElementById("ContainerGraficas")) {
+            document.getElementById("ContainerGraficas").remove();
+        }
 
-        //se crea fila donde estara la tabla y grafica
-        $('#ContainerGraficas').append(' <div class="" id="rowGraficas'+idNewChart+'"></div>');
-        $('#rowGraficas'+idNewChart).addClass("d-flex flex-row row flex-wrap justify-content-center");
-       
-        //se crea columna y Grafica
-        $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+' class="ordenar1 text-end">');
-        $('#col'+idNewChart).addClass("p-4 p-md-1 mt-2 item");
-        $('#col'+idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+'">X</button>');
-        $('#col'+idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);" id=chart'+idNewChart+' > ');
+        fetch("https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11").then(resp => {
+            resp.json().then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i]["estadistica"])
+                    tabla = data[i]["tabla"];
+                    grafica = data[i]["grafica"];
+                    estadistica = data[i]["estadistica"];
+                    switch(estadistica){
+                        case "01":
+                            rutaJson ='https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp';
+                            break;
+                        case "02":
+                            rutaJson ='https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp';
+                            break;
+                    }
 
-        //se crea columna y tabla
-        $('#rowGraficas'+idNewChart).append('<div id=col'+idNewChart+1+' class="p-4 p-md-1 mt-2 item ordenar2 text-end">');
-        $('#col'+idNewChart+1).append('<button  class="btn  btn-borrar btn-danger" value="'+idNewChart+1+'">X</button>');
-        $('#col'+idNewChart+1).append('<div class="tabla-contenedor-generated" id="contTable'+idNewChart+'">');
-        $('#contTable'+idNewChart).append('<table class="tablaDash table " id=table'+idNewChart+' > ');
+                    generarTablasyGraficas(rutaJson, tabla, grafica);
+                }
+            });
 
+        });
 
-        cargarDatosGrafica(rutaJson,'chart'+idNewChart);
-        cargarDatosTabla(rutaJson,'table'+idNewChart);
-
-      });
-
-    $(document).on('click', '.btn-borrar', function (event) {
-        $(this).parents("#col"+$(this).val()).remove();
     });
 
-    function cargarDatosGrafica(json, id) {
-        fetch (json).then(resp => {
+
+    function generarTablasyGraficas(rutaJson, tabla, grafica) {
+        let tipoGrafica = "";
+        switch(grafica){
+            case 1:
+                tipoGrafica ="bar";
+                break;
+            case 2:
+                tipoGrafica ="line";
+                break;
+        }
+        let fecha = new Date();
+        let idNewChart = fecha.getHours();
+        idNewChart = idNewChart + "" + fecha.getMinutes();
+        idNewChart = idNewChart + "" + fecha.getSeconds();
+        idNewChart = idNewChart + "" + fecha.getMilliseconds();
+        //$(".dashboard .container").append('<div class="row" id= row'+idNewChart+'>');
+
+        $('#dashboards').append('  <div id="ContainerGraficas" class="col-12">');
+        //Se crea fila donde estara la tabla y grafica
+        $('#ContainerGraficas').append(' <div class="" id="rowGraficas' + idNewChart + '"></div>');
+        $('#rowGraficas' + idNewChart).addClass("d-flex flex-row row flex-wrap justify-content-center");
+
+        //Se crea columna y Grafica
+        if(grafica != 0){
+            $('#rowGraficas' + idNewChart).append('<div id=col' + idNewChart + ' class="ordenar1 text-end">');
+            $('#col' + idNewChart).addClass("p-4 p-md-1 mt-2 item");
+            $('#col' + idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + '">X</button>');
+            $('#col' + idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);" id=chart' + idNewChart + ' > ');
+        }
+        //Se crea columna y tabla
+        if(tabla==1){
+            $('#rowGraficas' + idNewChart).append('<div id=col' + idNewChart + 1 + ' class="p-4 p-md-1 mt-2 item ordenar2 text-end">');
+            $('#col' + idNewChart + 1).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + 1 + '">X</button>');
+            $('#col' + idNewChart + 1).append('<div class="tabla-contenedor-generated" id="contTable' + idNewChart + '">');
+            $('#contTable' + idNewChart).append('<table class="tablaDash table " id=table' + idNewChart + ' > ');
+        }
+
+
+        cargarDatosGrafica(rutaJson, 'chart' + idNewChart, tipoGrafica);
+        cargarDatosTabla(rutaJson, 'table' + idNewChart);
+    }
+
+    $(document).on('click', '.btn-borrar', function (event) {
+        $(this).parents("#col" + $(this).val()).remove();
+    });
+
+    function cargarDatosGrafica(json, id, type) {
+        fetch(json).then(resp => {
             resp.json().then(data => {
-                cargarDatosChart(data, id)
+                cargarDatosChart(data, id, type)
             });
-        
+
         });
-        
+
     }
 
     // Obtenemos los valores de los datasets y labels para la grafica para cualquier JSON
@@ -55,8 +97,7 @@ $(document).ready(function () {
         var DatosJson = JSON.parse(JSON.stringify(json));
 
         //Obtenemos los nombres de cada campo del JSON
-        for (var key in DatosJson.data[0])
-        {
+        for (var key in DatosJson.data[0]) {
             label.push(key)
         }
 
@@ -90,7 +131,7 @@ $(document).ready(function () {
             data = [];
             for (j = 0; j < DatosJson.data.length; j++) {
                 if (posString.indexOf(i) == -1) {
-                    
+
                     data.push(DatosJson.data[j][label[i]]);
                 }
             }
@@ -99,7 +140,7 @@ $(document).ready(function () {
 
         for (i = 0; i < label.length; i++) {
             var rgb_val = 'rgba(' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ')';
-            if (posString.indexOf(i)==-1) {
+            if (posString.indexOf(i) == -1) {
                 datasets.push({
                     label: label[i],
                     data: datas[i],
@@ -113,17 +154,17 @@ $(document).ready(function () {
 
         return datasYlabels;
     }
-
     //Enviamos los datos a la grafica
-    var chart = []
-    let  dataYlabels;
+    var chart = [];
+    let dataYlabels;
     let ctx;
     let config;
-    function cargarDatosChart(json, id) {
+
+    function cargarDatosChart(json, id, type) {
         dataYlabels = generaDatasLabels(json);
         ctx = document.getElementById(id).getContext('2d');
         config = {
-            type: 'bar',
+            type: type,
             data: {
                 labels: dataYlabels[0],
                 datasets: dataYlabels[1]
@@ -142,13 +183,13 @@ $(document).ready(function () {
         nuevaGrafica(ctx, config)
     }
 
-    function nuevaGrafica(ctx, config){
+    function nuevaGrafica(ctx, config) {
         chart.push(new Chart(ctx, config));
     }
 
     //Inicializamos metodo para cargar la grafica al cargar la pagina
     //window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp', "chartBarras");
-    window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp', "chartBarras");
+    //window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp', "chartBarras");
     //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
     //window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json', "chartBarras");
 
