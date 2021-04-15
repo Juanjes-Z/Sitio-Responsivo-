@@ -16,7 +16,7 @@ function cargarDatos(json, idTable) {
     idNewTable = idNewTable+""+fecha.getMinutes();
     idNewTable = idNewTable+""+ fecha.getSeconds();
     idNewTable = idNewTable+""+ fecha.getMilliseconds();
-    var DatosJson = JSON.parse(JSON.stringify(json));
+    var DatosJson = json;
 
     let alinea="text-center";
     let padding=8;

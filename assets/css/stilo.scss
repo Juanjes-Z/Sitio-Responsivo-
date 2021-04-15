@@ -138,9 +138,7 @@ input[type=number] {
     margin: 0px 0px !important;
 }
 
-.item {
-    flex: 1 1 auto;
-}
+
 .tabla-contenedor-generated::-webkit-scrollbar,
 .tabla-contenedor::-webkit-scrollbar {
     display: none;
@@ -152,18 +150,15 @@ input[type=number] {
      position: sticky!important;
      z-index: 999!important;
 }*/
-
 .sticky-column {
     background-color: white !important;
     left: 0px !important;
     right: 0px;
     position: sticky !important;
-    z-index: 9998 !important;
+    z-index: 0 !important;
     background-color: rgb(175, 175, 175) !important;
     color: white !important;
 }
-
-
 
 #tablaConfig {
     -webkit-transition: 0.5s;
@@ -176,7 +171,6 @@ input[type=number] {
         width: min-content;
     }
 }
-
 
 .dashboard {
     background: rgb(221, 221, 221);
@@ -212,7 +206,19 @@ input[type=number] {
             background-color: rgba(224, 222, 222, 0.719);
         }
     }
-    
+    .item{
+        flex: 1 1 auto;
+        min-width: 50%;
+    }
+    .item1{
+        flex:  5 1 auto;
+        min-width: 65%;
+    }
+    .item2{
+        flex:  1 1 auto;
+        max-width: 60%;
+        
+    }
     .tabla-contenedor {
         height: 200px;
         padding: 0px;
@@ -223,23 +229,23 @@ input[type=number] {
         box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
     }
 
-    .tabla-contenedor-generated {
-        height: 207px;
+    .tabla-contenedor-generated{
         padding: 0px;
         overflow: auto;
         text-align: center;
         background-color: rgb(255, 255, 255);
-        border-radius: 10px 10px 10px 10px;
+        border-radius: 10px 15px 10px 10px;
         box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
     }
 
     .btn-borrar{
-        position: relative;
-        top:  19px;
+        position: absolute;
+        top:  0px;
+        right: 0px;
         font-size: 0.5rem;
-        padding: 0.1rem 0.2rem;
-        border-radius:  25%;
-        z-index: 9999 !important;
+        padding: 0.1rem 0.3rem;
+        border-radius:  50%;
+        z-index: 101 !important;
     }
 }
 
@@ -252,13 +258,13 @@ input[type=number] {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
     background-color: rgb(34, 76, 153);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    z-index: 999;
     a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -286,11 +292,6 @@ input[type=number] {
             height: 246px !important;
 
         }
-
-        .tabla-contenedor-generated {
-            height: 250px !important;
-
-        }
     }
 }
 
@@ -300,13 +301,10 @@ input[type=number] {
         .tabla-contenedor {
             height: 178px !important;
 
-        }
-
-        .tabla-contenedor-generated {
-            height: 176px !important;
-
-        }
+        }        
     }
+
+    
 
     .ordenar1 {
         order: 1;
@@ -315,17 +313,12 @@ input[type=number] {
     .ordernar2 {
         order: 0;
     }
-
-    .item {
-        width: 50%;
-    }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
 
     .dashboard {
-        .tabla-contenedor-generated,
         .tabla-contenedor {
             height: 236px !important;
         }
@@ -346,7 +339,7 @@ input[type=number] {
 @media (min-width: 1200px) {
 
     .dashboard {
-        .tabla-contenedor-generated,
+        
         .tabla-contenedor {
             height: 281px !important;
         }
@@ -356,7 +349,7 @@ input[type=number] {
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 1400px) {
     .dashboard {
-        .tabla-contenedor-generated,
+        
         .tabla-contenedor {
             height: 326px !important;
         }

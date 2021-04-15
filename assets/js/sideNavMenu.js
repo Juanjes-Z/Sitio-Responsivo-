@@ -13,7 +13,6 @@ function closeNav()
     SideNAvDOM.style.width = "0";
     SideNAvDOM.style.boxShadow = "none";
 }
-
   /**** Crear menu con json *****/
   function cargarDatosMenuNav(json) {
     fetch (json).then(resp => {
@@ -30,3 +29,5 @@ function insertarEnlaces(json){
 }
 
 window.onload = cargarDatosMenuNav('https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11');
+
+
