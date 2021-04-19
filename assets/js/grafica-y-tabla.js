@@ -89,29 +89,34 @@ $(document).ready(function () {
                 "fechaF": fechaF
             },
             {
-                "tablaM":tablaM,
-                "tipoGraficaM":tipoGraficaM,
-                "porcentajeM":porcentajeM
+                "estadistica": "01",
+                "tabla":tablaM,
+                "grafica":tipoGraficaM,
+                "porcentaje":porcentajeM
             },
             {
-                "tablaN":tablaN,
-                "tipoGraficaN":tipoGraficaN,
-                "porcentajeN":porcentajeN
+                "estadistica": "02",
+                "tabla":tablaN,
+                "grafica":tipoGraficaN,
+                "porcentaje":porcentajeN
             },
             {
-                "tablaCA":tablaCA,
-                "tipoGraficaCA":tipoGraficaCA,
-                "porcentajeCA":porcentajeCA
+                "estadistica": "03",
+                "tabla":tablaCA,
+                "grafica":tipoGraficaCA,
+                "porcentaje":porcentajeCA
             },
             {
-                "tablaCU":tablaCU,
-                "tipoGraficaCU":tipoGraficaCU,
-                "porcentajeCU":porcentajeCU
+                "estadistica": "04",
+                "tabla":tablaCU,
+                "grafica":tipoGraficaCU,
+                "porcentaje":porcentajeCU
             },
             {
-                "tablaLP":tablaLP,
-                "tipoGraficaLP":tipoGraficaLP,
-                "porcentajeLP":porcentajeLP
+                "estadistica": "05",
+                "tabla":tablaLP,
+                "grafica":tipoGraficaLP,
+                "porcentaje":porcentajeLP
             },
         ]
     }
