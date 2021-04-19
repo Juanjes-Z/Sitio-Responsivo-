@@ -1,10 +1,31 @@
 $(document).ready(function () {
+
+    const consJSON = async( opcConfig ) => {
+
+        const resp = await fetch( urleSend, {
+            method: 'POST',
+            body: JSON.stringify( opcConfig ),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return await resp.json();
+    }
+
     let tabla, grafica, estadistica, rutaJson, porcentaje;
     $("#butn").click(function () {
+        if($("#collapseExample").hasClass("show") == true){
+            $("#collapseExample").removeClass("show");
+        }
+
+        const respJson = consJSON(obtenerValoresForm());
+        console.log(obtenerValoresForm())
+
         if (document.getElementById("ContainerGraficas")) {
             document.getElementById("ContainerGraficas").remove();
         }
 
+        //jsonGraf = consultarJson();
         fetch("https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11").then(resp => {
             resp.json().then(data => {
                 for (let i = 0; i < data.length; i++) {
@@ -30,6 +51,70 @@ $(document).ready(function () {
 
     });
 
+
+    function obtenerValoresForm(){
+
+        //FECHAS
+        let fechaI = document.querySelector("#fechaI").value;
+        let fechaF = document.querySelector("#fechaF").value;
+
+        //POR MES
+        let tablaM = document.querySelector("#tablaM").checked ? 1 : 0;
+        let tipoGraficaM = document.querySelector("#tipoGraficaM").value;
+        let porcentajeM = document.querySelector("#porcentajeM").checked ? 1 : 0;
+
+        //POR NIVEL
+        let tablaN = document.querySelector("#tablaN").checked ? 1 : 0;
+        let tipoGraficaN = document.querySelector("#tipoGraficaN").value;
+        let porcentajeN = document.querySelector("#porcentajeN").checked ? 1 : 0;
+
+        //POR CARRERA
+        let tablaCA = document.querySelector("#tablaCA").checked ? 1 : 0;
+        let tipoGraficaCA = document.querySelector("#tipoGraficaCA").value;
+        let porcentajeCA = document.querySelector("#porcentajeCA").checked ? 1 : 0;
+
+        //POR CUENTA
+        let tablaCU = document.querySelector("#tablaCU").checked ? 1 : 0;
+        let tipoGraficaCU = document.querySelector("#tipoGraficaCU").value;
+        let porcentajeCU = document.querySelector("#porcentajeCU").checked ? 1 : 0;
+
+        //POR LUGAR PAGO
+        let tablaLP = document.querySelector("#tablaLP").checked ? 1 : 0;
+        let tipoGraficaLP = document.querySelector("#tipoGraficaLP").value;
+        let porcentajeLP = document.querySelector("#porcentajeLP").checked ? 1 : 0;
+        
+        return [
+            {
+                "fechaI": fechaI,
+                "fechaF": fechaF
+            },
+            {
+                "tablaM":tablaM,
+                "tipoGraficaM":tipoGraficaM,
+                "porcentajeM":porcentajeM
+            },
+            {
+                "tablaN":tablaN,
+                "tipoGraficaN":tipoGraficaN,
+                "porcentajeN":porcentajeN
+            },
+            {
+                "tablaCA":tablaCA,
+                "tipoGraficaCA":tipoGraficaCA,
+                "porcentajeCA":porcentajeCA
+            },
+            {
+                "tablaCU":tablaCU,
+                "tipoGraficaCU":tipoGraficaCU,
+                "porcentajeCU":porcentajeCU
+            },
+            {
+                "tablaLP":tablaLP,
+                "tipoGraficaLP":tipoGraficaLP,
+                "porcentajeLP":porcentajeLP
+            },
+        ]
+    }
 
     function generarTablasyGraficas(rutaJson, tabla, grafica, idNewChart) {
         let tipoGrafica = "";
@@ -102,7 +187,7 @@ $(document).ready(function () {
             new ResizeSensor(document.getElementById('colG' + idNewChart), function () {
                 if (document.getElementById('colG' + idNewChart) != null) {
                     let tamañochart = document.getElementById('chart' + idNewChart).clientHeight*(5.5/8) + "px";
-                    console.log(tamañochart)
+                    
                     let tabla = document.getElementById('contTable' + idNewChart);
                     if (tabla != null) {
                         tabla.style.height = tamañochart;
