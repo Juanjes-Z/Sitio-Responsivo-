@@ -35,7 +35,6 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js"></script>
 
-
     <!-- Hoja de estilos del sitio-->
     <link rel="stylesheet" href="./assets/css/stilo.css">
 
@@ -65,189 +64,191 @@
 
         <div class="container">
             <div class="row mt-5 p-5" style="background-color: rgba(0, 0, 0, 0.082);">
+                <form method="post">
+                    <div class="col-12 text-center">
+                        <h1>Ingresos Por Rango de Fecha</h1>
+                    </div>
 
-                <div class="col-12 text-center">
-                    <h1>Ingresos Por Rango de Fecha</h1>
-                </div>
+                    <div class="col-12 p-3"
+                        style="background-color: rgb(253, 253, 253); border: 1px solid rgb(139, 139, 139) ;">
+                        <div class="row justify-content-center">
 
-                <div class="col-12 p-3"
-                    style="background-color: rgb(253, 253, 253); border: 1px solid rgb(139, 139, 139) ;">
-                    <div class="row justify-content-center">
+                            <div class="col-12 text-end">
+                                <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                    aria-expanded="false" aria-controls="collapseExample" id="pconfig"
+                                    class="btn-warning btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                                    </svg>
+                                </button>
+                            </div>
 
-                        <div class="col-12 text-end">
-                            <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                                aria-expanded="false" aria-controls="collapseExample" id="pconfig"
-                                class="btn-warning btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-gear-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div class="col-6 col-md-3">
-                            <div class="wrapper">
-                                <div class="input-dataa">
-                                    <label style="color: grey; font-size: 12px" for="fechaI">Fecha inicio</label>
-                                    <input type="text" class="datepicker"
-                                        style="outline-width: 0px; border-bottom: 2px solid silver; width: 100%"
-                                        name="fechaI" id="fechaI" autocomplete="off">
-                                    <div class="underline">
+                            <div class="col-6 col-md-3">
+                                <div class="wrapper">
+                                    <div class="input-dataa">
+                                        <label style="color: grey; font-size: 12px" for="fechaI">Fecha inicio</label>
+                                        <input type="text" class="datepicker"
+                                            style="outline-width: 0px; border-bottom: 2px solid silver; width: 100%"
+                                            name="fechaI" id="fechaI" autocomplete="off">
+                                        <div class="underline">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-6 col-md-3">
-                            <div class="wrapper">
-                                <div class="input-dataa">
-                                    <label style="color: grey; font-size: 12px" for="fechaF">Fecha final</label>
-                                    <input type="text" class="datepicker"
-                                        style="outline-width: 0px; border-bottom: 2px solid silver; width: 100%"
-                                        name="fechaF" id="fechaF" autocomplete="off">
-                                    <div class="underline">
+                            <div class="col-6 col-md-3">
+                                <div class="wrapper">
+                                    <div class="input-dataa">
+                                        <label style="color: grey; font-size: 12px" for="fechaF">Fecha final</label>
+                                        <input type="text" class="datepicker"
+                                            style="outline-width: 0px; border-bottom: 2px solid silver; width: 100%"
+                                            name="fechaF" id="fechaF" autocomplete="off">
+                                        <div class="underline">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-12 col-md-3 text-end text-md-center">
-                            <button id="butn" class="btn btn-info mt-2 mt-md-1">
+                            <div class="col-12 col-md-3 text-end text-md-center">
+                                <button type="submit"  id="butn" class="btn btn-info mt-2 mt-md-1">
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                </svg> Aplicar
-                            </button>
-                        </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                    </svg> Aplicar
+                                </button>
+                            </div>
 
-                    </div>
-                </div>
-
-                <div class="collapse" id="collapseExample"
-                    style="background-color: rgb(253, 253, 253); border: 1px solid rgb(139, 139, 139) ; border-top:0px;">
-                    <div class="col-12 mt-3" id="tablaConfig">
-                        <div class="table-responsive">
-                            <table class="table caption-top table-hover table-light table-sm" id="configForm">
-                                <caption>Seleccionar Generación</caption>
-                                <thead class=" table-dark">
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col" class="text-center">Tabla</th>
-                                        <th scope="col" class="text-center">Grafica</th>
-                                        <th scope="col" class="text-center">Porcentaje</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                        <!-- POR MES-->
-                                        <th scope="row">Por Mes</th>
-
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" id="tablaM" name="tablaM">
-                                        </td>
-
-                                        <td class="text-center">
-                                            <select name="tipoGraficaM" id="tipoGraficaM" class="text-center">
-                                                <option value="0">No graficar</option>
-                                                <option value="1">Barras</option>
-                                                <option value="2">Lineal</option>
-                                            </select>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" id="porcentajeM"
-                                                name="porcentajeM">
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <!-- POR NIVEL-->
-                                        <th scope="row">Por Nivel</th>
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="tablaN" name="tablaN"></td>
-                                        <td>
-                                            <select name="tipoGraficaN" id="tipoGraficaN" class="text-center">
-                                                <option value="0">No graficar</option>
-                                                <option value="1">Barras</option>
-                                                <option value="2">Lineal</option>
-                                            </select>
-                                        </td>
-
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="porcentajeN" name="porcentajeN">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <!-- POR CARRERA -->
-                                        <th scope="row">Por carrera</th>
-
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="tablaCA" name="tablaCA">
-                                        </td>
-
-                                        <td>
-                                            <select name="tipoGraficaCA" id="tipoGraficaCA" class="text-center">
-                                                <option value="0">No graficar</option>
-                                                <option value="1">Barras</option>
-                                                <option value="2">Lineal</option>
-                                            </select>
-                                        </td>
-
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="porcentajeCA" name="porcentajeCA">
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <!-- POR CUENTA -->
-                                        <th scope="row">Por Cuenta</th>
-
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="tablaCU" name="tablaCU">
-                                        </td>
-
-                                        <td>
-
-                                            <select name="tipoGraficaCU" id="tipoGraficaCU" class="text-center">
-                                                <option value="0">No graficar</option>
-                                                <option value="1">Barras</option>
-                                                <option value="2">Lineal</option>
-                                            </select>
-
-                                        </td>
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="porcentajeCU" name="porcentajeCU">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <!-- POR LUGAR DE PAGO -->
-                                        <th scope="row">Por Lugar de Pago</th>
-
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="tablaLP" name="tablaLP">
-                                        </td>
-
-                                        <td>
-                                            <select name="tipoGraficaLP" id="tipoGraficaLP" class="text-center">
-                                                <option value="0">No graficar</option>
-                                                <option value="1">Barras</option>
-                                                <option value="2">Lineal</option>
-                                            </select>
-                                        </td>
-
-                                        <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                id="porcentajeLP" name="porcentajeLP">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
-                </div>
+
+                    <div class="collapse" id="collapseExample"
+                        style="background-color: rgb(253, 253, 253); border: 1px solid rgb(139, 139, 139) ; border-top:0px;">
+                        <div class="col-12 mt-3" id="tablaConfig">
+                            <div class="table-responsive">
+                                <table class="table caption-top table-hover table-light table-sm" id="configForm">
+                                    <caption>Seleccionar Generación</caption>
+                                    <thead class=" table-dark">
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col" class="text-center">Tabla</th>
+                                            <th scope="col" class="text-center">Grafica</th>
+                                            <th scope="col" class="text-center">Porcentaje</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <!-- POR MES-->
+                                            <th scope="row">Por Mes</th>
+
+                                            <td class="text-center">
+                                                <input class="form-check-input" type="checkbox" id="tablaM"
+                                                    name="tablaM">
+                                            </td>
+
+                                            <td class="text-center">
+                                                <select name="tipoGraficaM" id="tipoGraficaM" class="text-center">
+                                                    <option value="0">No graficar</option>
+                                                    <option value="1">Barras</option>
+                                                    <option value="2">Lineal</option>
+                                                </select>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <input class="form-check-input" type="checkbox" id="porcentajeM"
+                                                    name="porcentajeM">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <!-- POR NIVEL-->
+                                            <th scope="row">Por Nivel</th>
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="tablaN" name="tablaN"></td>
+                                            <td>
+                                                <select name="tipoGraficaN" id="tipoGraficaN" class="text-center">
+                                                    <option value="0">No graficar</option>
+                                                    <option value="1">Barras</option>
+                                                    <option value="2">Lineal</option>
+                                                </select>
+                                            </td>
+
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="porcentajeN" name="porcentajeN">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- POR CARRERA -->
+                                            <th scope="row">Por carrera</th>
+
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="tablaCA" name="tablaCA">
+                                            </td>
+
+                                            <td>
+                                                <select name="tipoGraficaCA" id="tipoGraficaCA" class="text-center">
+                                                    <option value="0">No graficar</option>
+                                                    <option value="1">Barras</option>
+                                                    <option value="2">Lineal</option>
+                                                </select>
+                                            </td>
+
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="porcentajeCA" name="porcentajeCA">
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <!-- POR CUENTA -->
+                                            <th scope="row">Por Cuenta</th>
+
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="tablaCU" name="tablaCU">
+                                            </td>
+
+                                            <td>
+
+                                                <select name="tipoGraficaCU" id="tipoGraficaCU" class="text-center">
+                                                    <option value="0">No graficar</option>
+                                                    <option value="1">Barras</option>
+                                                    <option value="2">Lineal</option>
+                                                </select>
+
+                                            </td>
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="porcentajeCU" name="porcentajeCU">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- POR LUGAR DE PAGO -->
+                                            <th scope="row">Por Lugar de Pago</th>
+
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="tablaLP" name="tablaLP">
+                                            </td>
+
+                                            <td>
+                                                <select name="tipoGraficaLP" id="tipoGraficaLP" class="text-center">
+                                                    <option value="0">No graficar</option>
+                                                    <option value="1">Barras</option>
+                                                    <option value="2">Lineal</option>
+                                                </select>
+                                            </td>
+
+                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                    id="porcentajeLP" name="porcentajeLP">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -263,6 +264,7 @@
 
     <!-- Propios archivos JS-->
     <script src="./assets/js/crear-tabla-json.js"></script>
+    <script src="./assets/js/grafica-pie.js"></script>
     <script src="./assets/js/char-progress.js"></script>
     <script src="./assets/js/grafica-y-tabla.js"></script>
     <script src="./assets/js/sideNavMenu.js"></script>
