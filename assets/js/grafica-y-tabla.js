@@ -1,95 +1,194 @@
 $(document).ready(function () {
+    let tabla, grafica, estadistica, rutaJson, porcentaje;
+    llenarTablaConf()
 
-    const consJSON = async (opcConfig) => {
-        const urleSend = "https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp";
-       
-        $.ajax({                        
-           type: "POST",                 
-           url: urleSend,                     
-           data: $("#formulario").serialize(), 
-           success: function(data)             
-           {
-             console.log(data)           
-           }
-       });
+    function llenarTablaConf() {
+        //POR MES
+        const tablaM = document.querySelector("#tablaPorMes");
+        const tipoGraficaM = document.querySelector("#tipoGraficaPorMes");
+        const porcentajeM = document.querySelector("#porcentajePorMes");
+
+        //POR NIVEL
+        const tablaN = document.querySelector("#tablaPorNivel");
+        const tipoGraficaN = document.querySelector("#tipoGraficaPorNivel");
+        const porcentajeN = document.querySelector("#porcentajePorNivel");
+
+        //POR CARRERA
+        const tablaCA = document.querySelector("#tablaPorCarrera");
+        const tipoGraficaCA = document.querySelector("#tipoGraficaPorCarrera");
+        const porcentajeCA = document.querySelector("#porcentajePorCarrera");
+
+        //POR CUENTA
+        const tablaCU = document.querySelector("#tablaPorCuenta");
+        const tipoGraficaCU = document.querySelector("#tipoGraficaPorCuenta");
+        const porcentajeCU = document.querySelector("#porcentajePorCuenta");
+
+        //POR LUGAR PAGO
+        const tablaLP = document.querySelector("#tablaPorLugarPago");
+        const tipoGraficaLP = document.querySelector("#tipoGraficaPorLugarPago");
+        const porcentajeLP = document.querySelector("#porcentajePorLugarPago");
+        fetch("https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11").then(resp => {
+            resp.json().then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    estadistica = data[i]["estadistica"];
+                    porcentaje = data[i]["porcentaje"];
+                    grafica = data[i]["grafica"];
+                    tabla = data[i]["tabla"];
+
+                    switch (estadistica) {
+                        case "01":
+                            porcentajeM.checked = (porcentaje == 1) ? true : false;
+                            tipoGraficaM.selectedIndex = grafica + "";
+                            tablaM.checked = (tabla == 1) ? true : false;
+                            break;
+
+                        case "02":
+                            porcentajeN.checked = (porcentaje == 1) ? true : false;
+                            tipoGraficaN.selectedIndex = grafica + "";
+                            tablaN.checked = (tabla == 1) ? true : false;
+                            break;
+
+                        case "03":
+                            porcentajeCA.checked = (porcentaje == 1) ? true : false;
+                            tipoGraficaCA.selectedIndex = grafica + "";
+                            tablaCA.checked = (tabla == 1) ? true : false;
+                            break;
+
+                        case "04":
+                            porcentajeCU.checked = (porcentaje == 1) ? true : false;
+                            tipoGraficaCU.selectedIndex = grafica + "";
+                            tablaCU.checked = (tabla == 1) ? true : false;
+                            break;
+
+                        case "05":
+                            porcentajeLP.checked = (porcentaje == 1) ? true : false;
+                            tipoGraficaLP.selectedIndex = grafica + "";
+                            tablaLP.checked = (tabla == 1) ? true : false;
+                            break;
+                    }
+
+                }
+                generarTablasYGraficas()
+            });
+
+        });
+
+        
     }
 
-    let tabla, grafica, estadistica, rutaJson, porcentaje;
+    $('#formularioaenviar').submit(function (ev) {
+        //alert($('#formularioaenviar').serialize({  checkboxesAsBools: true}));
+        $.ajax({
+            type: $('#formularioaenviar').attr('method'),
+            url: $('#formularioaenviar').attr('action'),
+            data: $('#formularioaenviar').serialize({
+                checkboxesAsBools: true
+            }),
+            success: function (data) {
+                //alert($('#formularioaenviar').serialize({ checkboxesAsBools: true }));
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Error: " + errorThrown);
+            }
+        });
+        ev.preventDefault();
+    });
+
+    // const consJSON = (opcConfig) => {
+    //     const urlSend = "http://mi-escuelamx.com/isad/dashboards/recibeparametros.asp";
+
+    //     $.ajax({
+    //         type: "POST",
+    //         url: urlSend,
+    //         data: $("#formulario").serialize(),
+    //         success: function (data) {
+    //             alert(urlSend)
+    //         }
+    //     });
+
+    //     
+    //     // const resp = await fetch( urlSend, {
+    //     //     method: 'POST',
+    //     //     body: JSON.stringify( opcConfig ),
+    //     //     headers: {
+    //     //         'Content-Type': 'application/json'
+    //     //     }
+    //     // });
+
+    //     // return await resp.json();
+    // }
+
     $("#butn").click(function () {
+        generarTablasYGraficas()
+    });
+
+    function generarTablasYGraficas() {
         if ($("#collapseExample").hasClass("show") == true) {
             $("#collapseExample").removeClass("show");
         }
 
-        const respJson = consJSON(obtenerValoresForm());
-        console.log(consJSON())
+        // const respJson = consJSON(obtenerValoresForm());
 
         if (document.getElementById("ContainerGraficas")) {
             document.getElementById("ContainerGraficas").remove();
         }
 
-        //jsonGraf = consultarJson();
-        fetch("https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11").then(resp => {
-            resp.json().then(data => {
-                for (let i = 0; i < data.length; i++) {
-                    tabla = data[i]["tabla"];
-                    grafica = data[i]["grafica"];
-                    estadistica = data[i]["estadistica"];
-                    porcentaje = data[i]["porcentaje"];
-                    switch (estadistica) {
-                        case "01":
-                            rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp';
-                            break;
-                        case "02":
-                            rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp';
-                            break;
-                    }
+        data = obtenerValoresForm();
+        for (let i = 0; i < data.length; i++) {
+            tabla = data[i]["tabla"];
+            grafica = data[i]["grafica"];
+            estadistica = data[i]["estadistica"];
+            porcentaje = data[i]["porcentaje"];
+            switch (estadistica) {
+                case "01":
+                    rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp';
+                    break;
+                case "02":
+                    rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp';
+                    break;
+                default:
+                    rutaJson = "";
+                    break;
+            }
 
-                    generarTablasyGraficas(rutaJson, tabla, grafica, estadistica, porcentaje);
-
-                }
-            });
-
-        });
-
-    });
-
+            if (rutaJson != "") {
+                generarTablasyGraficas(rutaJson, tabla, grafica, porcentaje, estadistica);
+            }
+        }
+    }
 
     function obtenerValoresForm() {
 
         //FECHAS
-        let fechaI = document.querySelector("#fechaI").value;
-        let fechaF = document.querySelector("#fechaF").value;
+        let fechaI = document.querySelector("#fechaInicial").value;
+        let fechaF = document.querySelector("#fechaFinal").value;
 
         //POR MES
-        let tablaM = document.querySelector("#tablaM").checked ? 1 : 0;
-        let tipoGraficaM = document.querySelector("#tipoGraficaM").value;
-        let porcentajeM = document.querySelector("#porcentajeM").checked ? 1 : 0;
+        let tablaM = document.querySelector("#tablaPorMes").checked ? 1 : 0;
+        let tipoGraficaM = document.querySelector("#tipoGraficaPorMes").value;
+        let porcentajeM = document.querySelector("#porcentajePorMes").checked ? 1 : 0;
 
         //POR NIVEL
-        let tablaN = document.querySelector("#tablaN").checked ? 1 : 0;
-        let tipoGraficaN = document.querySelector("#tipoGraficaN").value;
-        let porcentajeN = document.querySelector("#porcentajeN").checked ? 1 : 0;
+        let tablaN = document.querySelector("#tablaPorNivel").checked ? 1 : 0;
+        let tipoGraficaN = document.querySelector("#tipoGraficaPorNivel").value;
+        let porcentajeN = document.querySelector("#porcentajePorNivel").checked ? 1 : 0;
 
         //POR CARRERA
-        let tablaCA = document.querySelector("#tablaCA").checked ? 1 : 0;
-        let tipoGraficaCA = document.querySelector("#tipoGraficaCA").value;
-        let porcentajeCA = document.querySelector("#porcentajeCA").checked ? 1 : 0;
+        let tablaCA = document.querySelector("#tablaPorCarrera").checked ? 1 : 0;
+        let tipoGraficaCA = document.querySelector("#tipoGraficaPorCarrera").value;
+        let porcentajeCA = document.querySelector("#porcentajePorCarrera").checked ? 1 : 0;
 
         //POR CUENTA
-        let tablaCU = document.querySelector("#tablaCU").checked ? 1 : 0;
-        let tipoGraficaCU = document.querySelector("#tipoGraficaCU").value;
-        let porcentajeCU = document.querySelector("#porcentajeCU").checked ? 1 : 0;
+        let tablaCU = document.querySelector("#tablaPorCuenta").checked ? 1 : 0;
+        let tipoGraficaCU = document.querySelector("#tipoGraficaPorCuenta").value;
+        let porcentajeCU = document.querySelector("#porcentajePorCuenta").checked ? 1 : 0;
 
         //POR LUGAR PAGO
-        let tablaLP = document.querySelector("#tablaLP").checked ? 1 : 0;
-        let tipoGraficaLP = document.querySelector("#tipoGraficaLP").value;
-        let porcentajeLP = document.querySelector("#porcentajeLP").checked ? 1 : 0;
+        let tablaLP = document.querySelector("#tablaPorLugarPago").checked ? 1 : 0;
+        let tipoGraficaLP = document.querySelector("#tipoGraficaPorLugarPago").value;
+        let porcentajeLP = document.querySelector("#porcentajePorLugarPago").checked ? 1 : 0;
 
-        return [{
-                "fechaI": fechaI,
-                "fechaF": fechaF
-            },
-            {
+        let jsonConf = [{
                 "estadistica": "01",
                 "tabla": tablaM,
                 "grafica": tipoGraficaM,
@@ -119,16 +218,18 @@ $(document).ready(function () {
                 "grafica": tipoGraficaLP,
                 "porcentaje": porcentajeLP
             },
-        ]
+        ];
+
+        return jsonConf;
     }
 
-    function generarTablasyGraficas(rutaJson, tabla, grafica, idNewChart) {
+    function generarTablasyGraficas(rutaJson, tabla, grafica, porcentaje, idNewChart) {
         let tipoGrafica = "";
         switch (grafica) {
-            case 1:
+            case '1':
                 tipoGrafica = "bar";
                 break;
-            case 2:
+            case '2':
                 tipoGrafica = "line";
                 break;
         }
@@ -147,6 +248,7 @@ $(document).ready(function () {
         if (tabla == 1) {
             $('#rowGraficas' + idNewChart).append('<div id=colT' + idNewChart + ' class="">');
             $('#colT' + idNewChart).addClass("p-4 p-md-1 mt-2 ordenar2 text-end");
+
             if (porcentaje == 1) {
                 $('#colT' + idNewChart).addClass("item1");
             } else {
@@ -177,7 +279,7 @@ $(document).ready(function () {
         //Se crea columna y Grafica
         if (grafica != 0) {
             $('#rowGraficas' + idNewChart).append('<div id=colG' + idNewChart + ' class=" ">');
-            $('#colG' + idNewChart).addClass("p-4 p-md-1 mt-2 item1 ordenar1 text-end");
+            $('#colG' + idNewChart).addClass("p-4 p-md-1 mt-2 item ordenar1 text-end");
 
             $('#colG' + idNewChart).append('<div  style="position: relative; background-color: #000; z-index: 100;" id="divBtnG' + idNewChart + '"></div>');
             $('#divBtnG' + idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + '">X</button>');
@@ -187,11 +289,10 @@ $(document).ready(function () {
             cargarDatosGrafica(rutaJson, 'chart' + idNewChart, tipoGrafica);
         }
 
-
         if (tabla == 1 && grafica != 0 && porcentaje == 0) {
             new ResizeSensor(document.getElementById('colG' + idNewChart), function () {
                 if (document.getElementById('colG' + idNewChart) != null) {
-                    let tamañochart = document.getElementById('chart' + idNewChart).clientHeight * (5.5 / 8) + "px";
+                    let tamañochart = document.getElementById('chart' + idNewChart).clientHeight + "px";
 
                     let tabla = document.getElementById('contTable' + idNewChart);
                     if (tabla != null) {
@@ -318,6 +419,7 @@ $(document).ready(function () {
         datasYlabels.push(labels)
         datasYlabels.push(datasets)
 
+
         return datasYlabels;
     }
     //Enviamos los datos a la grafica
@@ -443,7 +545,7 @@ $(document).ready(function () {
 
         datasYlabels.push(labels)
         datasYlabels.push(datasets)
-        console.log(datasets)
+
 
         return datasYlabels;
     }

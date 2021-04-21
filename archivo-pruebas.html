@@ -14,6 +14,7 @@
 
     <!--jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 
     <!-- Datapicker Jquery-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -64,7 +65,7 @@
 
         <div class="container">
             <div class="row mt-5 p-5" style="background-color: rgba(0, 0, 0, 0.082);">
-                <form method="post">
+                <form action="https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp" method="post" id="formularioaenviar">
                     <div class="col-12 text-center">
                         <h1>Ingresos Por Rango de Fecha</h1>
                     </div>
@@ -73,52 +74,53 @@
                         style="background-color: rgb(253, 253, 253); border: 1px solid rgb(139, 139, 139) ;">
                         <div class="row justify-content-center">
 
-                            <div class="col-12 text-end">
-                                <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                                    aria-expanded="false" aria-controls="collapseExample" id="pconfig"
-                                    class="btn-warning btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-gear-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                                    </svg>
-                                </button>
-                            </div>
 
-                            <div class="col-6 col-md-3">
+                            <div class="col-6 col-md-3  align-self-end">
                                 <div class="wrapper">
                                     <div class="input-dataa">
                                         <label style="color: grey; font-size: 12px" for="fechaI">Fecha inicio</label>
                                         <input type="text" class="datepicker"
                                             style="outline-width: 0px; border-bottom: 2px solid silver; width: 100%"
-                                            name="fechaI" id="fechaI" autocomplete="off">
+                                            name="fechaInicial" id="fechaInicial" autocomplete="off">
                                         <div class="underline">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-6 col-md-3">
+                            <div class="col-6 col-md-3  align-self-end">
                                 <div class="wrapper">
                                     <div class="input-dataa">
                                         <label style="color: grey; font-size: 12px" for="fechaF">Fecha final</label>
                                         <input type="text" class="datepicker"
                                             style="outline-width: 0px; border-bottom: 2px solid silver; width: 100%"
-                                            name="fechaF" id="fechaF" autocomplete="off">
+                                            name="fechaFinal" id="fechaFinal" autocomplete="off">
                                         <div class="underline">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-3 text-end text-md-center">
-                                <button type="submit"  id="butn" class="btn btn-info mt-2 mt-md-1">
+                            <div class="col-12 col-md-2 align-self-end">
+                                <button type="submit" id="butn" class="btn btn-info mt-2 mt-md-1">
 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-check2" viewBox="0 0 16 16">
                                         <path
                                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                                     </svg> Aplicar
+                                </button>
+                            </div>
+
+                            <div class="col-12 col-md-1 align-self-end">
+                                <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                    aria-expanded="false" aria-controls="collapseExample" id="pconfig"
+                                    class="btn-warning btn ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                                    </svg>
                                 </button>
                             </div>
 
@@ -146,12 +148,12 @@
                                             <th scope="row">Por Mes</th>
 
                                             <td class="text-center">
-                                                <input class="form-check-input" type="checkbox" id="tablaM"
-                                                    name="tablaM">
+                                                <input class="form-check-input" type="checkbox" id="tablaPorMes"
+                                                    name="tablaPorMes">
                                             </td>
 
                                             <td class="text-center">
-                                                <select name="tipoGraficaM" id="tipoGraficaM" class="text-center">
+                                                <select name="tipoGraficaPorMes" id="tipoGraficaPorMes" class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
@@ -159,8 +161,8 @@
                                             </td>
 
                                             <td class="text-center">
-                                                <input class="form-check-input" type="checkbox" id="porcentajeM"
-                                                    name="porcentajeM">
+                                                <input class="form-check-input" type="checkbox" id="porcentajePorMes"
+                                                    name="porcentajePorMes">
                                             </td>
                                         </tr>
 
@@ -168,9 +170,9 @@
                                             <!-- POR NIVEL-->
                                             <th scope="row">Por Nivel</th>
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaN" name="tablaN"></td>
+                                                    id="tablaPorNivel" name="tablaPorNivel"></td>
                                             <td>
-                                                <select name="tipoGraficaN" id="tipoGraficaN" class="text-center">
+                                                <select name="tipoGraficaPorNivel" id="tipoGraficaPorNivel" class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
@@ -178,7 +180,7 @@
                                             </td>
 
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajeN" name="porcentajeN">
+                                                    id="porcentajePorNivel" name="porcentajePorNivel">
                                             </td>
                                         </tr>
                                         <tr>
@@ -186,11 +188,11 @@
                                             <th scope="row">Por carrera</th>
 
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaCA" name="tablaCA">
+                                                    id="tablaPorCarrera" name="tablaPorCarrera">
                                             </td>
 
                                             <td>
-                                                <select name="tipoGraficaCA" id="tipoGraficaCA" class="text-center">
+                                                <select name="tipoGraficaPorCarrera" id="tipoGraficaPorCarrera" class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
@@ -198,7 +200,7 @@
                                             </td>
 
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajeCA" name="porcentajeCA">
+                                                    id="porcentajePorCarrera" name="porcentajePorCarrera">
                                             </td>
 
                                         </tr>
@@ -207,12 +209,12 @@
                                             <th scope="row">Por Cuenta</th>
 
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaCU" name="tablaCU">
+                                                    id="tablaPorCuenta" name="tablaPorCuenta">
                                             </td>
 
                                             <td>
 
-                                                <select name="tipoGraficaCU" id="tipoGraficaCU" class="text-center">
+                                                <select name="tipoGraficaPorCuenta" id="tipoGraficaPorCuenta" class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
@@ -220,7 +222,7 @@
 
                                             </td>
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajeCU" name="porcentajeCU">
+                                                    id="porcentajePorCuenta" name="porcentajePorCuenta">
                                             </td>
                                         </tr>
                                         <tr>
@@ -228,11 +230,11 @@
                                             <th scope="row">Por Lugar de Pago</th>
 
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaLP" name="tablaLP">
+                                                    id="tablaPorLugarPago" name="tablaPorLugarPago">
                                             </td>
 
                                             <td>
-                                                <select name="tipoGraficaLP" id="tipoGraficaLP" class="text-center">
+                                                <select name="tipoGraficaPorLugarPago" id="tipoGraficaPorLugarPago" class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
@@ -240,7 +242,7 @@
                                             </td>
 
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajeLP" name="porcentajeLP">
+                                                    id="porcentajePorLugarPago" name="porcentajePorLugarPago">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -261,7 +263,7 @@
         </div>
 
     </main>
-
+    <script src="./assets/js/jquery-serialize-checkbox.js"></script>
     <!-- Propios archivos JS-->
     <script src="./assets/js/crear-tabla-json.js"></script>
     <script src="./assets/js/grafica-pie.js"></script>

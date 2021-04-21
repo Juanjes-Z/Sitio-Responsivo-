@@ -266,6 +266,10 @@ input[type=number] {
   z-index: 101 !important;
 }
 
+.border-cols {
+  border: 2px solid black;
+}
+
 /****** MENU SIDE NAV *******/
 #main {
   -webkit-transition: 0.5s;
