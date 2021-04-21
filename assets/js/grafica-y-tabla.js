@@ -86,6 +86,7 @@ $(document).ready(function () {
             }),
             success: function (data) {
                 //alert($('#formularioaenviar').serialize({ checkboxesAsBools: true }));
+                generarTablasYGraficas()
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Error: " + errorThrown);
@@ -118,9 +119,11 @@ $(document).ready(function () {
     //     // return await resp.json();
     // }
 
-    $("#butn").click(function () {
-        generarTablasYGraficas()
-    });
+
+
+    // $("#butn").click(function () {
+        //generarTablasYGraficas()
+    // });
 
     function generarTablasYGraficas() {
         if ($("#collapseExample").hasClass("show") == true) {
