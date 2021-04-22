@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let tabla, grafica, estadistica, rutaJson, porcentaje;
+    let tabla, grafica, estadistica, rutaJson, porcentaje, rutaJsonPie;
     let chart = [];
     let dataYlabels;
     let ctx;
@@ -77,7 +77,6 @@ $(document).ready(function () {
                             break;
                     }
                 }
-                generarTablasYGraficas()
             });
         });
     }
@@ -88,14 +87,13 @@ $(document).ready(function () {
         $.ajax({
             type: $('#formularioaenviar').attr('method'),
             //url: $('#formularioaenviar').attr('action'),
-            url: 'https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp?fechainicial=' + fechaI.value + '&fechafinal=' + fechaF.value + '',
+            url: 'https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp',
             data: $('#formularioaenviar').serialize({
                 checkboxesAsBools: true
             }),
             success: function (data) {
                 //alert($('#formularioaenviar').serialize({ checkboxesAsBools: true }));
-                generarTablasYGraficas()
-                console.log('https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp?fechainicial=' + fechaI.value + '&fechafinal=' + fechaF.value + '');
+                generarTablasYGraficas(fechaI.value, fechaF.value)
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Error: " + errorThrown);
@@ -104,11 +102,12 @@ $(document).ready(function () {
         ev.preventDefault();
     });
 
-    function generarTablasYGraficas() {
+    function generarTablasYGraficas(fechaIval, fechaFval) {
         if ($("#collapseExample").hasClass("show") == true) {
             $("#collapseExample").removeClass("show");
         }
 
+        let fechasPorParametro = (fechaI != undefined && fechaFval != undefined)?'?fechainicial=' + fechaIval + '&fechafinal=' + fechaFval + '': "";
         // const respJson = consJSON(obtenerValoresForm());
 
         if (document.getElementById("ContainerGraficas")) {
@@ -123,18 +122,21 @@ $(document).ready(function () {
             porcentaje = data[i]["porcentaje"];
             switch (estadistica) {
                 case "01":
-                    rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp';
+                    rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp'+fechasPorParametro;
+                    rutaJsonPie='';
                     break;
                 case "02":
-                    rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp';
+                    rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp'+fechasPorParametro;
+                    rutaJsonPie ='https://mi-escuelamx.com/isad/dashboards/porcentajeMensualesNIvel.asp'+fechasPorParametro;
                     break;
                 default:
-                    rutaJson = "";
+                    rutaJson = '';
+                    rutaJsonPie='';
                     break;
             }
 
-            if (rutaJson != "") {
-                generarTablasyGraficas(rutaJson, tabla, grafica, porcentaje, estadistica);
+            if (rutaJson != '' || rutaJsonPie != '') {
+                generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaje, estadistica);
             }
         }
     }
@@ -200,7 +202,7 @@ $(document).ready(function () {
         return jsonConf;
     }
 
-    function generarTablasyGraficas(rutaJson, tabla, grafica, porcentaje, idNewChart) {
+    function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaje, idNewChart) {
         let tipoGrafica = "";
         switch (grafica) {
             case '1':
@@ -236,7 +238,7 @@ $(document).ready(function () {
             cargarDatosTabla(rutaJson, 'table' + idNewChart);
         }
 
-        if (porcentaje == 1) {
+        if (porcentaje == 1 && rutaJsonPie != '') {
             $('#rowGraficas' + idNewChart).append('<div id=colGp' + idNewChart + ' class=" ">');
             $('#colGp' + idNewChart).addClass("p-4 p-md-1 mt-2 item2 ordenar1 text-end");
 
@@ -245,7 +247,7 @@ $(document).ready(function () {
 
             $('#colGp' + idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);" id=chartp' + idNewChart + ' > ');
 
-            cargarDatosGraficaPie('https://mi-escuelamx.com/isad/dashboards/porcentajeMensualesNIvel.asp', 'chartp' + idNewChart, "pie");
+            cargarDatosGraficaPie(rutaJsonPie, 'chartp' + idNewChart, "pie");
         }
 
         //Se crea columna y Grafica
@@ -274,7 +276,7 @@ $(document).ready(function () {
             });
         }
 
-        if (tabla == 1 && porcentaje == 1) {
+        if (tabla == 1 && porcentaje == 1 && rutaJsonPie != '') {
             new ResizeSensor(document.getElementById('colGp' + idNewChart), function () {
 
                 if (document.getElementById('colGp' + idNewChart) != null) {
@@ -400,6 +402,7 @@ $(document).ready(function () {
     function cargarDatosChart(json, id, type) {
         dataYlabels = generaDatasLabels(json);
         ctx = document.getElementById(id).getContext('2d');
+        let activarbarraStac = (type != 'line')? { x: { stacked: true }, y: { stacked: true}} : { x: { stacked: false }, y: { stacked: false}};
         config = {
             type: type,
             data: {
@@ -417,17 +420,9 @@ $(document).ready(function () {
                         }
                     }
                 },
-                scales: {
-                    x: {
-                        stacked: true
-                    },
-                    y: {
-                        stacked: true
-                    }
-                }
+                scales: activarbarraStac
             }
         };
-
         nuevaGrafica(ctx, config)
     }
 
@@ -439,10 +434,12 @@ $(document).ready(function () {
     /***********************  GRAFICA PIE ****************************/
     function cargarDatosGraficaPie(json, id, type) {
         fetch(json).then(resp => {
-            resp.json().then(data => {
+            resp.json()
+            .then(data => {
                 cargarDatosChartPie(data, id, type)
-            });
-        });
+            })
+        })
+        .catch(error => console.error(error+" SE genero un error en la consulta de la tabla y grafica"));;
     }
 
     // Obtenemos los valores de los datasets y labels para la grafica para cualquier JSON
