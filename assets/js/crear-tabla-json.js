@@ -49,6 +49,7 @@ function cargarDatos(json, idTable) {
         return x;
     }
 
+    let valorNumericoTabla;
     $("#"+idTable).append(' <tbody id="tid_'+idNewTable+'">');
     for (i = 0; i < DatosJson.data.length; i++) {
         $("#tid_"+idNewTable).append('<tr id="id_' + i+idNewTable + '">');
@@ -62,7 +63,8 @@ function cargarDatos(json, idTable) {
                 }
                 
             } else {
-                $("#id_" + i+idNewTable).append('<td class="text-end">' + numberWithCommas(parseFloat(DatosJson.data[i][key]).toFixed(2)) + '</td>');
+                valorNumericoTabla=(DatosJson.data[i][key]=== undefined) ?  "": numberWithCommas(parseFloat(DatosJson.data[i][key]).toFixed(2));
+                $("#id_" + i+idNewTable).append('<td class="text-end">' + valorNumericoTabla + '</td>');
             }
         }
         $("#"+idNewTable).append('</tr>');

@@ -1,8 +1,13 @@
 $(document).ready(function () {
     let tabla, grafica, estadistica, rutaJson, porcentaje;
+    let chart = [];
+    let dataYlabels;
+    let ctx;
+    let config;
+
     llenarTablaConf()
 
-    function llenarTablaConf() {
+    function llenarTablaConf(jsonConfiguracion = "https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11") {
         //POR MES
         const tablaM = document.querySelector("#tablaPorMes");
         const tipoGraficaM = document.querySelector("#tipoGraficaPorMes");
@@ -27,13 +32,13 @@ $(document).ready(function () {
         const tablaLP = document.querySelector("#tablaPorLugarPago");
         const tipoGraficaLP = document.querySelector("#tipoGraficaPorLugarPago");
         const porcentajeLP = document.querySelector("#porcentajePorLugarPago");
-        fetch("https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11").then(resp => {
+        fetch(jsonConfiguracion).then(resp => {
             resp.json().then(data => {
                 for (let i = 0; i < data.length; i++) {
                     estadistica = data[i]["estadistica"];
-                    porcentaje = data[i]["porcentaje"];
-                    grafica = data[i]["grafica"];
-                    tabla = data[i]["tabla"];
+                    porcentaje  = data[i]["porcentaje"];
+                    grafica     = data[i]["grafica"];
+                    tabla       = data[i]["tabla"];
 
                     switch (estadistica) {
                         case "01":
@@ -66,16 +71,13 @@ $(document).ready(function () {
                             tablaLP.checked = (tabla == 1) ? true : false;
                             break;
                     }
-
                 }
                 generarTablasYGraficas()
             });
-
         });
-
-        
     }
 
+    //enviar formulario
     $('#formularioaenviar').submit(function (ev) {
         //alert($('#formularioaenviar').serialize({  checkboxesAsBools: true}));
         $.ajax({
@@ -94,36 +96,6 @@ $(document).ready(function () {
         });
         ev.preventDefault();
     });
-
-    // const consJSON = (opcConfig) => {
-    //     const urlSend = "http://mi-escuelamx.com/isad/dashboards/recibeparametros.asp";
-
-    //     $.ajax({
-    //         type: "POST",
-    //         url: urlSend,
-    //         data: $("#formulario").serialize(),
-    //         success: function (data) {
-    //             alert(urlSend)
-    //         }
-    //     });
-
-    //     
-    //     // const resp = await fetch( urlSend, {
-    //     //     method: 'POST',
-    //     //     body: JSON.stringify( opcConfig ),
-    //     //     headers: {
-    //     //         'Content-Type': 'application/json'
-    //     //     }
-    //     // });
-
-    //     // return await resp.json();
-    // }
-
-
-
-    // $("#butn").click(function () {
-        //generarTablasYGraficas()
-    // });
 
     function generarTablasYGraficas() {
         if ($("#collapseExample").hasClass("show") == true) {
@@ -161,7 +133,6 @@ $(document).ready(function () {
     }
 
     function obtenerValoresForm() {
-
         //FECHAS
         let fechaI = document.querySelector("#fechaInicial").value;
         let fechaF = document.querySelector("#fechaFinal").value;
@@ -236,11 +207,6 @@ $(document).ready(function () {
                 tipoGrafica = "line";
                 break;
         }
-        /*let fecha = new Date();
-        let idNewChart = fecha.getHours();
-        idNewChart = idNewChart + "" + fecha.getMinutes();
-        idNewChart = idNewChart + "" + fecha.getSeconds();
-        idNewChart = idNewChart + "" + fecha.getMilliseconds();*/
 
         $('#dashboards').append('  <div id="ContainerGraficas" class="col-12">');
         //Se crea fila donde estara la tabla y grafica
@@ -352,28 +318,30 @@ $(document).ready(function () {
         fetch(json).then(resp => {
             resp.json().then(data => {
                 cargarDatosChart(data, id, type)
-            });
+            })
+            .catch(error => console.error(error));
         });
     }
 
     // Obtenemos los valores de los datasets y labels para la grafica para cualquier JSON
     function generaDatasLabels(json) {
-        var label = [],
+        let label = [],
             labels = [],
             data = [],
             datas = [],
             datasets = [],
             datasYlabels = [];
-        var DatosJson = json;
+        let DatosJson = json;
 
         //Obtenemos los nombres de cada campo del JSON
-        for (var key in DatosJson.data[0]) {
+        for (let key in DatosJson.data[0]) {
             label.push(key)
         }
 
         //crear matriz de labels que iran debajo de la grafica
-        var arreglo, concat, matriz = [];
-        var posString = [];
+        let arreglo, concat, matriz = [];
+        let posString = [];
+        let rgb_val;
         for (j = 0; j < label.length; j++) {
             arreglo = []
             for (i = 0; i < DatosJson.data.length; i++) {
@@ -409,7 +377,7 @@ $(document).ready(function () {
         }
 
         for (i = 0; i < label.length; i++) {
-            var rgb_val = 'rgba(' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ')';
+            rgb_val = 'rgba(' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ')';
             if (posString.indexOf(i) == -1) {
                 datasets.push({
                     label: label[i],
@@ -422,14 +390,9 @@ $(document).ready(function () {
         datasYlabels.push(labels)
         datasYlabels.push(datasets)
 
-
         return datasYlabels;
     }
     //Enviamos los datos a la grafica
-    var chart = [];
-    let dataYlabels;
-    let ctx;
-    let config;
 
     function cargarDatosChart(json, id, type) {
         dataYlabels = generaDatasLabels(json);
@@ -481,22 +444,22 @@ $(document).ready(function () {
 
     // Obtenemos los valores de los datasets y labels para la grafica para cualquier JSON
     function generaDatasLabelsPie(json) {
-        var label = [],
+        let label = [],
             labels = [],
             data = [],
             datas = [],
             datasets = [],
             datasYlabels = [];
-        var DatosJson = json;
+        let DatosJson = json;
+        let arreglo, concat, matriz = [];
+        let posString = [];
 
         //Obtenemos los nombres de cada campo del JSON
-        for (var key in DatosJson[0]) {
+        for (let key in DatosJson[0]) {
             label.push(key)
         }
 
         //crear matriz de labels que iran debajo de la grafica
-        var arreglo, concat, matriz = [];
-        var posString = [];
         for (j = 0; j < label.length; j++) {
             arreglo = []
             for (i = 0; i < DatosJson.length; i++) {
@@ -531,12 +494,14 @@ $(document).ready(function () {
             datas.push(data)
         }
 
+        //matriz de colores para la PIE chart
         let bcolors = [];
         for (i = 0; i < labels.length; i++) {
-            var rgb_val = 'rgba(' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ')';
+            let rgb_val = 'rgba(' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ')';
             bcolors.push(rgb_val);
         }
 
+        //Ingresar valores en arreglo de datasets
         datasets.push({
             label: ' Ingresos',
             data: data,
@@ -544,11 +509,8 @@ $(document).ready(function () {
             borderWidth: 0,
         })
 
-
-
         datasYlabels.push(labels)
         datasYlabels.push(datasets)
-
 
         return datasYlabels;
     }
@@ -569,13 +531,11 @@ $(document).ready(function () {
 
     function nuevaGrafica(ctx, config) {
         chart.push(new Chart(ctx, config));
-
     }
+
     //Inicializamos metodo para cargar la grafica al cargar la pagina
     //window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp', "chartBarras");
     //window.onload = cargarDatosGrafica('https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp', "chartBarras");
     //window.onload = cargarDatosGrafica('http://192.168.1.115/isad/dashboards/ingresosMensuales.asp');
     //window.onload = cargarDatosGrafica('./assets/json/miescuela_asp.json', "chartBarras");
-
-
 });

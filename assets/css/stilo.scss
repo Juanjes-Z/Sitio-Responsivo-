@@ -163,10 +163,12 @@ input[type=number] {
 #tablaConfig {
     -webkit-transition: 0.5s;
     transition: 0.5s;
-    select{
+
+    select {
         width: 150px;
     }
-    td{
+
+    td {
         text-align: center;
         width: min-content;
     }
@@ -206,19 +208,23 @@ input[type=number] {
             background-color: rgba(224, 222, 222, 0.719);
         }
     }
-    .item{
+
+    .item {
         flex: 1 1 auto;
         min-width: 50%;
     }
-    .item1{
-        flex:  5 1 auto;
+
+    .item1 {
+        flex: 5 1 auto;
         min-width: 65%;
     }
-    .item2{
-        flex:  1 1 auto;
+
+    .item2 {
+        flex: 1 1 auto;
         max-width: 60%;
-        
+
     }
+
     .tabla-contenedor {
         height: 200px;
         padding: 0px;
@@ -229,7 +235,7 @@ input[type=number] {
         box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
     }
 
-    .tabla-contenedor-generated{
+    .tabla-contenedor-generated {
         padding: 0px;
         overflow: auto;
         text-align: center;
@@ -238,25 +244,27 @@ input[type=number] {
         box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
     }
 
-    .btn-borrar{
+    .btn-borrar {
         position: absolute;
-        top:  0px;
+        top: 0px;
         right: 0px;
         font-size: 0.5rem;
         padding: 0.1rem 0.3rem;
-        border-radius:  50%;
+        border-radius: 50%;
         z-index: 101 !important;
     }
 }
 
-.border-cols{
+.border-cols {
     border: 2px solid black;
 }
+
 /****** MENU SIDE NAV *******/
-#main{
+#main {
     -webkit-transition: 0.5s;
     transition: 0.5s;
 }
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -268,6 +276,7 @@ input[type=number] {
     transition: 0.5s;
     padding-top: 60px;
     z-index: 999;
+
     a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -275,17 +284,19 @@ input[type=number] {
         color: #e7e4e4;
         display: block;
         transition: 0.3s;
+
         &:hover {
             color: #ffffff;
-          }
+        }
     }
+
     .closebtn {
         position: absolute;
         top: 0;
         right: 25px;
         font-size: 36px;
         margin-left: 50px;
-      }
+    }
 }
 
 // Small devices (landscape phones, 576px and up)
@@ -304,10 +315,10 @@ input[type=number] {
         .tabla-contenedor {
             height: 178px !important;
 
-        }        
+        }
     }
 
-    
+
 
     .ordenar1 {
         order: 1;
@@ -342,7 +353,7 @@ input[type=number] {
 @media (min-width: 1200px) {
 
     .dashboard {
-        
+
         .tabla-contenedor {
             height: 281px !important;
         }
@@ -352,7 +363,7 @@ input[type=number] {
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 1400px) {
     .dashboard {
-        
+
         .tabla-contenedor {
             height: 326px !important;
         }

@@ -8,13 +8,12 @@
 
     <!-- RESET elimina los estilos css que implementan los navegadores por defecto-->
     <link rel="stylesheet" href="./assets/css/reset200802.css">
+
     <!-- CSS DATA PCIKER-->
     <link rel="stylesheet" href="./assets/css/bootstrap-datepicker.css" />
 
-
     <!--jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
 
     <!-- Datapicker Jquery-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -48,11 +47,7 @@
 </head>
 
 <body>
-    <script>
-
-    </script>
     <main id="main">
-
         <!--  SIDE NAV-->
         <div id="theSidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -65,7 +60,8 @@
 
         <div class="container">
             <div class="row mt-5 p-5" style="background-color: rgba(0, 0, 0, 0.082);">
-                <form action="https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp" method="post" id="formularioaenviar">
+                <form action="https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp" method="post"
+                    id="formularioaenviar">
                     <div class="col-12 text-center">
                         <h1>Ingresos Por Rango de Fecha</h1>
                     </div>
@@ -73,7 +69,6 @@
                     <div class="col-12 p-3"
                         style="background-color: rgb(253, 253, 253); border: 1px solid rgb(139, 139, 139) ;">
                         <div class="row justify-content-center">
-
 
                             <div class="col-6 col-md-3  align-self-end">
                                 <div class="wrapper">
@@ -129,10 +124,13 @@
 
                     <div class="collapse" id="collapseExample"
                         style="background-color: rgb(253, 253, 253); border: 1px solid rgb(139, 139, 139) ; border-top:0px;">
-                        <div class="col-12 mt-3" id="tablaConfig">
+                        <div class="col-12" id="tablaConfig">
                             <div class="table-responsive">
+
                                 <table class="table caption-top table-hover table-light table-sm" id="configForm">
+
                                     <caption>Seleccionar Generación</caption>
+
                                     <thead class=" table-dark">
                                         <tr>
                                             <th scope="col"></th>
@@ -141,85 +139,80 @@
                                             <th scope="col" class="text-center">Porcentaje</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
-
+                                        <!-- POR MES-->
                                         <tr>
-                                            <!-- POR MES-->
-                                            <th scope="row">Por Mes</th>
-
+                                            <td scope="row" class="text-start">Por Mes</td>
                                             <td class="text-center">
                                                 <input class="form-check-input" type="checkbox" id="tablaPorMes"
                                                     name="tablaPorMes">
                                             </td>
-
                                             <td class="text-center">
-                                                <select name="tipoGraficaPorMes" id="tipoGraficaPorMes" class="text-center">
+                                                <select name="tipoGraficaPorMes" id="tipoGraficaPorMes"
+                                                    class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
                                                 </select>
                                             </td>
-
                                             <td class="text-center">
                                                 <input class="form-check-input" type="checkbox" id="porcentajePorMes"
                                                     name="porcentajePorMes">
                                             </td>
                                         </tr>
 
+                                        <!-- POR NIVEL-->
                                         <tr>
-                                            <!-- POR NIVEL-->
-                                            <th scope="row">Por Nivel</th>
+                                            <td scope="row" class="text-start">Por Nivel</td>
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="tablaPorNivel" name="tablaPorNivel"></td>
                                             <td>
-                                                <select name="tipoGraficaPorNivel" id="tipoGraficaPorNivel" class="text-center">
+                                                <select name="tipoGraficaPorNivel" id="tipoGraficaPorNivel"
+                                                    class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
                                                 </select>
                                             </td>
-
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="porcentajePorNivel" name="porcentajePorNivel">
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <!-- POR CARRERA -->
-                                            <th scope="row">Por carrera</th>
 
+                                        <!-- POR CARRERA -->
+                                        <tr>
+                                            <td scope="row" class="text-start">Por carrera</td>
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="tablaPorCarrera" name="tablaPorCarrera">
                                             </td>
-
                                             <td>
-                                                <select name="tipoGraficaPorCarrera" id="tipoGraficaPorCarrera" class="text-center">
+                                                <select name="tipoGraficaPorCarrera" id="tipoGraficaPorCarrera"
+                                                    class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
                                                 </select>
                                             </td>
-
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="porcentajePorCarrera" name="porcentajePorCarrera">
                                             </td>
-
                                         </tr>
+
+                                        <!-- POR CUENTA -->
                                         <tr>
-                                            <!-- POR CUENTA -->
-                                            <th scope="row">Por Cuenta</th>
+                                            <td scope="row" class="text-start">Por Cuenta</td>
 
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="tablaPorCuenta" name="tablaPorCuenta">
                                             </td>
-
                                             <td>
-
-                                                <select name="tipoGraficaPorCuenta" id="tipoGraficaPorCuenta" class="text-center">
+                                                <select name="tipoGraficaPorCuenta" id="tipoGraficaPorCuenta"
+                                                    class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
                                                 </select>
-
                                             </td>
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="porcentajePorCuenta" name="porcentajePorCuenta">
@@ -227,26 +220,26 @@
                                         </tr>
                                         <tr>
                                             <!-- POR LUGAR DE PAGO -->
-                                            <th scope="row">Por Lugar de Pago</th>
-
+                                            <td scope="row" class="text-start">Por Lugar de Pago</td>
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="tablaPorLugarPago" name="tablaPorLugarPago">
                                             </td>
-
                                             <td>
-                                                <select name="tipoGraficaPorLugarPago" id="tipoGraficaPorLugarPago" class="text-center">
+                                                <select name="tipoGraficaPorLugarPago" id="tipoGraficaPorLugarPago"
+                                                    class="text-center">
                                                     <option value="0">No graficar</option>
                                                     <option value="1">Barras</option>
                                                     <option value="2">Lineal</option>
                                                 </select>
                                             </td>
-
                                             <td class="text-center"><input class="form-check-input" type="checkbox"
                                                     id="porcentajePorLugarPago" name="porcentajePorLugarPago">
                                             </td>
                                         </tr>
                                     </tbody>
+
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -263,10 +256,10 @@
         </div>
 
     </main>
+
     <script src="./assets/js/jquery-serialize-checkbox.js"></script>
     <!-- Propios archivos JS-->
     <script src="./assets/js/crear-tabla-json.js"></script>
-    <script src="./assets/js/grafica-pie.js"></script>
     <script src="./assets/js/char-progress.js"></script>
     <script src="./assets/js/grafica-y-tabla.js"></script>
     <script src="./assets/js/sideNavMenu.js"></script>
