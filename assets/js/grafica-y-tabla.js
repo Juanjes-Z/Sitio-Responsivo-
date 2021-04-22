@@ -5,40 +5,45 @@ $(document).ready(function () {
     let ctx;
     let config;
 
+    //FECHAS INICIAL Y FINAL
+    const fechaI = document.querySelector("#fechaInicial");
+    const fechaF = document.querySelector("#fechaFinal");
+
+    //POR MES
+    const tablaM = document.querySelector("#tablaPorMes");
+    const tipoGraficaM = document.querySelector("#tipoGraficaPorMes");
+    const porcentajeM = document.querySelector("#porcentajePorMes");
+
+    //POR NIVEL
+    const tablaN = document.querySelector("#tablaPorNivel");
+    const tipoGraficaN = document.querySelector("#tipoGraficaPorNivel");
+    const porcentajeN = document.querySelector("#porcentajePorNivel");
+
+    //POR CARRERA
+    const tablaCA = document.querySelector("#tablaPorCarrera");
+    const tipoGraficaCA = document.querySelector("#tipoGraficaPorCarrera");
+    const porcentajeCA = document.querySelector("#porcentajePorCarrera");
+
+    //POR CUENTA
+    const tablaCU = document.querySelector("#tablaPorCuenta");
+    const tipoGraficaCU = document.querySelector("#tipoGraficaPorCuenta");
+    const porcentajeCU = document.querySelector("#porcentajePorCuenta");
+
+    //POR LUGAR PAGO
+    const tablaLP = document.querySelector("#tablaPorLugarPago");
+    const tipoGraficaLP = document.querySelector("#tipoGraficaPorLugarPago");
+    const porcentajeLP = document.querySelector("#porcentajePorLugarPago");
+
     llenarTablaConf()
 
     function llenarTablaConf(jsonConfiguracion = "https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11") {
-        //POR MES
-        const tablaM = document.querySelector("#tablaPorMes");
-        const tipoGraficaM = document.querySelector("#tipoGraficaPorMes");
-        const porcentajeM = document.querySelector("#porcentajePorMes");
-
-        //POR NIVEL
-        const tablaN = document.querySelector("#tablaPorNivel");
-        const tipoGraficaN = document.querySelector("#tipoGraficaPorNivel");
-        const porcentajeN = document.querySelector("#porcentajePorNivel");
-
-        //POR CARRERA
-        const tablaCA = document.querySelector("#tablaPorCarrera");
-        const tipoGraficaCA = document.querySelector("#tipoGraficaPorCarrera");
-        const porcentajeCA = document.querySelector("#porcentajePorCarrera");
-
-        //POR CUENTA
-        const tablaCU = document.querySelector("#tablaPorCuenta");
-        const tipoGraficaCU = document.querySelector("#tipoGraficaPorCuenta");
-        const porcentajeCU = document.querySelector("#porcentajePorCuenta");
-
-        //POR LUGAR PAGO
-        const tablaLP = document.querySelector("#tablaPorLugarPago");
-        const tipoGraficaLP = document.querySelector("#tipoGraficaPorLugarPago");
-        const porcentajeLP = document.querySelector("#porcentajePorLugarPago");
         fetch(jsonConfiguracion).then(resp => {
             resp.json().then(data => {
                 for (let i = 0; i < data.length; i++) {
                     estadistica = data[i]["estadistica"];
-                    porcentaje  = data[i]["porcentaje"];
-                    grafica     = data[i]["grafica"];
-                    tabla       = data[i]["tabla"];
+                    porcentaje = data[i]["porcentaje"];
+                    grafica = data[i]["grafica"];
+                    tabla = data[i]["tabla"];
 
                     switch (estadistica) {
                         case "01":
@@ -82,13 +87,15 @@ $(document).ready(function () {
         //alert($('#formularioaenviar').serialize({  checkboxesAsBools: true}));
         $.ajax({
             type: $('#formularioaenviar').attr('method'),
-            url: $('#formularioaenviar').attr('action'),
+            //url: $('#formularioaenviar').attr('action'),
+            url: 'https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp?fechainicial=' + fechaI.value + '&fechafinal=' + fechaF.value + '',
             data: $('#formularioaenviar').serialize({
                 checkboxesAsBools: true
             }),
             success: function (data) {
                 //alert($('#formularioaenviar').serialize({ checkboxesAsBools: true }));
                 generarTablasYGraficas()
+                console.log('https://mi-escuelamx.com/isad/dashboards/recibeparametros.asp?fechainicial=' + fechaI.value + '&fechafinal=' + fechaF.value + '');
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Error: " + errorThrown);
@@ -133,64 +140,60 @@ $(document).ready(function () {
     }
 
     function obtenerValoresForm() {
-        //FECHAS
-        let fechaI = document.querySelector("#fechaInicial").value;
-        let fechaF = document.querySelector("#fechaFinal").value;
-
         //POR MES
-        let tablaM = document.querySelector("#tablaPorMes").checked ? 1 : 0;
-        let tipoGraficaM = document.querySelector("#tipoGraficaPorMes").value;
-        let porcentajeM = document.querySelector("#porcentajePorMes").checked ? 1 : 0;
+        let tablaMes = tablaM.checked ? 1 : 0;
+        let tipoGraficaMes = tipoGraficaM.value;
+        let porcentajeMes = porcentajeM.checked ? 1 : 0;
 
         //POR NIVEL
-        let tablaN = document.querySelector("#tablaPorNivel").checked ? 1 : 0;
-        let tipoGraficaN = document.querySelector("#tipoGraficaPorNivel").value;
-        let porcentajeN = document.querySelector("#porcentajePorNivel").checked ? 1 : 0;
+        let tablaNivel = tablaN.checked ? 1 : 0;
+        let tipoGraficaNivel = tipoGraficaN.value;
+        let porcentajeNivel = porcentajeN.checked ? 1 : 0;
 
         //POR CARRERA
-        let tablaCA = document.querySelector("#tablaPorCarrera").checked ? 1 : 0;
-        let tipoGraficaCA = document.querySelector("#tipoGraficaPorCarrera").value;
-        let porcentajeCA = document.querySelector("#porcentajePorCarrera").checked ? 1 : 0;
+        let tablaCarrera = tablaCA.checked ? 1 : 0;
+        let tipoGraficaCarrera = tipoGraficaCA.value;
+        let porcentajeCarrera = porcentajeCA.checked ? 1 : 0;
 
         //POR CUENTA
-        let tablaCU = document.querySelector("#tablaPorCuenta").checked ? 1 : 0;
-        let tipoGraficaCU = document.querySelector("#tipoGraficaPorCuenta").value;
-        let porcentajeCU = document.querySelector("#porcentajePorCuenta").checked ? 1 : 0;
+        let tablaCuenta = tablaCU.checked ? 1 : 0;
+        let tipoGraficaCuenta = tipoGraficaCU.value;
+        let porcentajeCuenta = porcentajeCU.checked ? 1 : 0;
 
         //POR LUGAR PAGO
-        let tablaLP = document.querySelector("#tablaPorLugarPago").checked ? 1 : 0;
-        let tipoGraficaLP = document.querySelector("#tipoGraficaPorLugarPago").value;
-        let porcentajeLP = document.querySelector("#porcentajePorLugarPago").checked ? 1 : 0;
+        let tablaLugarPago = tablaLP.checked ? 1 : 0;
+        let tipoGraficaLugarPago = tipoGraficaLP.value;
+        let porcentajeLugarPago = porcentajeLP.checked ? 1 : 0;
 
         let jsonConf = [{
                 "estadistica": "01",
-                "tabla": tablaM,
-                "grafica": tipoGraficaM,
-                "porcentaje": porcentajeM
+                "tabla": tablaMes,
+                "grafica": tipoGraficaMes,
+                "porcentaje": porcentajeMes
             },
             {
                 "estadistica": "02",
-                "tabla": tablaN,
-                "grafica": tipoGraficaN,
-                "porcentaje": porcentajeN
+                "tabla": tablaNivel,
+                "grafica": tipoGraficaNivel,
+                "porcentaje": porcentajeNivel
             },
             {
                 "estadistica": "03",
-                "tabla": tablaCA,
-                "grafica": tipoGraficaCA,
-                "porcentaje": porcentajeCA
+                "tabla": tablaCarrera,
+                "grafica": tipoGraficaCarrera,
+                "porcentaje": porcentajeCarrera
             },
             {
                 "estadistica": "04",
-                "tabla": tablaCU,
-                "grafica": tipoGraficaCU,
-                "porcentaje": porcentajeCU
+                "tabla": tablaCuenta,
+                "grafica": tipoGraficaCuenta,
+                "porcentaje": porcentajeCuenta
             },
             {
                 "estadistica": "05",
-                "tabla": tablaLP,
-                "grafica": tipoGraficaLP,
-                "porcentaje": porcentajeLP
+                "tabla": tablaLugarPago,
+                "grafica": tipoGraficaLugarPago,
+                "porcentaje": porcentajeLugarPago
             },
         ];
 
@@ -317,9 +320,9 @@ $(document).ready(function () {
     function cargarDatosGrafica(json, id, type) {
         fetch(json).then(resp => {
             resp.json().then(data => {
-                cargarDatosChart(data, id, type)
-            })
-            .catch(error => console.error(error));
+                    cargarDatosChart(data, id, type)
+                })
+                .catch(error => console.error(error));
         });
     }
 
