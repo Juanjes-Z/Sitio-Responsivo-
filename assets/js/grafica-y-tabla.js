@@ -3,6 +3,7 @@ let chart = [];
 let dataYlabels;
 let ctx;
 let config;
+let matirzConfig = [];
 
 let fechaI, fechaF, tablaM, tipoGraficaM, porcentajeM, tablaN, tipoGraficaN,
     porcentajeN, tablaCA, tipoGraficaCA, porcentajeCA, tablaCU, tipoGraficaCU, porcentajeCU,
@@ -38,17 +39,23 @@ function selectsTableConfig() {
     tipoGraficaLP = document.querySelector("#cboGrafica1105");
     porcentajeLP = document.querySelector("#chkPorcentaje1105");
 
+
     let tableBodyConf = document.querySelector('#tbodyConfig');
     let filasTabla = tableBodyConf.querySelectorAll('tr');
-    let fila = []
-    let matirzConfig = [];
+    let fila = [];
+    matirzConfig = []
     for (let i = 0; i < filasTabla.length; i++) {
+        fila = []
         let tdFilas = filasTabla[i].querySelectorAll('td');
+
         for (let j = 1; j < tdFilas.length; j++) {
-            fila.push[document.querySelector("chkTabla110"+i)];
+            tdFilas[j].childNodes.forEach(children => {
+                fila.push(children);
+            });
         }
+        matirzConfig.push(fila);
     }
-    console.log(fila);
+
 }
 
 function llenarTablaConf(jsonConfiguracion = "https://mi-escuelamx.com/isad/dashboards/ingresosPorRangoFechasConfiguracion.asp?usuario=Admin&operacion=11") {
@@ -56,44 +63,19 @@ function llenarTablaConf(jsonConfiguracion = "https://mi-escuelamx.com/isad/dash
     fetch(jsonConfiguracion).then(resp => {
         resp.json().then(data => {
             selectsTableConfig();
+
             for (let i = 0; i < data.length; i++) {
                 estadistica = data[i]["estadistica"];
                 porcentaje = data[i]["porcentaje"];
                 grafica = data[i]["grafica"];
                 tabla = data[i]["tabla"];
 
-                switch (estadistica) {
-                    case "01":
-                        porcentajeM.checked = (porcentaje == 1) ? true : false;
-                        tipoGraficaM.selectedIndex = grafica + "";
-                        tablaM.checked = (tabla == 1) ? true : false;
-                        break;
+                document.querySelector("#" + matirzConfig[i][0].id).checked = (tabla == 1) ? true : false;
+                document.querySelector("#" + matirzConfig[i][1].id).selectedIndex = grafica + "";
+                document.querySelector("#" + matirzConfig[i][2].id).checked = (porcentaje == 1) ? true : false;
 
-                    case "02":
-                        porcentajeN.checked = (porcentaje == 1) ? true : false;
-                        tipoGraficaN.selectedIndex = grafica + "";
-                        tablaN.checked = (tabla == 1) ? true : false;
-                        break;
-
-                    case "03":
-                        porcentajeCA.checked = (porcentaje == 1) ? true : false;
-                        tipoGraficaCA.selectedIndex = grafica + "";
-                        tablaCA.checked = (tabla == 1) ? true : false;
-                        break;
-
-                    case "04":
-                        porcentajeCU.checked = (porcentaje == 1) ? true : false;
-                        tipoGraficaCU.selectedIndex = grafica + "";
-                        tablaCU.checked = (tabla == 1) ? true : false;
-                        break;
-
-                    case "05":
-                        porcentajeLP.checked = (porcentaje == 1) ? true : false;
-                        tipoGraficaLP.selectedIndex = grafica + "";
-                        tablaLP.checked = (tabla == 1) ? true : false;
-                        break;
-                }
             }
+
         });
     });
 }
@@ -132,28 +114,16 @@ function generarTablasYGraficas(fechaIval, fechaFval) {
     }
 
     data = obtenerValoresForm();
-    for (let i = 0; i < data.length; i++) {
-        tabla = data[i]["tabla"];
-        grafica = data[i]["grafica"];
-        estadistica = data[i]["estadistica"];
-        porcentaje = data[i]["porcentaje"];
+    for (let i = 0; i < matirzConfig.length; i++) {
+        console.log(matirzConfig[i][5] != undefined? true: false)
+        tabla = matirzConfig[i][0].checked? 1:0;
+        grafica = matirzConfig[i][2].value;
+        porcentaje = matirzConfig[i][3].checked? 1:0;
+        rutaJson = 'https://mi-escuelamx.com/isad/dashboards/'+matirzConfig[i][4].value + fechasPorParametro;
+        rutaJsonPie = 'https://mi-escuelamx.com/isad/dashboards/'+matirzConfig[i][5].value + fechasPorParametro;
 
-        switch (estadistica) {
-            case "01":
-                rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp' + fechasPorParametro;
-                rutaJsonPie = '';
-                break;
-            case "02":
-                rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensualesnivel.asp' + fechasPorParametro;
-                rutaJsonPie = 'https://mi-escuelamx.com/isad/dashboards/porcentajeMensualesNIvel.asp' + fechasPorParametro;
-                break;
-            default:
-                rutaJson = '';
-                rutaJsonPie = '';
-                break;
-        }
 
-        if (rutaJson != '' || rutaJsonPie != '') {
+        if (matirzConfig[i][4].value != '' || matirzConfig[i][5].value != '') {
             generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaje, estadistica);
         }
     }
@@ -328,8 +298,6 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
             }
             */
 }
-
-
 
 $(document).on('click', '.btn-borrar', function (event) {
     $(this).parents("#colG" + $(this).val()).remove();
