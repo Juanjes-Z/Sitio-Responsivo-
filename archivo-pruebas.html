@@ -139,105 +139,8 @@
                                             <th scope="col" class="text-center">Porcentaje</th>
                                         </tr>
                                     </thead>
-
-                                    <tbody>
-                                        <!-- POR MES-->
-                                        <tr>
-                                            <td scope="row" class="text-start">Por Mes</td>
-                                            <td class="text-center">
-                                                <input class="form-check-input" type="checkbox" id="tablaPorMes"
-                                                    name="tablaPorMes">
-                                            </td>
-                                            <td class="text-center">
-                                                <select name="tipoGraficaPorMes" id="tipoGraficaPorMes"
-                                                    class="text-center">
-                                                    <option value="0">No graficar</option>
-                                                    <option value="1">Barras</option>
-                                                    <option value="2">Lineal</option>
-                                                </select>
-                                            </td>
-                                            <td class="text-center">
-                                                <input class="form-check-input" type="checkbox" id="porcentajePorMes"
-                                                    name="porcentajePorMes">
-                                            </td>
-                                        </tr>
-
-                                        <!-- POR NIVEL-->
-                                        <tr>
-                                            <td scope="row" class="text-start">Por Nivel</td>
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaPorNivel" name="tablaPorNivel"></td>
-                                            <td>
-                                                <select name="tipoGraficaPorNivel" id="tipoGraficaPorNivel"
-                                                    class="text-center">
-                                                    <option value="0">No graficar</option>
-                                                    <option value="1">Barras</option>
-                                                    <option value="2">Lineal</option>
-                                                </select>
-                                            </td>
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajePorNivel" name="porcentajePorNivel">
-                                            </td>
-                                        </tr>
-
-                                        <!-- POR CARRERA -->
-                                        <tr>
-                                            <td scope="row" class="text-start">Por carrera</td>
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaPorCarrera" name="tablaPorCarrera">
-                                            </td>
-                                            <td>
-                                                <select name="tipoGraficaPorCarrera" id="tipoGraficaPorCarrera"
-                                                    class="text-center">
-                                                    <option value="0">No graficar</option>
-                                                    <option value="1">Barras</option>
-                                                    <option value="2">Lineal</option>
-                                                </select>
-                                            </td>
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajePorCarrera" name="porcentajePorCarrera">
-                                            </td>
-                                        </tr>
-
-                                        <!-- POR CUENTA -->
-                                        <tr>
-                                            <td scope="row" class="text-start">Por Cuenta</td>
-
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaPorCuenta" name="tablaPorCuenta">
-                                            </td>
-                                            <td>
-                                                <select name="tipoGraficaPorCuenta" id="tipoGraficaPorCuenta"
-                                                    class="text-center">
-                                                    <option value="0">No graficar</option>
-                                                    <option value="1">Barras</option>
-                                                    <option value="2">Lineal</option>
-                                                </select>
-                                            </td>
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajePorCuenta" name="porcentajePorCuenta">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <!-- POR LUGAR DE PAGO -->
-                                            <td scope="row" class="text-start">Por Lugar de Pago</td>
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="tablaPorLugarPago" name="tablaPorLugarPago">
-                                            </td>
-                                            <td>
-                                                <select name="tipoGraficaPorLugarPago" id="tipoGraficaPorLugarPago"
-                                                    class="text-center">
-                                                    <option value="0">No graficar</option>
-                                                    <option value="1">Barras</option>
-                                                    <option value="2">Lineal</option>
-                                                </select>
-                                            </td>
-                                            <td class="text-center"><input class="form-check-input" type="checkbox"
-                                                    id="porcentajePorLugarPago" name="porcentajePorLugarPago">
-                                            </td>
-                                        </tr>
+                                    <tbody id="tbodyConfig">
                                     </tbody>
-
                                 </table>
 
                             </div>
@@ -259,10 +162,12 @@
 
     <script src="./assets/js/jquery-serialize-checkbox.js"></script>
     <!-- Propios archivos JS-->
+    <script src="./assets/js/sideNavMenu.js"></script>
+    <script src="./assets/js/crearForm.js"></script>
     <script src="./assets/js/crear-tabla-json.js"></script>
     <script src="./assets/js/char-progress.js"></script>
     <script src="./assets/js/grafica-y-tabla.js"></script>
-    <script src="./assets/js/sideNavMenu.js"></script>
+    
     <!--modernizr ayuda a compatibilizar nuestro codigo con otros navegadores-->
     <script src="./assets/js/modernizr-custom.js"></script>
 </body>

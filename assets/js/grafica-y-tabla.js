@@ -10,29 +10,29 @@ $(document).ready(function () {
     const fechaF = document.querySelector("#fechaFinal");
 
     //POR MES
-    const tablaM = document.querySelector("#tablaPorMes");
-    const tipoGraficaM = document.querySelector("#tipoGraficaPorMes");
-    const porcentajeM = document.querySelector("#porcentajePorMes");
+    const tablaM = document.querySelector("#chkTabla1101");
+    const tipoGraficaM = document.querySelector("#cboGrafica1101");
+    const porcentajeM = document.querySelector("#chkPorcentaje1101");
 
     //POR NIVEL
-    const tablaN = document.querySelector("#tablaPorNivel");
-    const tipoGraficaN = document.querySelector("#tipoGraficaPorNivel");
-    const porcentajeN = document.querySelector("#porcentajePorNivel");
+    const tablaN = document.querySelector("#chkTabla1102");
+    const tipoGraficaN = document.querySelector("#cboGrafica1102");
+    const porcentajeN = document.querySelector("#chkPorcentaje1102");
 
     //POR CARRERA
-    const tablaCA = document.querySelector("#tablaPorCarrera");
-    const tipoGraficaCA = document.querySelector("#tipoGraficaPorCarrera");
-    const porcentajeCA = document.querySelector("#porcentajePorCarrera");
+    const tablaCA = document.querySelector("#chkTabla1103");
+    const tipoGraficaCA = document.querySelector("#cboGrafica1103");
+    const porcentajeCA = document.querySelector("#chkPorcentaje1103");
 
     //POR CUENTA
-    const tablaCU = document.querySelector("#tablaPorCuenta");
-    const tipoGraficaCU = document.querySelector("#tipoGraficaPorCuenta");
-    const porcentajeCU = document.querySelector("#porcentajePorCuenta");
+    const tablaCU = document.querySelector("#chkTabla1104");
+    const tipoGraficaCU = document.querySelector("#cboGrafica1104");
+    const porcentajeCU = document.querySelector("#chkPorcentaje1104");
 
     //POR LUGAR PAGO
-    const tablaLP = document.querySelector("#tablaPorLugarPago");
-    const tipoGraficaLP = document.querySelector("#tipoGraficaPorLugarPago");
-    const porcentajeLP = document.querySelector("#porcentajePorLugarPago");
+    const tablaLP = document.querySelector("#chkTabla1105");
+    const tipoGraficaLP = document.querySelector("#cboGrafica1105");
+    const porcentajeLP = document.querySelector("#chkPorcentaje1105");
 
     llenarTablaConf()
 
@@ -120,6 +120,7 @@ $(document).ready(function () {
             grafica = data[i]["grafica"];
             estadistica = data[i]["estadistica"];
             porcentaje = data[i]["porcentaje"];
+            
             switch (estadistica) {
                 case "01":
                     rutaJson = 'https://mi-escuelamx.com/isad/dashboards/ingresosmensuales.asp'+fechasPorParametro;
