@@ -91,8 +91,8 @@
                 for (let i = 0; i < data.length; i++) {
                     estadistica = data[i]["estadistica"];
                     descripcion = data[i]["descripcion"];
-                    apiTabla= ((data[i]["APItabla"]) != undefined)? data[i]["APItabla"]: 'indefinido';
-                    apiPorcentaje= (data[i]["APIporcentaje"]) != undefined?data[i]["APIporcentaje"]:'';
+                    apiTabla= ((data[i]["APItabla"]) != undefined)? data[i]["APItabla"]:"undefined";
+                    apiPorcentaje= (data[i]["APIporcentaje"]) != undefined?data[i]["APIporcentaje"]:"undefined";
                     crearElementoTablaConfig(estadistica, descripcion, apiTabla, apiPorcentaje )
                 }
             });

@@ -1,44 +1,16 @@
-let tabla, grafica, estadistica, rutaJson, porcentaje, rutaJsonPie;
+let tabla, grafica, rutaJson, porcentaje, rutaJsonPie;
 let chart = [];
 let dataYlabels;
 let ctx;
 let config;
 let matirzConfig = [];
 
-let fechaI, fechaF, tablaM, tipoGraficaM, porcentajeM, tablaN, tipoGraficaN,
-    porcentajeN, tablaCA, tipoGraficaCA, porcentajeCA, tablaCU, tipoGraficaCU, porcentajeCU,
-    tablaLP, tipoGraficaLP, porcentajeLP;
+let fechaI, fechaF;
 
 function selectsTableConfig() {
     //FECHAS INICIAL Y FINAL
     fechaI = document.querySelector("#fechaInicial");
     fechaF = document.querySelector("#fechaFinal");
-
-    //POR MES
-    tablaM = document.querySelector("#chkTabla1101");
-    tipoGraficaM = document.querySelector("#cboGrafica1101");
-    porcentajeM = document.querySelector("#chkPorcentaje1101");
-
-    //POR NIVEL
-    tablaN = document.querySelector("#chkTabla1102");
-    tipoGraficaN = document.querySelector("#cboGrafica1102");
-    porcentajeN = document.querySelector("#chkPorcentaje1102");
-
-    //POR CARRERA
-    tablaCA = document.querySelector("#chkTabla1103");
-    tipoGraficaCA = document.querySelector("#cboGrafica1103");
-    porcentajeCA = document.querySelector("#chkPorcentaje1103");
-
-    //POR CUENTA
-    tablaCU = document.querySelector("#chkTabla1104");
-    tipoGraficaCU = document.querySelector("#cboGrafica1104");
-    porcentajeCU = document.querySelector("#chkPorcentaje1104");
-
-    //POR LUGAR PAGO
-    tablaLP = document.querySelector("#chkTabla1105");
-    tipoGraficaLP = document.querySelector("#cboGrafica1105");
-    porcentajeLP = document.querySelector("#chkPorcentaje1105");
-
 
     let tableBodyConf = document.querySelector('#tbodyConfig');
     let filasTabla = tableBodyConf.querySelectorAll('tr');
@@ -65,7 +37,6 @@ function llenarTablaConf(jsonConfiguracion = "https://mi-escuelamx.com/isad/dash
             selectsTableConfig();
 
             for (let i = 0; i < data.length; i++) {
-                estadistica = data[i]["estadistica"];
                 porcentaje = data[i]["porcentaje"];
                 grafica = data[i]["grafica"];
                 tabla = data[i]["tabla"];
@@ -75,7 +46,6 @@ function llenarTablaConf(jsonConfiguracion = "https://mi-escuelamx.com/isad/dash
                 document.querySelector("#" + matirzConfig[i][2].id).checked = (porcentaje == 1) ? true : false;
 
             }
-
         });
     });
 }
@@ -92,7 +62,7 @@ $('#formularioaenviar').submit(function (ev) {
         }),
         success: function (data) {
             //alert($('#formularioaenviar').serialize({ checkboxesAsBools: true }));
-            generarTablasYGraficas(fechaI.value, fechaF.value)
+            preparaValoresGraficaTabla(fechaI.value, fechaF.value)
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Error: " + errorThrown);
@@ -101,93 +71,42 @@ $('#formularioaenviar').submit(function (ev) {
     ev.preventDefault();
 });
 
-function generarTablasYGraficas(fechaIval, fechaFval) {
+function contraerConfiguracion() {
     if ($("#collapseExample").hasClass("show") == true) {
         $("#collapseExample").removeClass("show");
     }
+}
 
-    let fechasPorParametro = (fechaI != undefined && fechaFval != undefined) ? '?fechainicial=' + fechaIval + '&fechafinal=' + fechaFval + '' : "";
-    // const respJson = consJSON(obtenerValoresForm());
-
+function BorrarGraficas() {
     if (document.getElementById("ContainerGraficas")) {
         document.getElementById("ContainerGraficas").remove();
     }
-
-    data = obtenerValoresForm();
-    for (let i = 0; i < matirzConfig.length; i++) {
-        console.log(matirzConfig[i][5] != undefined? true: false)
-        tabla = matirzConfig[i][0].checked? 1:0;
-        grafica = matirzConfig[i][2].value;
-        porcentaje = matirzConfig[i][3].checked? 1:0;
-        rutaJson = 'https://mi-escuelamx.com/isad/dashboards/'+matirzConfig[i][4].value + fechasPorParametro;
-        rutaJsonPie = 'https://mi-escuelamx.com/isad/dashboards/'+matirzConfig[i][5].value + fechasPorParametro;
-
-
-        if (matirzConfig[i][4].value != '' || matirzConfig[i][5].value != '') {
-            generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaje, estadistica);
-        }
-    }
 }
 
-function obtenerValoresForm() {
-    //POR MES
-    let tablaMes = tablaM.checked ? 1 : 0;
-    let tipoGraficaMes = tipoGraficaM.value;
-    let porcentajeMes = porcentajeM.checked ? 1 : 0;
+function preparaValoresGraficaTabla(fechaIval, fechaFval) {
 
-    //POR NIVEL
-    let tablaNivel = tablaN.checked ? 1 : 0;
-    let tipoGraficaNivel = tipoGraficaN.value;
-    let porcentajeNivel = porcentajeN.checked ? 1 : 0;
+    const rutaApis = 'https://mi-escuelamx.com/isad/dashboards/';
+    contraerConfiguracion(); //contraer tabla de configracion
 
-    //POR CARRERA
-    let tablaCarrera = tablaCA.checked ? 1 : 0;
-    let tipoGraficaCarrera = tipoGraficaCA.value;
-    let porcentajeCarrera = porcentajeCA.checked ? 1 : 0;
+    let fechaValida = fechaI != undefined && fechaFval != undefined;
+    let CadenaParametroFechas = (fechaValida) ? '?fechainicial=' + fechaIval + '&fechafinal=' + fechaFval + '' : "";
 
-    //POR CUENTA
-    let tablaCuenta = tablaCU.checked ? 1 : 0;
-    let tipoGraficaCuenta = tipoGraficaCU.value;
-    let porcentajeCuenta = porcentajeCU.checked ? 1 : 0;
+    BorrarGraficas();
 
-    //POR LUGAR PAGO
-    let tablaLugarPago = tablaLP.checked ? 1 : 0;
-    let tipoGraficaLugarPago = tipoGraficaLP.value;
-    let porcentajeLugarPago = porcentajeLP.checked ? 1 : 0;
+    for (let i = 0; i < matirzConfig.length; i++) {
+        
+        tabla = matirzConfig[i][0].checked ? 1 : 0;
+        grafica = matirzConfig[i][1].value;
+        porcentaje = matirzConfig[i][2].checked ? 1 : 0;
+        
+        rutaJson = rutaApis + matirzConfig[i][3].value + CadenaParametroFechas;
+        rutaJsonPie = rutaApis + matirzConfig[i][4].value + CadenaParametroFechas;
 
-    let jsonConf = [{
-            "estadistica": "01",
-            "tabla": tablaMes,
-            "grafica": tipoGraficaMes,
-            "porcentaje": porcentajeMes
-        },
-        {
-            "estadistica": "02",
-            "tabla": tablaNivel,
-            "grafica": tipoGraficaNivel,
-            "porcentaje": porcentajeNivel
-        },
-        {
-            "estadistica": "03",
-            "tabla": tablaCarrera,
-            "grafica": tipoGraficaCarrera,
-            "porcentaje": porcentajeCarrera
-        },
-        {
-            "estadistica": "04",
-            "tabla": tablaCuenta,
-            "grafica": tipoGraficaCuenta,
-            "porcentaje": porcentajeCuenta
-        },
-        {
-            "estadistica": "05",
-            "tabla": tablaLugarPago,
-            "grafica": tipoGraficaLugarPago,
-            "porcentaje": porcentajeLugarPago
-        },
-    ];
-
-    return jsonConf;
+        if (matirzConfig[i][3].value != "undefined" || matirzConfig[i][4].value != "undefined") {
+            
+            generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaje, i);
+        }
+    }
 }
 
 function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaje, idNewChart) {
@@ -207,7 +126,7 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
     $('#rowGraficas' + idNewChart).addClass("d-flex flex-md-row  flex-wrap justify-content-center mt-5");
 
     //Se crea columna y tabla
-    if (tabla == 1) {
+    if (tabla == 1 && !rutaJson.includes("undefined")) {
         $('#rowGraficas' + idNewChart).append('<div id=colT' + idNewChart + ' class="">');
         $('#colT' + idNewChart).addClass("p-4 p-md-1 mt-2 ordenar2 text-end");
 
@@ -226,7 +145,8 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
         cargarDatosTabla(rutaJson, 'table' + idNewChart);
     }
 
-    if (porcentaje == 1 && rutaJsonPie != '') {
+    if (porcentaje == 1 && !rutaJsonPie.includes("undefined")) {
+        console.log({idNewChart, rutaJsonPie, rutaJson, porcentaje})
         $('#rowGraficas' + idNewChart).append('<div id=colGp' + idNewChart + ' class=" ">');
         $('#colGp' + idNewChart).addClass("p-4 p-md-1 mt-2 item2 ordenar1 text-end");
 
@@ -234,12 +154,11 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
         $('#divBtnGp' + idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + '">X</button>');
 
         $('#colGp' + idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);" id=chartp' + idNewChart + ' > ');
-
         cargarDatosGraficaPie(rutaJsonPie, 'chartp' + idNewChart, "pie");
     }
 
     //Se crea columna y Grafica
-    if (grafica != 0) {
+    if (grafica != 0 && !rutaJson.includes("undefined")) {
         $('#rowGraficas' + idNewChart).append('<div id=colG' + idNewChart + ' class=" ">');
         $('#colG' + idNewChart).addClass("p-4 p-md-1 mt-2 item ordenar1 text-end");
 
@@ -264,7 +183,7 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
         });
     }
 
-    if (tabla == 1 && porcentaje == 1 && rutaJsonPie != '') {
+    if (tabla == 1 && porcentaje == 1 && rutaJsonPie != "undefined") {
         new ResizeSensor(document.getElementById('colGp' + idNewChart), function () {
 
             if (document.getElementById('colGp' + idNewChart) != null) {
@@ -299,18 +218,20 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
             */
 }
 
+//Evento para boton borrar Grafica o tabla
 $(document).on('click', '.btn-borrar', function (event) {
     $(this).parents("#colG" + $(this).val()).remove();
     $(this).parents("#colT" + $(this).val()).remove();
     $(this).parents("#colGp" + $(this).val()).remove();
 });
 
+
 function cargarDatosGrafica(json, id, type) {
     fetch(json).then(resp => {
         resp.json().then(data => {
                 cargarDatosChart(data, id, type)
             })
-            .catch(error => console.error(error));
+            .catch(error => alert(error));
     });
 }
 
@@ -367,6 +288,7 @@ function generaDatasLabels(json) {
         datas.push(data)
     }
 
+    //generar valores para datasets
     for (i = 0; i < label.length; i++) {
         rgb_val = 'rgba(' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ', ' + Math.random() * (240 - 0) + 0 + ')';
         if (posString.indexOf(i) == -1) {
@@ -383,8 +305,8 @@ function generaDatasLabels(json) {
 
     return datasYlabels;
 }
-//Enviamos los datos a la grafica
 
+//Enviamos los datos a la grafica
 function cargarDatosChart(json, id, type) {
     dataYlabels = generaDatasLabels(json);
     ctx = document.getElementById(id).getContext('2d');
@@ -439,7 +361,7 @@ function cargarDatosGraficaPie(json, id, type) {
                     cargarDatosChartPie(data, id, type)
                 })
         })
-        .catch(error => console.error(error + " SE genero un error en la consulta de la tabla y grafica"));;
+        .catch(error => alert(error + " SE genero un error en la consulta de la tabla y grafica"));;
 }
 
 // Obtenemos los valores de los datasets y labels para la grafica para cualquier JSON
