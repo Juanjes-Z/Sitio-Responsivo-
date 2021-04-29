@@ -77,8 +77,8 @@
         elemtoTD = elementoFila.appendChild(creaElementoTD);
 
         /**** crear text APIporcentaje ****/
-        createTextPorcentaje = document.createElement('text');
-        createTextPorcentaje.setAttribute('type', 'checkbox');
+        createTextPorcentaje = document.createElement('input');
+        createTextPorcentaje.setAttribute('type', 'text');
         createTextPorcentaje.setAttribute('id', 'APIporcentaje' + estadistica);
         createTextPorcentaje.style.display = "none";
         createTextPorcentaje.setAttribute('value', apiPorcentaje);

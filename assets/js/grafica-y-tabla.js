@@ -1,4 +1,4 @@
-let tabla, grafica, rutaJson, porcentaje, rutaJsonPie;
+let tabla, grafica, porcentaje;
 let chart = [];
 let dataYlabels;
 let ctx;
@@ -84,7 +84,7 @@ function BorrarGraficas() {
 }
 
 function preparaValoresGraficaTabla(fechaIval, fechaFval) {
-
+    let rutaJsonPie="", rutaJson="";
     const rutaApis = 'https://mi-escuelamx.com/isad/dashboards/';
     contraerConfiguracion(); //contraer tabla de configracion
 
@@ -92,7 +92,7 @@ function preparaValoresGraficaTabla(fechaIval, fechaFval) {
     let CadenaParametroFechas = (fechaValida) ? '?fechainicial=' + fechaIval + '&fechafinal=' + fechaFval + '' : "";
 
     BorrarGraficas();
-
+    console.log(matirzConfig)
     for (let i = 0; i < matirzConfig.length; i++) {
         
         tabla = matirzConfig[i][0].checked ? 1 : 0;
@@ -101,11 +101,11 @@ function preparaValoresGraficaTabla(fechaIval, fechaFval) {
         
         rutaJson = rutaApis + matirzConfig[i][3].value + CadenaParametroFechas;
         rutaJsonPie = rutaApis + matirzConfig[i][4].value + CadenaParametroFechas;
-
-        if (matirzConfig[i][3].value != "undefined" || matirzConfig[i][4].value != "undefined") {
+        
+        
             
             generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaje, i);
-        }
+        
     }
 }
 
@@ -146,7 +146,6 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
     }
 
     if (porcentaje == 1 && !rutaJsonPie.includes("undefined")) {
-        console.log({idNewChart, rutaJsonPie, rutaJson, porcentaje})
         $('#rowGraficas' + idNewChart).append('<div id=colGp' + idNewChart + ' class=" ">');
         $('#colGp' + idNewChart).addClass("p-4 p-md-1 mt-2 item2 ordenar1 text-end");
 
