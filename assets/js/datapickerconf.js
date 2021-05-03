@@ -21,6 +21,7 @@ $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
 	$(".datepicker").datepicker({
 		changeMonth: true,
-changeYear: true
+		changeYear: true,
+		maxDate: 0
 	});
 });

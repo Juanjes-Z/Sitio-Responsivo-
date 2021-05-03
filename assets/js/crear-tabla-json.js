@@ -2,9 +2,9 @@ function cargarDatosTabla(json,idTable) {
    
     fetch (json).then(resp => {
         resp.json().then(data => {
-            cargarDatos(data, idTable)
-        });
-    
+            cargarDatos(data, 'table' +idTable)
+        })
+        .catch(error => errorCargarTabla(idTable, error));
     });
 }
 

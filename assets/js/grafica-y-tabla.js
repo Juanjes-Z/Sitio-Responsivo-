@@ -92,7 +92,6 @@ function preparaValoresGraficaTabla(fechaIval, fechaFval) {
     let CadenaParametroFechas = (fechaValida) ? '?fechainicial=' + fechaIval + '&fechafinal=' + fechaFval + '' : "";
 
     BorrarGraficas();
-    console.log(matirzConfig)
     for (let i = 0; i < matirzConfig.length; i++) {
         
         tabla = matirzConfig[i][0].checked ? 1 : 0;
@@ -142,9 +141,10 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
         $('#colT' + idNewChart).append('<div class="tabla-contenedor-generated " id="contTable' + idNewChart + '">');
         $('#contTable' + idNewChart).append('<table class="tablaDash table " id=table' + idNewChart + ' > ');
 
-        cargarDatosTabla(rutaJson, 'table' + idNewChart);
+        cargarDatosTabla(rutaJson, idNewChart);
     }
 
+    //se crea columna y grafica pie
     if (porcentaje == 1 && !rutaJsonPie.includes("undefined")) {
         $('#rowGraficas' + idNewChart).append('<div id=colGp' + idNewChart + ' class=" ">');
         $('#colGp' + idNewChart).addClass("p-4 p-md-1 mt-2 item2 ordenar1 text-end");
@@ -153,7 +153,7 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
         $('#divBtnGp' + idNewChart).append('<button  class="btn  btn-borrar btn-danger" value="' + idNewChart + '">X</button>');
 
         $('#colGp' + idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);" id=chartp' + idNewChart + ' > ');
-        cargarDatosGraficaPie(rutaJsonPie, 'chartp' + idNewChart, "pie");
+        cargarDatosGraficaPie(rutaJsonPie, idNewChart, "pie");
     }
 
     //Se crea columna y Grafica
@@ -166,7 +166,7 @@ function generarTablasyGraficas(rutaJson, rutaJsonPie, tabla, grafica, porcentaj
 
         $('#colG' + idNewChart).append('<canvas style="background-color: rgb(255, 255, 255); border-radius: 10px;  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);" id=chart' + idNewChart + ' > ');
 
-        cargarDatosGrafica(rutaJson, 'chart' + idNewChart, tipoGrafica);
+        cargarDatosGrafica(rutaJson,  idNewChart, tipoGrafica);
     }
 
     if (tabla == 1 && grafica != 0 && porcentaje == 0) {
@@ -228,9 +228,9 @@ $(document).on('click', '.btn-borrar', function (event) {
 function cargarDatosGrafica(json, id, type) {
     fetch(json).then(resp => {
         resp.json().then(data => {
-                cargarDatosChart(data, id, type)
+                cargarDatosChart(data, 'chart' +id, type)
             })
-            .catch(error => alert(error));
+            .catch(error => errorCargarGrafica(id, error));
     });
 }
 
@@ -357,10 +357,10 @@ function cargarDatosGraficaPie(json, id, type) {
     fetch(json).then(resp => {
             resp.json()
                 .then(data => {
-                    cargarDatosChartPie(data, id, type)
+                    cargarDatosChartPie(data, 'chartp' +id, type)
                 })
+                .catch(error => errorCargarGraficaP(id, error));
         })
-        .catch(error => alert(error + " SE genero un error en la consulta de la tabla y grafica"));;
 }
 
 // Obtenemos los valores de los datasets y labels para la grafica para cualquier JSON
@@ -372,8 +372,7 @@ function generaDatasLabelsPie(json) {
         datasets = [],
         datasYlabels = [];
     let DatosJson = json;
-    let arreglo, concat, matriz = [];
-    let posString = [];
+    let arreglo, concat, matriz = [], posString = [];
 
     //Obtenemos los nombres de cada campo del JSON
     for (let key in DatosJson[0]) {
