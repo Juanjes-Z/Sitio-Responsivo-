@@ -10,6 +10,7 @@
 
         /**** añade titulo ****/
         creaElementoTD = document.createElement('td');
+        creaElementoTD.style.textAlign="left";
         elemtoTD = elementoFila.appendChild(creaElementoTD);
         elemtoTD.innerText = descripcion;
 
